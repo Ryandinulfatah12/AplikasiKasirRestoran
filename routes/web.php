@@ -21,6 +21,7 @@ Route::group(['middleware'=>['auth']], function() {
 			return view('admin.pages.dashboard');
 		})->name('admin.home');
 
+		//TABEL USER
 		Route::prefix('user')->group(function() {
 			Route::get('/', 'UserController@daftar')->name('admin.user')->middleware('level.admin');
 			Route::delete('/', 'UserController@delete')->middleware('level.admin');
@@ -35,8 +36,20 @@ Route::group(['middleware'=>['auth']], function() {
 			Route::post('/setting', 'UserSettingController@update');
 		});
 
+		//TABEL MASAKAN
 		Route::prefix('masakan')->group(function() {
-			Route::get('/masakan', 'MasakanCOntroller@daftar')->name('admin.masakan');
+			Route::get('/', 'MasakanController@daftar')->name('admin.masakan');
+			Route::delete('/', 'MasakanController@delete')->middleware('level.admin');
+
+			Route::get('/add', 'MasakanController@add')->name('admin.masakan.add')->middleware('level.admin');
+			Route::post('/add', 'MasakanController@save')->middleware('level.admin');
+
+			Route::get('/edit/{id}', 'MasakanController@edit')->name('admin.masakan.edit')->middleware('level.admin');
+			Route::post('/edit/{id}', 'MasakanController@update')->middleware('level.admin');
+		});
+
+		Route::prefix('order')->group(function() {
+			Route::get('/', 'OrderController@data')->name('admin.order');
 		});
 
 	});

@@ -22,8 +22,8 @@
 			<form method="GET" action="{{ route('admin.user') }}">
 				@csrf
 				<div class="input-group">
-					<input type="text" name="keyword" value="{{ request('keyword') }}" class="form-control" placeholder="Cari Sesuatu...">
-					<span class="input-group-btn"><button type="button" class="btn btn-primary">Cari</button></span>
+					<input type="text" name="keyword" value="{{ request('keyword') }}" class="form-control" placeholder="Cari Sesuatu..." id="keyword" autofocus>
+					<span class="input-group-btn"><button type="button" name="cari" class="btn btn-primary">Cari</button></span>
 				</div>
 			</form>
 		</div>

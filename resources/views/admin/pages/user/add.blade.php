@@ -37,7 +37,7 @@
 			</div><!--End Form Group-->
 
 			<div class="form-group form-label-group">
-				<label for="iUserame">Username</label>
+				<label for="iUsername">Username</label>
 				<input type="text" name="username"
 				class="form-control {{ $errors->has('username')?'is-invalid':'' }} "
 				value="{{ old('username') }}"

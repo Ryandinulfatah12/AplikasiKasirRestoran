@@ -29,13 +29,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title">Apakah Anda Mau Logout?</h3>
+        <h3 class="modal-title">Anda Mau Logout?</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Yakin Nih...?</p>
+        <p>Apakah Anda Yakin mau Mengakhiri Sesi ini?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

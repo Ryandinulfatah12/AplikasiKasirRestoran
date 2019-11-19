@@ -12,21 +12,19 @@
 			</ul>
 			@endif
 			
+			@if(Auth::user()->level == 'admin')
 			<ul class="nav">
 				<li><a href="{{ route('admin.masakan') }}" ><i class="lnr lnr-dinner"></i> <span>Masakan</span></a></li>
 			</ul>
+			@endif
 
 			<ul class="nav">
-				<li><a href="#" ><i class="lnr lnr-envelope"></i> <span>Pesanan</span></a></li>
+				<li><a href="{{ route('admin.order') }}" ><i class="lnr lnr-envelope"></i> <span>Pesanan</span></a></li>
 			</ul>
 
-			<ul class="nav">
+			<!-- <ul class="nav">
 				<li><a href="#" ><i class="fa fa-money" aria-hidden="true"></i> <span>Transaksi</span></a></li>
-			</ul>
-
-			<ul class="nav">
-				<li><a href="#" ><i class="fa fa-bar-chart" aria-hidden="true"></i> <span>Chart</span></a></li>
-			</ul>
+			</ul> -->
 
 		</nav>
 	</div>

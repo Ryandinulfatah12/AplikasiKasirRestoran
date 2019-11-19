@@ -9,7 +9,7 @@
 				<div class="content">
 					<div class="header">
 						<div class="logo text-center"><img src="{{ url('klorofil/img/ngapak.png') }}" width="192px" alt="Klorofil Logo"></div>
-						<p class="lead">Login to your account</p>
+						<p class="lead">Login to Your Account</p>
 					</div>
 					<form class="form-auth-small" method="POST" action="{{ route('login') }}">
 						@csrf
