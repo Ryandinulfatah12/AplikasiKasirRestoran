@@ -13,6 +13,8 @@
 	<link rel="stylesheet" href="{{ url('klorofil/vendor/chartist/css/chartist-custom.css') }}">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="{{ url('klorofil/css/main.css') }}">
+	<!-- SWEET ALERT -->
+	<link rel="stylesheet" href="{{url('klorofil/css/sweetalert.css')}}">
 
 	<!-- ICONS -->
 	<link rel="icon" sizes="76x76" href="{{ url('klorofil/img/fav.png') }}">
@@ -57,12 +59,15 @@
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 	<script src="{{ url('klorofil/vendor/jquery/jquery.min.js') }}"></script>
+	<script src="{{ url('klorofil/scripts/sweetalert.min.js') }}"></script>
+	@include('sweet::alert')
 	<script src="{{ url('klorofil/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 	<script src="{{ url('klorofil/vendor/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 	<script src="{{ url('klorofil/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js') }}"></script>
 	<script src="{{ url('klorofil/vendor/chartist/js/chartist.min.js') }}"></script>
 	<script src="{{ url('klorofil/scripts/klorofil-common.js') }}"></script>
 	<script src="{{ url('klorofil/scripts/script.js') }}"></script>
+	
 
 	@stack('js')
 </body>

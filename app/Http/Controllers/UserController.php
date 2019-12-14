@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Alert;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -17,6 +18,7 @@ class UserController extends Controller
 
      public function add()
     {
+        
     	return view('admin.pages.user.add');
     }
 
@@ -39,7 +41,8 @@ class UserController extends Controller
     	$result->level = $req->level;
 
     	if ($result->save()) {
-    		return back()->with('result','success');
+    		alert()->success('Data Berhasil Tersimpan ke Database.', 'Tersimpan!')->autoclose(4000);
+            return redirect('/admin/user');
     	} else {
     		return back()->with('result','fail');
     	}
@@ -55,7 +58,7 @@ class UserController extends Controller
     public function update(Request $req) {
     	\Validator::make($req->all(), [
     		'fullname'=>'required|between:3,100',
-            'username'=>'required|between:4,50|unique:users,username|alpha_dash',
+            'username'=>'required|between:4,50|unique:users,username,'.$req->id.',|alpha_dash',
     		'email'=>'required|email|unique:users,email,'.$req->id,
     		'password'=>'nullable|min:6',
     		'repassword'=>'same:password',
@@ -82,7 +85,8 @@ class UserController extends Controller
     	$result = User::where('id',$req->id)->update($field);
 
     	if ($result) {
-    		return back()->with('result','success');
+    		alert()->success('Berhasil Mengupdate Data.', 'Terupdate!')->autoclose(4000);
+            return redirect('/admin/user');
     	} else {
     		return back()->with('result','fail');
     	}
@@ -94,7 +98,8 @@ class UserController extends Controller
     	$result = User::find($req->id);
 
     	if ($result->delete() ){
-    		return back()->with('result','delete');
+    		alert()->success('Data Berhasil Terhapus dari Database.', 'Terhapus!')->autoclose(3000);
+            return redirect('/admin/user');
     	}
     	
     }

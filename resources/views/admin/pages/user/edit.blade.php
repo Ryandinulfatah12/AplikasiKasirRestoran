@@ -2,7 +2,7 @@
 @section('title','Edit Data User')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
 	<h1>Edit Data User</h1>
 
 	@if(session('result') == 'success')
@@ -27,7 +27,7 @@
 				<input type="text" name="fullname"
 				class="form-control {{ $errors->has('fullname')?'is-invalid':'' }} "
 				value="{{ old('fullname',$rc->fullname) }}"
-				id="iFullfullname" placeholder="Nama Lengkap" required>
+				id="iFullname" placeholder="Nama Lengkap" required>
 				@if($errors->has('fullname'))
 				<div class="invalid-feedback">{{ $errors->first('fullname') }}</div>
 				@endif
@@ -38,7 +38,7 @@
 				<input type="text" name="username"
 				class="form-control {{ $errors->has('username')?'is-invalid':'' }} "
 				value="{{ old('username',$rc->username) }}"
-				id="iUsername" placeholder="username" required>
+				id="iUsername" placeholder="Username" required>
 				@if($errors->has('username'))
 				<div class="invalid-feedback">{{ $errors->first('username') }}</div>
 				@endif
@@ -83,7 +83,7 @@
 					$val = old('level',$rc->level);
 				 ?>
 				<select name="level" class="form-control {{ $errors->has('level')?'is-invalid':'' }}" required>
-					<option value="" {{ $val==""?'selected':'' }}>Pilih Level Sebagai :</option>
+					<option value="" disabled="" {{ $val==""?'selected':'' }}>Pilih Level Sebagai :</option>
 					<option value="admin" {{ $val=="admin"?'selected':'' }}>Admin</option>
 					<option value="waiter" {{ $val=="waiter"?'selected':'' }}>Waiter</option>
 					<option value="kasir" {{ $val=="kasir"?'selected':'' }}>Kasir</option>
@@ -98,7 +98,7 @@
 		</div><!--End Card body-->
 
 		<div class="card-footer">
-			<button class="btn btn-primary" type="submit">Simpan</button><!--End Card footer-->
+			<button class="btn btn-primary" type="submit">Update</button><!--End Card footer-->
 		</div>
 
 	</div><!--End Card-->

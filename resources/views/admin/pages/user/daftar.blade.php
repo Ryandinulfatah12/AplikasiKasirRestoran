@@ -2,7 +2,7 @@
 @section('title','User')
 @Section('content')
 
-<div class="container">
+<div class="container-fluid">
 	<h1>User</h1>
 	<hr>
 	
@@ -90,7 +90,7 @@
 			</div>
 			
 			<div class="modal-body">
-				Apakah Anda Yakin mau Menghapus Data ini dari Database?
+				Data Tidak Bisa Dikembalikan setelah Terhapus,Anda Yakin?
 				<form id="form-delete" action="{{ route('admin.user') }}" method="post" >
 					@method('delete')
 					@csrf

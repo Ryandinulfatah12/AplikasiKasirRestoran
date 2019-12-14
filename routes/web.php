@@ -1,19 +1,9 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','FrontEndController@index');
+Route::get('/', 'FrontEndController@menu')->name('menu-masakan');
+Route::get('/cart/{id}','FrontEndController@AddToCart')->name('add.cart');
+Route::get('/shopping-cart','FrontEndController@getCart')->name('shopping.cart');
 
 Route::group(['middleware'=>['auth']], function() {
 	Route::prefix('admin')->group(function() {
@@ -21,7 +11,7 @@ Route::group(['middleware'=>['auth']], function() {
 			return view('admin.pages.dashboard');
 		})->name('admin.home');
 
-		//TABEL USER
+		//USER
 		Route::prefix('user')->group(function() {
 			Route::get('/', 'UserController@daftar')->name('admin.user')->middleware('level.admin');
 			Route::delete('/', 'UserController@delete')->middleware('level.admin');
@@ -36,7 +26,7 @@ Route::group(['middleware'=>['auth']], function() {
 			Route::post('/setting', 'UserSettingController@update');
 		});
 
-		//TABEL MASAKAN
+		//MASAKAN
 		Route::prefix('masakan')->group(function() {
 			Route::get('/', 'MasakanController@daftar')->name('admin.masakan');
 			Route::delete('/', 'MasakanController@delete')->middleware('level.admin');
@@ -46,10 +36,38 @@ Route::group(['middleware'=>['auth']], function() {
 
 			Route::get('/edit/{id}', 'MasakanController@edit')->name('admin.masakan.edit')->middleware('level.admin');
 			Route::post('/edit/{id}', 'MasakanController@update')->middleware('level.admin');
+
+				Route::prefix('kategori')->group(function() {
+					Route::get('/', 'MasakanController@daftarKategori')->name('admin.masakan.kategori');
+					Route::delete('/', 'MasakanController@deleteKategori')->middleware('level.admin');
+
+					Route::get('/add', 'MasakanController@addKategori')->name('admin.masakan.kategori.add')->middleware('level.admin');
+					Route::post('/add', 'MasakanController@saveKategori')->middleware('level.admin');
+
+					Route::get('/edit/{id}', 'MasakanController@editKategori')->name('admin.masakan.kategori.edit')->middleware('level.admin');
+					Route::post('/edit/{id}', 'MasakanController@updateKategori')->middleware('level.admin');
+				});
 		});
 
+		//ORDER
 		Route::prefix('order')->group(function() {
 			Route::get('/', 'OrderController@data')->name('admin.order');
+			Route::delete('/', 'OrderController@delete')->middleware('level.admin');
+
+			Route::get('/add', 'OrderController@add')->name('admin.order.add')->middleware('level.admin');
+			Route::post('/add', 'OrderController@save')->middleware('level.admin');
+
+			Route::get('/edit/{id_order}', 'OrderController@edit')->name('admin.order.edit')->middleware('level.admin');
+			Route::post('/edit/{id_order}', 'OrderController@update')->middleware('level.admin');
+
+			//Detail Order
+			Route::get('/detail/{id}', 'OrderController@detail')->name('admin.order.detail')->middleware('level.admin');
+		});
+
+		//TRANSAKSI
+		Route::prefix('transaksi')->group(function() {
+			Route::get('/', 'TransaksiController@index')->name('admin.transaksi');
+			Route::delete('/', 'TransaksiController@delete')->middleware('level.admin');
 		});
 
 	});

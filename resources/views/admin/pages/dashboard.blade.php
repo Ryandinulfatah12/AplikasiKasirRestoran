@@ -20,19 +20,25 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-4">
+						<?php 
+							$data = App\Order::all();
+						?>
 						<div class="metric">
 							<span class="icon"><i class="lnr lnr-envelope"></i></span>
 							<p>
-								<span class="number">1212</span>
+								<span class="number">{{$data->count()}}</span>
 								<span class="title">Pesanan</span>
 							</p>
 						</div>
 					</div>
 					<div class="col-md-4">
+						<?php 
+							$data = App\Transaksi::all();
+						?>
 						<div class="metric">
 							<span class="icon"><i class="fa fa-money" aria-hidden="true"></i></span>
 							<p>
-								<span class="number">209</span>
+								<span class="number">{{$data->count()}}</span>
 								<span class="title">Transaksi</span>
 							</p>
 						</div>

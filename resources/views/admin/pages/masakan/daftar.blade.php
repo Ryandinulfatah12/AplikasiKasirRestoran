@@ -2,17 +2,17 @@
 @section('title','Daftar Masakan')
 @section('content')
 
-	<div class="container">
+	<div class="container-fluid">
 		<h1>Daftar Masakan</h1>
 		<hr>
 
 
-		@if(session('result') == 'delete')
+		<!-- @if(session('result') == 'delete')
 		<div class="alert alert-success data-dismissible" role="alert">
 		  <h4 class="alert-heading">Terhapus!</h4>Data Berhasil Dihapus dari Database.
 		  <button type="button" class="close" data-dismiss="alert">&times;</button>
 		</div>
-		@endif
+		@endif -->
 		
 		<div class="row">
 			<div class="col-md-6 mb-3">
@@ -30,46 +30,62 @@
 			</div>
 		</div>
 
-		<table class="table">
-		  <thead class="thead-dark">
-		    <tr>
-		      <th scope="col">#</th>
-		      <th scope="col">Nama Masakan</th>
-		      <th scope="col">Harga</th>
-		      <th scope="col">Status</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		    @foreach($data as $dt)
-		    <tr>
-		      <th scope="row">{{$loop->iteration}}</th>
-		      <td>{{$dt->nama_masakan}}</td>
-		      <td>{{$dt->harga}}</td>
-		      <td>
-		      	<?php 
-	            if ($dt['status_masakan']=='Ada') {
-	                echo "<span class='label label-success'>Ada</span>";
-	            } else {
-	                echo "<span class='label label-danger'>Habis</span>";
-	            }
-	     		?>
-		      </td>
-		      <!-- <td>{{$dt->status_masakan}}</td> -->
+		<table class="table table-stripped mb-3">
+			<tr>
+				<tr>
+					<th>#</th>
+					<th>Gambar</th>
+					<th>Produk</th>
+					<th>&nbsp;</th>
+				</tr>
+			</tr>
+			@foreach($data as $dt)
+			<!-- kolom data gambar -->
+			<tr>
+				<td>{{$loop->iteration}}</td>
+				<td>
+					<img src="{{url('storage/gambar/'.$dt->gambar)}}" width="75px">
+				</td>
+			
+				<!-- kolom data produk -->
+				<td>
+					<small class="text-muted">{{$dt->kode_masakan}}</small><br>
+					<strong>{{$dt->nama_masakan}}</strong>,
+					Harga Rp.{{number_format($dt->harga,0,',','.')}}, 
+					Stok <?php 
+		            if ($dt['status_masakan']=='Ada') {
+		                echo "<span class='label label-success'>Ada</span>";
+		            } else {
+		                echo "<span class='label label-danger'>Habis</span>";
+		            }
+		     		?>
+					<br>
+					<small class="text-muted">{{$dt->nama_kategori}}</small>
+				</td>
 
-		      <td>
-		          <a href="{{ route('admin.masakan.edit', ['id'=>$dt->id]) }}" class="btn btn-success btn-sm">
+			<!-- kolom data produk -->
+			<td>
+				<!-- kolom edit -->
+				<a href="{{ route('admin.masakan.edit', ['id'=>$dt->id]) }}" class="btn btn-success btn-sm">
 		          	<i class="fa fa-w fa-edit"></i>
 		          </a>
 
+				<!-- kolom edit gambar -->
+				<!-- <button class="btn btn-info btn-sm"
+		          data-id="{{ $dt->id }}"
+		          type="button" data-toggle="modal" data-target="#UbahGambarModal">
+		          	<i class="fa fa-picture-o" aria-hidden="true"></i>
+		          </button> -->
+
+				<!-- kolom hapus -->
 		          <button class="btn btn-danger btn-sm btn-trash"
 		          data-id="{{ $dt->id }}"
 		          type="button">
 		          	<i class="fa fa-w fa-trash"></i>
 		          </button>
-		      </td>
-		    </tr>
-		    @endforeach
-		  </tbody>
+			</td>
+			</tr>
+			@endforeach
 		</table>
 
 	</div>
@@ -77,7 +93,7 @@
 	@endsection
 
 
-
+<!-- START MODAL HAPUS -->
 	@push('modal')
 
 	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
@@ -91,7 +107,7 @@
 				</div>
 				
 				<div class="modal-body">
-					Apakah Anda Yakin mau Menghapus Data ini dari Database?
+					Data Tidak Bisa Dikembalikan setelah Terhapus,Anda Yakin?
 					<form id="form-delete" action="{{ route('admin.masakan') }}" method="post" >
 						@method('delete')
 						@csrf
@@ -108,7 +124,7 @@
 		</div>
 	</div>	
 
-@endpush
+	@endpush
 
 @push('js')
 
@@ -128,3 +144,4 @@
 </script>
 
 @endpush
+<!-- END MODAL HAPUS -->

@@ -2,7 +2,7 @@
 @section('title','User Setting')
 @section('content')
 
-<div class="container">
+<div class="container-fluid">
 	<h1>User Setting</h1>
 	<hr>
 

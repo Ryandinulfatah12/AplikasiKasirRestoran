@@ -3,7 +3,7 @@
 
 @section('content')
 
-	<div class="container">
+	<div class="container-fluid">
 
 		<h1>Tambah Data Masakan</h1>
 		<hr>
@@ -21,10 +21,11 @@
 		</div>
 		@endif
 
-		<form method="POST" action="{{ route('admin.masakan.add') }}">
+		<form method="POST" action="{{ route('admin.masakan.add') }}" enctype="multipart/form-data">
 			@csrf
 			<div class="card">
 				<div class="card-body">
+
 					<div class="form-group form-label-group">
 						<label for="iNamaMasakan">Nama Masakan</label>
 						<input type="text" name="nama_masakan"
@@ -33,6 +34,33 @@
 						id="iNamaMasakan" placeholder="Nama Masakan" required>
 						@if($errors->has('nama_masakan'))
 						<div class="invalid-feedback">{{ $errors->first('nama_masakan') }}</div>
+						@endif
+					</div><!--End Form Group-->
+
+					<div class="form-group form-label-group">
+						<label for="iKategori">Kategori</label>
+						<select name="kategori_id" class="form-control {{ $errors->has('kategori_id')?'is-invalid':'' }}" required autofocus>
+							<option value="">Kategori :</option>
+							<?php 
+								$val = Request::old('kategori_id');
+								$res = App\Kategori::orderBy('nama_kategori','asc')->get();
+							 ?>
+
+							 @foreach($res as $opt)
+							<option value="{{$opt->id}}" {{$val==$opt->id?'selected':''}}>{{$opt->nama_kategori}}</option>
+							@endforeach
+						</select>
+					</div><!--End Form Group-->
+
+					<div class="form-group form-label-group">
+						<label for="iGambar">Gambar</label>
+						<input type="file" name="gambar"
+						class="form-control {{ $errors->has('gambar')?'is-invalid':'' }} "
+						accept="image/*" 
+						value="{{ old('gambar') }}"
+						id="iGambar" placeholder="Gambar Masakan" required>
+						@if($errors->has('gambar'))
+						<div class="invalid-feedback">{{ $errors->first('gambar') }}</div>
 						@endif
 					</div><!--End Form Group-->
 
@@ -48,6 +76,7 @@
 					</div><!--End Form Group-->
 
 					<div class="form-group form-label-group">
+						<label for="">Status Masakan</label>
 						<select name="status_masakan" class="form-control">
 							<option value="">Status Masakan :</option>
 							<option value="Ada">Ada</option>
@@ -66,3 +95,22 @@
 	</div>
 
 @endsection
+
+@push('js')
+<script type="text/javascript">
+	function filePreview(input) {
+		if(input.files && input.files[0]) {}
+			var reader = new FileReader();
+			reader.onload = function(e){
+				$('#iGambar + img').remove();
+				$('#iGambar').after('<img src="'+e.target.result+'" width="100" class="mt-3" />');
+			}
+			reader.readAsDataURL(input.files[0]);
+	}
+	$(function() {
+		$('#iGambar').change(function(){
+			filePreview(this);
+		})
+	})
+</script>
+@endpush
