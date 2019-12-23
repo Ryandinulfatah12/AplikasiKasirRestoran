@@ -52,15 +52,16 @@
 				</div><!--End Form Group-->
 
 				<div class="form-group form-label-group">
-					<label for="iGambar">Gambar</label>
+					<img id="ibaru" src="{{url('storage/gambar/' .$rc->gambar)}}" width="120px" align="middle">
 					<input type="file" name="gambar"
-					class="form-control {{ $errors->has('gambar')?'is-invalid':'' }} "
+					class="form-control {{ $errors->has('gambar')?'is-invalid':'' }}"
 					accept="image/*" 
 					value="{{ old('gambar', $rc->gambar) }}"
-					id="iGambar" placeholder="Gambar Masakan" required>
+					id="iGambar" placeholder="Gambar Masakan">
 					@if($errors->has('gambar'))
 					<div class="invalid-feedback">{{ $errors->first('gambar') }}</div>
 					@endif
+					<small>Biarkan jika gambar tidak ingin anda ubah.</small>
 				</div><!--End Form Group-->
 
 				 <div class="form-group form-label-group">
@@ -106,8 +107,7 @@
 		if(input.files && input.files[0]) {}
 			var reader = new FileReader();
 			reader.onload = function(e){
-				$('#iGambar + img').remove();
-				$('#iGambar').after('<img src="'+e.target.result+'" width="100" class="mt-3" />');
+				$('#ibaru').attr('src', e.target.result)
 			}
 			reader.readAsDataURL(input.files[0]);
 	}

@@ -73,23 +73,34 @@ class MasakanController extends Controller
 
     public function update (Request $req)
     {
-        $filename = rand(1,999).'_'.str_replace(' ', '', $req->gambar->getClientOriginalName());
-        $req->file('gambar')->storeAs('/public/gambar', $filename);
 
         \Validator::make($req->all(), [
             'nama_masakan'=>'required',
             'harga'=>'numeric',
             'status_masakan'=>'required',
-            'gambar'=>'required|image','.$req->id.',
+            'gambar'=>'nullable|image',
         ])->validate();
 
-        $field = [
-                'nama_masakan'=>$req->nama_masakan,
-                'harga'=>$req->harga,
-                'status_masakan'=>$req->status_masakan,
-                'gambar'=> $filename,
-            ];
- 
+        if (!empty($req->gambar)) { 
+        $filename = rand(1,999).'_'.str_replace(' ', '', $req->gambar->getClientOriginalName());
+        $req->file('gambar')->storeAs('/public/gambar', $filename);
+
+            $field = [
+                    'nama_masakan'=>$req->nama_masakan,
+                    'kategori_id'=>$req->kategori_id,
+                    'harga'=>$req->harga,
+                    'status_masakan'=>$req->status_masakan,
+                    'gambar'=> $filename,
+                ];
+        } else {
+            $field = [
+                    'nama_masakan'=>$req->nama_masakan,
+                    'kategori_id'=>$req->kategori_id,
+                    'harga'=>$req->harga,
+                    'status_masakan'=>$req->status_masakan,
+                ];
+        }
+        
         $result = Masakan::where('id',$req->id)->update($field);
 
         if ($result) {
@@ -109,39 +120,11 @@ class MasakanController extends Controller
 
         if ($result->delete() ){
             alert()->success('Data Berhasil Terhapus dari Database.', 'Terhapus!')->autoclose(3000);
-            return redirect('/admin/masakan/');
+            return redirect('/admin/masakan');
         }
         
     }
 
-     public function updateIMG (Request $req)
-    {
-        $result = Masakan::find($req->id);
-        \Validator::make($req->all(), [
-            'gambar'=>'image',
-        ])->validate();
-
-        
-        if($req->file('gambar') == "")
-            {
-                $update->gambar = $update->gambar;
-            } 
-            else
-            {
-                $file       = $req->file('gambar');
-                $fileName   = $file->getClientOriginalName();
-                $req->file('gambar')->move('public/gambar', $fileName);
-                $update->gambar = $fileName;
-            }
-
-            return $update;
-        // if ($update) {
-        //     alert()->success('Berhasil Mengupdate Gambar.', 'Terupdate!')->autoclose(4000);
-        //     return redirect('/admin/masakan');
-        // } else {
-        //     return back()->with('result','fail');
-        // }
-    }
 
     //READ KATEGORI
     public function daftarKategori(Request $req)

@@ -18,6 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{url('klorofil/vendor/toastr/toastr.min.css')}}">
+    <link rel="stylesheet" href="{{ url('klorofil/vendor/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url('klorofil/vendor/linearicons/style.css') }}">
 </head>
 <body>
     <div id="app">
@@ -39,8 +43,8 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('shopping.cart')}}">Cart 
-                                    <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span></a>
+                                <a class="nav-link" href="{{route('shopping.cart')}}"><i class="lnr lnr-cart"></i> Cart 
+                                    <span class="badge badge-warning">{{Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span></a>
                             </li>
                         <!-- Authentication Links -->
                         @guest
@@ -55,7 +59,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->fullname }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

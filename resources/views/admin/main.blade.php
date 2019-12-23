@@ -36,7 +36,11 @@
 
 		<!-- MAIN -->
 		<div class="main">
-			@yield('content')
+			<div class="main-content">
+				<div class="col-md-12">
+				@yield('content')
+				</div>
+			</div>
 		</div>
 		<!-- END MAIN -->
 		<div class="clearfix"></div>

@@ -34,17 +34,6 @@
 			</div><!--End Form Group-->
 
 			<div class="form-group form-label-group">
-				<label for="iTanggal">Tanggal</label>
-				<input type="date" name="tanggal"
-				class="form-control {{ $errors->has('tanggal')?'is-invalid':'' }} "
-				value="{{ old('tanggal',$rc->tanggal) }}"
-				id="iTanggal" placeholder="Tanggal" required>
-				@if($errors->has('tanggal'))
-				<div class="invalid-feedback">{{ $errors->first('tanggal') }}</div>
-				@endif
-			</div><!--End Form Group-->
-
-			<div class="form-group form-label-group">
 				<label for="iPemesan">Pemesan</label>
 				<select name="id_user" class="form-control {{ $errors->has('id_user')?'is-invalid':'' }}" required autofocus>
 					<option value="">Pemesan :</option>
@@ -78,7 +67,8 @@
 				<select name="status_order" class="form-control {{ $errors->has('status_order')?'is-invalid':'' }}" required>
 					<option value="" disabled="" {{ $val==""?'selected':'' }}>Pilih Status Order:</option>
 					<option value="Dikonfirmasi" {{ $val=="Dikonfirmasi"?'selected':'' }}>Dikonfirmasi</option>
-					<option value="DIbatalkan" {{ $val=="DIbatalkan"?'selected':'' }}>DIbatalkan</option>
+					<option value="Menunggu" {{ $val=="Menunggu"?'selected':'' }}>Menunggu</option>
+					<option value="Dibatalkan" {{ $val=="DIbatalkan"?'selected':'' }}>Dibatalkan</option>
 				</select>
 				@if($errors->has('status_order'))
 				<div class="invalid-feedback">{{$errors->first('status_order')}}</div>

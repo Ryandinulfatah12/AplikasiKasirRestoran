@@ -1,9 +1,33 @@
 <?php
 
+Auth::routes();
+
+Route::any('register', function() {
+	return abort(404);
+});
+
+// view laman frontend
 Route::get('/','FrontEndController@index');
+//tampilkan menu masakan (database)
 Route::get('/', 'FrontEndController@menu')->name('menu-masakan');
+
+//menambahkan item ke cart menggunakan session
 Route::get('/cart/{id}','FrontEndController@AddToCart')->name('add.cart');
+
+//fungsi menambah,menghapus item session yang ada pada cart
+Route::get('/add{id}', 'FrontEndController@getAddOne')->name('addone');
+Route::get('/reduce{id}', 'FrontEndController@getReduceByOne')->name('reducebyone');
+Route::get('/remove{id}', 'FrontEndController@getRemoveItem')->name('remove.items');
+
+//view cart
 Route::get('/shopping-cart','FrontEndController@getCart')->name('shopping.cart');
+//kirim data cart ke tabel order
+Route::post('/shopping-cart', 'FrontEndController@postCart')->name('postcart');
+
+//view checkout untuk verifikasi tagihan
+Route::get('/checkout','FrontEndController@getCheckout')->name('checkout');
+//kirim data ke tabel detail order
+Route::post('/checkout', 'FrontEndController@postCheckout')->name('postcheckout');
 
 Route::group(['middleware'=>['auth']], function() {
 	Route::prefix('admin')->group(function() {
@@ -64,6 +88,16 @@ Route::group(['middleware'=>['auth']], function() {
 			Route::get('/detail/{id}', 'OrderController@detail')->name('admin.order.detail')->middleware('level.admin');
 		});
 
+		//Entri Order
+		Route::prefix('entri')->group(function() {
+			Route::get('/', 'OrderController@entri')->name('entri.order');
+		});
+
+		//Cashier
+		Route::prefix('cashier')->middleware('level.admin:kasir')->group(function() {
+			Route::get('/','TransaksiController@kasir')->name('cashier');
+		});
+
 		//TRANSAKSI
 		Route::prefix('transaksi')->group(function() {
 			Route::get('/', 'TransaksiController@index')->name('admin.transaksi');
@@ -71,12 +105,4 @@ Route::group(['middleware'=>['auth']], function() {
 		});
 
 	});
-});
-
-
-
-Auth::routes();
-
-Route::any('register', function() {
-	return abort(404);
 });

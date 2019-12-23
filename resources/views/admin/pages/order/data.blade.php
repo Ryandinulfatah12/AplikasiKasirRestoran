@@ -27,13 +27,13 @@
 		  <thead class="thead-dark">
 		    <tr>
 		      <th scope="col">#</th>
-			  <th scope="col">Kode Delivery</th>		      
+			  <th scope="col">Kode Delivery</th>      
 		      <th scope="col">Nomor Meja</th>
-		      <th scope="col">Tanggal</th>
+		      <th scope="col">Tanggal Order</th>
 		      <th scope="col">Pemesan</th>
 		      <th scope="col">Keterangan</th>
 		      <th scope="col">Status</th>
-		    </tr>
+		    </tr> 
 		  </thead>
 		  <tbody>
 		    @foreach($data as $dt)
@@ -41,7 +41,7 @@
 		      <th scope="row">{{$loop->iteration}}</th>
 		      <td>{{$dt->kode_order}}</td>
 		      <td>{{$dt->no_meja}}</td>
-		      <td>{{$dt->tanggal}}</td>
+		      <td>{{$dt->created_at}}</td>
 		      <td>{{$dt->fullname}}</td>
 		      <td>{{$dt->keterangan}}</td>
 
@@ -49,25 +49,24 @@
 		      	<?php 
 	            if ($dt['status_order']=='Dikonfirmasi') {
 	                echo "<span class='label label-success'>Dikonfirmasi</span>";
-	            } else {
+	            } elseif($dt['status_order']=='Menunggu') {
 	            	echo "<span class='label label-warning'>Menunggu</span>";
+	            } else {
+	            	echo "<span class='label label-danger'>Dibatalkan</span>";
 	            }
 	     		?>
 		      </td>
 
 		      <td>
-				 <a href="{{route('admin.order.detail',['id'=>$dt->id])}}" class="btn btn-primary btn-sm">
-				 	<i class="fa fa-w fa-info"> Details</i>
-				 </a>
 
 		          <a href="{{route('admin.order.edit', ['id_order'=>$dt->id_order])}}" class="btn btn-success btn-sm">
-		          	<i class="fa fa-w fa-edit"> Edit</i>
+		          	<i class="fa fa-w fa-edit"></i>
 		          </a>
 
 		          <button class="btn btn-danger btn-sm btn-trash"
 		          data-id="{{$dt->id_order}}"
 		          type="button">
-		          	<i class="fa fa-w fa-trash"> Hapus</i>
+		          	<i class="fa fa-w fa-trash"></i>
 		          </button>
 		      </td>
 		    </tr>

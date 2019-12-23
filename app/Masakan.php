@@ -16,4 +16,9 @@ class Masakan extends Model
     {
     	return $getId = DB::table('masakan')->orderBy('id','DESC')->take(1)->get();
     }
+
+    public function detailOrder()
+    {
+    	$this->hasMany('App\DetailOrder');
+    }
 }

@@ -34,17 +34,6 @@
 			</div><!--End Form Group-->
 
 			<div class="form-group form-label-group">
-				<label for="iTanggal">Tanggal</label>
-				<input type="date" name="tanggal"
-				class="form-control {{ $errors->has('tanggal')?'is-invalid':'' }} "
-				value="{{ old('tanggal') }}"
-				id="iTanggal" placeholder="Tanggal" required>
-				@if($errors->has('tanggal'))
-				<div class="invalid-feedback">{{ $errors->first('tanggal') }}</div>
-				@endif
-			</div><!--End Form Group-->
-
-			<div class="form-group form-label-group">
 				<label for="iPemesan">Pemesan</label>
 				<select name="id_user" class="form-control {{ $errors->has('id_user')?'is-invalid':'' }}" required autofocus>
 					<option value="">Pemesan :</option>

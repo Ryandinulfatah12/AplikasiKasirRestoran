@@ -14,12 +14,12 @@
 		<!-- OVERVIEW -->
 		<div class="panel panel-headline">
 			<div class="panel-heading">
-				<h3 class="panel-title">Statistik Mingguan</h3>
+				<h3 class="panel-title">Statistik</h3>
 				<p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
 			</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<?php 
 							$data = App\Order::all();
 						?>
@@ -31,7 +31,7 @@
 							</p>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<?php 
 							$data = App\Transaksi::all();
 						?>
@@ -43,8 +43,8 @@
 							</p>
 						</div>
 					</div>
-					<div class="col-md-4">
-						<?php 
+					<div class="col-md-3">
+						<?php
 							$data = App\Masakan::all();
 						?>
 						<div class="metric">
@@ -52,6 +52,18 @@
 							<p>
 								<span class="number">{{$data->count()}}</span>
 								<span class="title">Masakan</span>
+							</p>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<?php
+							$data = App\User::all();
+						?>
+						<div class="metric">
+							<span class="icon"><i class="lnr lnr-users"></i></span>
+							<p>
+								<span class="number">{{$data->count()}}</span>
+								<span class="title">User Registered</span>
 							</p>
 						</div>
 					</div>

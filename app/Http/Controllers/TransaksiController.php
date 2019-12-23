@@ -99,4 +99,9 @@ class TransaksiController extends Controller
             return redirect('/admin/transaksi/');
         }
     }
+
+    public function kasir()
+    {
+        return view('admin.pages.transaksi.kasir.data');
+    }
 }

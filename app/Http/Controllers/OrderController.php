@@ -33,13 +33,13 @@ class OrderController extends Controller
         foreach ($id as $value);
         $idLama = $value->id_order;
         $idBaru = $idLama + 1;
+        $blt = date('mY');
 
-        $kode_ord = 'ORD'.$idBaru;
+        $kode_ord = 'ORD'.$blt.$idBaru;
 
         $result = new Order;
         $result->kode_order = $kode_ord.sprintf("%02s", $req->kode_order);
         $result->no_meja = $req->no_meja;
-        $result->tanggal = $req->tanggal;
         $result->id_user = $req->id_user;
         $result->keterangan = $req->keterangan;
         $result->status_order = $req->status_order;
@@ -65,7 +65,6 @@ class OrderController extends Controller
         $field = [
                 'id_order'=>$req->id_order,
                 'no_meja'=>$req->no_meja,
-                'tanggal'=>$req->tanggal,
                 'id_user'=>$req->id_user,
                 'keterangan'=>$req->keterangan,
                 'status_order'=>$req->status_order,
@@ -96,5 +95,11 @@ class OrderController extends Controller
     {
         $data = DetailOrder::where('id',$id)->first();
         return view('admin.pages.order.detail',['rc'=>$data]);
+    }
+
+
+    public function entri()
+    {
+        return view('admin.pages.order.entri.entri');
     }
 }

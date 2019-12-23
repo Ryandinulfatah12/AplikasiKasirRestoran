@@ -1,5 +1,6 @@
 @extends('admin.main')
 @section('title','User')
+
 @Section('content')
 
 <div class="container-fluid">
@@ -29,8 +30,7 @@
 		</div>
 	</div>
 
-
-	<table class="table">
+	<table class="table" id="table">
 	  <thead class="thead-dark">
 	    <tr>
 	      <th scope="col">#</th>
@@ -56,6 +56,7 @@
 
 	          @if($dt->id != Auth::id() )
 	          <button class="btn btn-danger btn-sm btn-trash"
+	          id="tombol-hapus" 
 	          data-id="{{ $dt->id }}"
 	          type="button">
 	          	<i class="fa fa-w fa-trash"></i>
@@ -125,5 +126,5 @@
 
 	})
 </script>
-
 @endpush
+
