@@ -1,12 +1,10 @@
-@extends('admin.main')
+@extends('admin.main2')
 @section('title','Tambah Data User')
 
 @section('content')
 	<div class="main-content">
 
 		<div class="container-fluid">
-			
-			<h1>Tambah Data User</h1>
 
 			@if(session('result') == 'success')
 			<div class="alert alert-success data-dismissible" role="alert">
@@ -24,6 +22,9 @@
 		  <form method="POST" action="{{ route('admin.user.add') }}">
 			@csrf
 			<div class="card">
+				<div class="card-header bg-primary pb-1">
+		        	<h5 class="text-light"><span class="oi oi-plus"></span> Tambah Data User</h5>
+		   		</div>
 				<div class="card-body">
 					<div class="form-group form-label-group">
 						<label for="iFullname">Name</label>
@@ -34,7 +35,7 @@
 						@if($errors->has('fullname'))
 						<div class="invalid-feedback">{{ $errors->first('fullname') }}</div>
 						@endif
-						<small>
+						<small class="text-muted">
 							Panjang Karakter 8-50, Contoh : Ryan Dinul Fatah
 						</small>
 					</div><!--End Form Group-->
@@ -48,7 +49,7 @@
 						@if($errors->has('username'))
 						<div class="invalid-feedback">{{ $errors->first('username') }}</div>
 						@endif
-						<small>
+						<small class="text-muted">
 							Panjang Karakter 4-50, Tidak Boleh Memakai spasi <br>Contoh : ryan, ryan_12, ryandf
 						</small>
 					</div><!--End Form Group-->
@@ -62,7 +63,7 @@
 						@if($errors->has('email'))
 						<div class="invalid-feedback">{{$errors->first('email')}}</div>
 						@endif
-						<small>
+						<small class="text-muted">
 							Isi Email anda dengan Email yang Valid. <br>
 							Contoh : ryandf@gmail.com, ryan@student.edu
 						</small>

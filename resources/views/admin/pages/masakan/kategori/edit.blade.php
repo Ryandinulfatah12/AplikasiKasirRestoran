@@ -1,9 +1,8 @@
-@extends('admin.main')
+@extends('admin.main2')
 @section('title','Edit Data Kategori')
 
 @section('content')
 <div class="container-fluid">
-	<h1>Edit Data Kategori</h1>
 
 	@if(session('result') == 'success')
 	<div class="alert alert-success data-dismissible" role="alert">
@@ -19,10 +18,13 @@
 	@endif
 
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-6 mx-auto">
 			<form method="POST" action="{{ route('admin.masakan.kategori.edit', ['id'=>$rc->id]) }}">
 				@csrf
 				<div class="card">
+					<div class="card-header bg-primary pb-1">
+			        	<h5 class="text-light"><span  class="oi oi-pencil"></span> Edit Data Kategori</h5>
+			   		</div>
 					<div class="card-body">
 						<div class="form-group form-label-group">
 							<label for="iKategori">Kategori</label>

@@ -8,6 +8,7 @@ use App\Order;
 use App\DetailOrder;
 use App\Kategori;
 use Auth;
+use Alert;
 
 use Session;
 
@@ -21,15 +22,22 @@ class FrontEndController extends Controller
     }
 
     public function menu(Request $req)
-    {
-        
+    {   
     	$data = Masakan::join('kategori','kategori.id','masakan.kategori_id')
             ->orWhere('nama_masakan','like',"%{$req->keyword}%")
-            ->orWhere('kategori.id', $req->id)
+            ->orWhere('kategori_id', $req->id)
             ->select('masakan.*','nama_kategori')
             ->orderBy('updated_at','desc')
             ->paginate(10);
-            return view('frontend2.menu', ['data'=>$data]);
+            return view('frontend2.menu', compact('data'));
+    }
+
+    public function showItem(Request $req, $id)
+    {
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+
+        $data = Masakan::where('id',$id)->first();
+        return view('frontend2.show', ['data'=>$data]);
     }
 
     public function AddToCart(Request $req, $id)
@@ -41,7 +49,6 @@ class FrontEndController extends Controller
 
         $req->session()->put('cart', $cart);
         //return json_encode($req->session()->get('cart'));
-
         return redirect()->route('menu-masakan');
         
     }
@@ -94,8 +101,13 @@ class FrontEndController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
         return view('frontend2.shopping-cart', ['data' => $cart->items, 'totalPrice'=>$cart->totalPrice]);
-        //return response()->json(['data' => $cart->items, 'totalPrice'=>$cart->totalPrice]);
-        
+        //return response()->json(['data' => $cart->items, 'totalPrice'=>$cart->totalPrice]); 
+    }
+
+    public function destroy()
+    {
+        Session::forget('cart');
+        return redirect()->route('menu-masakan');
     }
 
     public function getCheckout()
@@ -107,40 +119,10 @@ class FrontEndController extends Controller
         $cart = new Cart($oldCart);
         $total = $cart->totalPrice;
         return view('frontend2.checkout', ['data' => $cart->items, 'total' => $total]);
+        //return response()->json(['data'=> $cart->items, 'total' => $total]);
     }
 
-    public function postCart(Request $req)
-    {
-        if (!Session::has('cart')) {
-            return redirect()->route('shopping-cart');
-        }
-
-
-
-        //Ambil ID Terakhir
-        $id = Order::getId();
-        foreach ($id as $value);
-        $idLama = $value->id_order;
-        $idBaru = $idLama + 1;
-        $blt = date('mY');
-
-        $kode_ord = 'ORD'.$blt.$idBaru;
-
-        try {
-            $result = new Order;
-            $result->kode_order = $kode_ord.sprintf("%02s", $req->kode_order);
-            $result->no_meja = $req->no_meja;
-            $result->id_user = $req->id_user;
-            $result->keterangan = $req->keterangan;
-            $result->status_order = $req->status_order;
-
-            $result->save();
-            return redirect()->route('checkout');
-        } catch (Exception $e) {
-             return redirect()->route('checkout');
-        }
-
-    }
+   
 
     public function postCheckout(Request $req)
     {
@@ -149,21 +131,38 @@ class FrontEndController extends Controller
         }
 
         $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+         //Ambil ID Terakhir
+        $id_order = Order::getId();
+        foreach ($id_order as $value);
+        $idLama = $value->id_order;
+        $idBaru = $idLama + 1;
+        $blt = date('mY');
+
+        $kode_ord = 'ORD'.$blt.$idBaru;
 
 
         try {
-            $result = new DetailOrder;
-            $result->id_order = $req->id_order;
-            $result->id_masakan = $req->id_masakan;
-            $result->status_detail_order = $req->status_detail_order;
+            //insert order
+            $order = new Order;
+            $order->kode_order = $kode_ord.sprintf("%02s", $req->kode_order);
+            $order->no_meja = $req->no_meja;
+            $order->id_user = $req->id_user;
+            $order->cart = serialize($cart);
+            $order->keterangan = $req->keterangan;
+            $order->status_order = $req->status_order;
 
-            return $result;
+            $order->save();
         } catch (Exception $e) {
             
         }
-
         Session::forget('cart');
+        return redirect()->route('thankyou');      
+    }
 
-
+    public function thanks()
+    {
+        return view('frontend2.thanks');
     }
 }

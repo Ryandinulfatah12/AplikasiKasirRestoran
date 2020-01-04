@@ -17,8 +17,10 @@ class Masakan extends Model
     	return $getId = DB::table('masakan')->orderBy('id','DESC')->take(1)->get();
     }
 
-    public function detailOrder()
+    public function order()
     {
-    	$this->hasMany('App\DetailOrder');
+    	return $this->belongsToMany(Order::class)->withPivot(['subtotal']);
     }
+
+
 }

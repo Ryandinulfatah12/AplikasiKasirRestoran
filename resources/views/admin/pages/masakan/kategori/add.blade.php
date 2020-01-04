@@ -1,9 +1,8 @@
-@extends('admin.main')
+@extends('admin.main2')
 @section('title','Tambah Data Kategori')
 
 @section('content')
 <div class="container-fluid">
-	<h1>Tambah Data Kategori</h1>
 
 	@if(session('result') == 'success')
 	<div class="alert alert-success data-dismissible" role="alert">
@@ -20,9 +19,12 @@
 
 	<div class="row">
 		<div class="col-md-6">
-			<form method="POST" action="{{ route('admin.masakan.kategori.add') }}">
+			<form method="POST" action="{{route('add.kategori')}}">
 				@csrf
 				<div class="card">
+					<div class="card-header bg-primary pb-1">
+			        	<h5 class="text-light"><span  class="oi oi-plus"></span> Tambah Data Kategori</h5>
+			   		</div>
 					<div class="card-body">
 						<div class="form-group form-label-group">
 							<label for="iKategori">Kategori</label>
@@ -34,6 +36,7 @@
 							<div class="invalid-feedback">{{ $errors->first('nama_kategori') }}</div>
 							@endif
 						</div><!--End Form Group-->
+					</div>	
 
 					<div class="card-footer">
 						<button class="btn btn-primary" type="submit">Simpan</button><!--End Card footer-->

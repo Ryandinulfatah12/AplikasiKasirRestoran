@@ -83,6 +83,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <!-- Logout Modal -->
+          @stack('modal')
+          <!-- End Logout modal -->
     </div>
 </body>
 </html>

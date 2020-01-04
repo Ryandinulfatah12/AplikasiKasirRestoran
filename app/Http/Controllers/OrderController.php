@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Order;
-use App\DetailOrder;
+use Auth;
 use Alert;
 
 class OrderController extends Controller
@@ -46,9 +46,9 @@ class OrderController extends Controller
 
         if ($result->save()) {
             alert()->success('Data Berhasil Disimpan ke Database.','Tersimpan!')->autoclose(4000);
-            return redirect('/admin/order');
+            return redirect()->route('admin.order');
         } else {
-            return back()->with('result','fail');
+           alert()->info('Harap Periksa lagi data Formulir anda.','Tidak Tersimpan!')->autoclose(4000);
         }
         
     }
@@ -56,7 +56,7 @@ class OrderController extends Controller
     public function edit($id_order)
     {
         $data = Order::where('id_order',$id_order)->first();
-        return view('admin.pages.order.edit',['rc'=>$data]);
+        return view('admin.pages.order.entri.detail',['rc'=>$data]);
     }
 
     public function update (Request $req)
@@ -74,10 +74,11 @@ class OrderController extends Controller
 
         if ($result) {
             alert()->success('Berhasil Mengupdate Data.', 'Terupdate!')->autoclose(4000);
-            return redirect('/admin/order');
+            return redirect()->route('admin.order');
         } else {
-            return back()->with('result','fail');
+            alert()->info('Harap Periksa lagi data Formulir anda.','Tidak Tersimpan!')->autoclose(4000);
         }
+
     }
 
     public function delete(Request $req)
@@ -86,20 +87,16 @@ class OrderController extends Controller
 
         if ($result->delete() ){
             alert()->success('Data Berhasil Terhapus dari Database.', 'Terhapus!')->autoclose(3000);
-            return redirect('/admin/order/');
+            return redirect()->route('admin.order');
         }
         
     }
 
-    public function detail($id)
-    {
-        $data = DetailOrder::where('id',$id)->first();
-        return view('admin.pages.order.detail',['rc'=>$data]);
+    public function entri(Request $req)
+    {     
+        $orders = Order::where('status_order','Pending')->get();
+        return view('admin.pages.order.entri.entri', compact('orders'));
     }
 
 
-    public function entri()
-    {
-        return view('admin.pages.order.entri.entri');
-    }
 }

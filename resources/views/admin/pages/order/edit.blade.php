@@ -1,9 +1,8 @@
-@extends('admin.main')
+@extends('admin.main2')
 @section('title','Edit Data Pesanan')
 
 @section('content')
 <div class="container-fluid">
-	<h1>Edit Data Pesanan</h1>
 
 	@if(session('result') == 'success')
 	<div class="alert alert-success data-dismissible" role="alert">
@@ -21,6 +20,9 @@
   <form method="POST" action="{{ route('admin.order.edit', ['id_order'=>$rc->id_order]) }}">
 	@csrf
 	<div class="card">
+		<div class="card-header bg-primary pb-1">
+        	<h5 class="text-light"><span class="oi oi-pencil"></span>Edit Data User</h5>
+   		</div>
 		<div class="card-body">
 			<div class="form-group form-label-group">
 				<label for="iNomorMeja">Nomor Meja</label>
@@ -66,8 +68,9 @@
 				 <label for="">Status Order</label>
 				<select name="status_order" class="form-control {{ $errors->has('status_order')?'is-invalid':'' }}" required>
 					<option value="" disabled="" {{ $val==""?'selected':'' }}>Pilih Status Order:</option>
-					<option value="Dikonfirmasi" {{ $val=="Dikonfirmasi"?'selected':'' }}>Dikonfirmasi</option>
-					<option value="Menunggu" {{ $val=="Menunggu"?'selected':'' }}>Menunggu</option>
+					<option value="Menunggu Pembayaran" {{ $val=="Menunggu Pembayaran"?'selected':'' }}>Menunggu Pembayaran</option>
+					<option value="Pending" {{ $val=="Pending"?'selected':'' }}>Pending</option>
+					<option value="Beres" {{ $val=="Beres"?'selected':'' }}>Beres</option>
 					<option value="Dibatalkan" {{ $val=="DIbatalkan"?'selected':'' }}>Dibatalkan</option>
 				</select>
 				@if($errors->has('status_order'))

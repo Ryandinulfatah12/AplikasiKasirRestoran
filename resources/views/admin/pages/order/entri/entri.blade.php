@@ -1,44 +1,41 @@
-@extends('admin.main')
+@extends('admin.main2')
 @section('title','Entri Order')
 
 @section('content')
 
 <div class="container">
-	<h1>Entri Order</h1>
 
-	<div class="panel-body">
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>No Meja</th>
-					<th>Sampai</th>
-					<th>Waktu Pesan</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Steve</td>
-					<td>Jobs</td>
-					<td>@steve</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Simon</td>
-					<td>Philips</td>
-					<td>@simon</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Jane</td>
-					<td>Doe</td>
-					<td>@jane</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	
+  <div class="col-lg-11 pl-5">
+      <h1>Entri Order</h1>
+      <table class="table table-bordered" id="datatabled">
+          <thead class="border-0">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Kode Order</th>
+              <th scope="col">No Meja</th>
+              <th scope="col">Dipesan pada</th>
+              <th scope="col">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($orders as $order)
+            <tr>
+              <th scope="row">{{$loop->iteration}}</th>
+              <td>{{$order->kode_order}}</td>
+              <td>{{$order->no_meja}}</td>
+              <td>{{$order->created_at}}</td>
+              <td>
+                <a class="btn btn-success" href="{{route('entri.detail', ['id_order'=>$order->id_order])}}">Lihat Detail</a>
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+      </table>
+    </div>
+
 </div>
 
 @endsection
+
+
+

@@ -1,11 +1,8 @@
-@extends('admin.main')
+@extends('admin.main2')
 @section('title','Edit Data Masakan')
 
 @section('content')
 <div class="container-fluid">
-
-	<h1>Edit Data Masakan</h1>
-	<hr>
 
 	@if(session('result') == 'success')
 	<div class="alert alert-success data-dismissible" role="alert">
@@ -23,6 +20,9 @@
 	<form method="POST" action="{{ route('admin.masakan.edit', ['id'=>$rc->id]) }}" enctype="multipart/form-data">
 		@csrf
 		<div class="card">
+			<div class="card-header bg-primary pb-1">
+	        	<h5 class="text-light"><span  class="oi oi-pencil"></span> Edit Item Masakan</h5>
+	   		</div>
 			<div class="card-body">
 
 				<div class="form-group form-label-group">

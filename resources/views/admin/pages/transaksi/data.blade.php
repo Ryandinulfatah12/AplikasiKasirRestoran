@@ -1,13 +1,10 @@
-@extends('admin.main')
+@extends('admin.main2')
 @section('title','Data Transaksi')
 
 @section('content')
 
-<div class="container-fluid">
-	<h1>Data Semua Transaksi</h1>
-	<hr>
 
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-md-6 mb-3">
 			<a href="#" class="btn btn-primary">[+] Tambah</a>
 		</div>
@@ -21,46 +18,50 @@
 				</div>
 			</form>
 		</div>
-	</div>
+	</div> -->
 
-	<table class="table">
-		  <thead class="thead-dark">
-		    <tr>
-		      <th scope="col">#</th>
-			  <th scope="col">Kode Transaksi</th>
-		      <th scope="col">Pemesan</th>
-		      <th scope="col">Kode Order</th>
-		      <th scope="col">Tanggal</th>
-		      <th scope="col">Total Bayar</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		    @foreach($data as $dt)
-		    <tr>
-		      <th scope="row">{{$loop->iteration}}</th>
-		      <td>{{$dt->kode_transaksi}}</td>
-		      <td>{{$dt->fullname}}</td>
-		      <td>{{$dt->kode_order}}</td>
-		      <td>{{$dt->tanggal}}</td>
-		      <td>Rp.{{number_format($dt->total_bayar,0,',','.')}},</td>
 
-		      <td>
+<div class="row pl-3 pt-2 mb-5">
+    <div class="col-lg-11 pl-5">
+    	<h1>Rekap Data Transaksi</h1>
 
-		          <a href="#" class="btn btn-success btn-sm">
-		          	<i class="fa fa-w fa-edit"></i>
-		          </a>
+        <table id="datatabled" class="table">
+            <thead class="border-0">
+              <tr>
+                  <th scope="col">#</th>
+				  <th scope="col">Kode Transaksi</th>
+			      <th scope="col">Pemesan</th>
+			      <th scope="col">Kode Order</th>
+			      <th scope="col">Tanggal</th>
+			      <th scope="col">Total Bayar</th>
+			      <th scope="col">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($data as $dt)
+              <tr>
+                  <th scope="row">{{$loop->iteration}}</th>
+			      <td>{{$dt->kode_transaksi}}</td>
+			      <td>{{$dt->fullname}}</td>
+			      <td>{{$dt->kode_order}}</td>
+			      <td>{{$dt->created_at}}</td>
+			      <td>Rp.{{number_format($dt->total_bayar,0,',','.')}},</td>
+			      <td>
+			          <a href="#" class="btn btn-success btn-sm">
+			          	Edit
+			          </a>
 
-		          <button class="btn btn-danger btn-sm btn-trash"
-		          data-id="{{$dt->id}}"
-		          type="button">
-		          	<i class="fa fa-w fa-trash"></i>
-		          </button>
-		      </td>
-		    </tr>
-		    @endforeach
-		  </tbody>
-		</table>
-
+			          <button class="btn btn-danger btn-sm btn-trash"
+			          data-id="{{$dt->id}}"
+			          type="button">
+			          	Hapus
+			          </button>
+			      </td>
+              </tr>
+              @endforeach
+            </tbody>
+    </table>
+      </div>  
 </div>
 
 @endsection
@@ -70,10 +71,10 @@
 	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					<h3 class="modal-title">Hapus Data Ini?</h3>
+				<div class="modal-header bg-danger">
+					<h3 class="modal-title text-white">Hapus Data Ini?</h3>
 					<button class="close" type="button" data-dismiss="modal">
-						<span>x</span>
+						<span class="text-white">x</span>
 					</button>
 				</div>
 				

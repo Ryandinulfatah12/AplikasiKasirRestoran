@@ -22,10 +22,10 @@ class MasakanController extends Controller
 
     }
 
-     public function add()
-    {
-    	return view('admin.pages.masakan.add');
-    }
+    //  public function add()
+    // {
+    // 	return view('admin.pages.masakan.add');
+    // }
 
     public function save(Request $req)
     {
@@ -60,7 +60,7 @@ class MasakanController extends Controller
             alert()->success('Data Berhasil Tersimpan ke Database.', 'Tersimpan!')->autoclose(4000);
     		return redirect('/admin/masakan');
     	} else {
-    		return back()->with('result','fail');
+    		alert()->info('Harap Periksa lagi data Formulir anda.','Tidak Tersimpan!')->autoclose(4000);
     	}
     	
     }
@@ -107,7 +107,7 @@ class MasakanController extends Controller
             alert()->success('Berhasil Mengupdate Data.', 'Terupdate!')->autoclose(4000);
             return redirect('/admin/masakan');
         } else {
-            return back()->with('result','fail');
+            alert()->info('Harap Periksa lagi data Formulir anda.','Tidak Tersimpan!')->autoclose(4000);
         }
 
 
@@ -152,7 +152,7 @@ class MasakanController extends Controller
 
         if ($result->save()) {
             alert()->success('Data Berhasil Tersimpan ke Database.', 'Tersimpan!')->autoclose(4000);
-            return redirect('/admin/masakan/kategori');
+            return redirect()->route('admin.masakan.kategori');
         } else {
             return back()->with('result','fail');
         }
@@ -179,7 +179,7 @@ class MasakanController extends Controller
         
         if ($result) {
             alert()->success('Berhasil Mengupdate Data.', 'Terupdate!')->autoclose(4000);
-            return redirect('/admin/masakan/kategori');
+            return redirect()->route('admin.masakan.kategori');
         } else {
             return back()->with('result','fail');
         }
@@ -191,7 +191,7 @@ class MasakanController extends Controller
 
         if ($result->delete() ){
             alert()->success('Data Berhasil Terhapus dari Database.', 'Terhapus!')->autoclose(3000);
-            return redirect('/admin/masakan/kategori');
+            return redirect()->route('admin.masakan.kategori');
         }
         
     }

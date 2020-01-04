@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.main2')
+@section('title','Daftar Menu Masakan')
 @section('content')
 
 <div class="container">
@@ -9,15 +10,29 @@
         @csrf
         <div class="input-group">
           <input type="text" name="keyword" value="{{ request('keyword') }}" class="form-control" placeholder="Cari Sesuatu..." id="keyword" autofocus>
-          <span class="input-group-btn"><button type="button" name="cari" class="btn btn-primary" autofocus>Cari</button></span>
+          <span class="input-group-btn"><button type="button" name="cari" class="btn btn-success" autofocus>Cari</button></span>
         </div>
       </form>
+    </div>
+
+    <div class="row">
+    	<?php $kategori = App\Kategori::get(); ?>
+    	<div class="btn-group" role="group">
+		    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		      Tampilkan Menurut Kategori
+		    </button>
+		    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+		    	@foreach($kategori as $dt)
+		      <a href="{{route('show.category', ['id'=> $dt->id])}}" class="btn btn-primary btn-block">{{$dt->nama_kategori}}</a>
+		      @endforeach
+		    </div>
+		 </div>
     </div>
 	
 	<div class="row">
 		@foreach($data as $dt)
 		<div class="col-sm-6 col-md-4">
-			<div class="card-group" id="table">
+			<div class="card-group">
 			  <div class="card">
 			    <img class="card-img-top" src="{{url('storage/gambar/'.$dt->gambar)}}" style="width: 100%; height: 50%;" alt="Card image cap">
 			    <div class="card-body">
@@ -36,9 +51,9 @@
 			    </div>
 			    <div class="card-footer">
 			    	@if($dt['status_masakan']=='Ada')
-			      		<a href="{{route('add.cart', ['id' => $dt->id])}}" class="btn btn-success btn-toastr btn-block" data-context="info" data-message="Ditambahkan ke Cart" data-position="top-right"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</a>
+			      		<a href="{{route('add.cart', ['id' => $dt->id])}}" class="btn btn-success btn-block"><i class="fa fa-cart-plus" aria-hidden="true"></i> Pesan</a>
 			        @else
-			       		<button type="button" class="btn btn-secondary btn-block" title="Stok Habis" disabled><i class="fa fa-times-circle-o" aria-hidden="true"></i> Add to Cart</button>
+			       		 <button type="button" class="btn btn-secondary btn-block" title="Stok Habis" disabled><i class="fa fa-times-circle-o" aria-hidden="true"></i> Stok Habis</button>
 			        @endif
 			    </div>
 			  </div>

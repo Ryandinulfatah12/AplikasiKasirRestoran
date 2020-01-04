@@ -1,4 +1,4 @@
-@extends('admin.main')
+@extends('admin.main2')
 @section('title','Cashier')
 
 @section('content')
@@ -6,42 +6,34 @@
 <div class="container">
 	<h1>Cashier</h1>
 
-	<div class="panel-body">
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>No Meja</th>
-					<th>Nama Makanan</th>
-					<th>Harga</th>
-					<th>Jumlah Item</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Steve</td>
-					<td>Jobs</td>
-					<td>@steve</td>
-					<td>5</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Simon</td>
-					<td>Philips</td>
-					<td>@simon</td>
-					<td>5</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Jane</td>
-					<td>Doe</td>
-					<td>@jane</td>
-					<td>5</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+	<div class="col-lg-12">
+
+          <div class="row h-100">
+
+            <div class="col-lg-6">
+             <div class="greeting mt-4 pl-4">	              
+				<?php 
+				$orders = App\Order::where('status_order','Menunggu Pembayaran')->get();
+				  ?>
+
+				<div class="btn-group" role="group">
+					<button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Tampilkan Order Tersedia
+					</button>
+					<div class="dropdown-menu" aria-labelledBy="btnGroupDrop1">
+						@foreach($orders as $order)
+						<a href="{{route('payment', ['id_order'=>$order->id_order])}}" class="btn btn-secondary btn-block">Kode Pesanan {{$order->kode_order}} | No Meja {{$order->no_meja}}</a>
+						@endforeach
+					</div>
+				</div>
+             </div>
+
+            </div>
+
+          </div>
+          
+        </div>
+	
 
 </div>
 

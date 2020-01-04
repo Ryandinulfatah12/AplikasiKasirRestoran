@@ -16,11 +16,11 @@ class UserController extends Controller
     	return view('admin.pages.user.daftar', ['data'=>$data]);
     }
 
-     public function add()
-    {
+    //  public function add()
+    // {
         
-    	return view('admin.pages.user.add');
-    }
+    // 	return view('admin.pages.user.add');
+    // }
 
      public function save(Request $req)
     {
@@ -42,9 +42,9 @@ class UserController extends Controller
 
     	if ($result->save()) {
     		alert()->success('Data Berhasil Tersimpan ke Database.', 'Tersimpan!')->autoclose(4000);
-            return redirect('/admin/user');
+            return redirect()->route('admin.user');
     	} else {
-    		return back()->with('result','fail');
+    		alert()->info('Harap Periksa lagi data Formulir anda.','Tidak Tersimpan!')->autoclose(4000);
     	}
     	
     }
@@ -86,9 +86,9 @@ class UserController extends Controller
 
     	if ($result) {
     		alert()->success('Berhasil Mengupdate Data.', 'Terupdate!')->autoclose(4000);
-            return redirect('/admin/user');
+            return redirect()->route('admin.user');
     	} else {
-    		return back()->with('result','fail');
+    		alert()->info('Harap Periksa lagi data Formulir anda.','Tidak Tersimpan!')->autoclose(4000);
     	}
     	
     }
@@ -99,7 +99,7 @@ class UserController extends Controller
 
     	if ($result->delete() ){
     		alert()->success('Data Berhasil Terhapus dari Database.', 'Terhapus!')->autoclose(3000);
-            return redirect('/admin/user');
+            return redirect()->route('admin.user');
     	}
     	
     }

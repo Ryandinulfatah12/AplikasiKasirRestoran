@@ -1,9 +1,8 @@
-@extends('admin.main')
+@extends('admin.main2')
 @section('title','Tambah Data Pesanan')
 
 @section('content')
 <div class="container-fluid">
-	<h1>Tambah Data Pesanan</h1>
 
 	@if(session('result') == 'success')
 	<div class="alert alert-success data-dismissible" role="alert">
@@ -21,6 +20,9 @@
   <form method="POST" action="{{ route('admin.order.add') }}">
 	@csrf
 	<div class="card">
+		<div class="card-header bg-primary pb-1">
+        	<h5 class="text-light"><span class="oi oi-plus"></span> Tambah Data Order</h5>
+   		</div>
 		<div class="card-body">
 			<div class="form-group form-label-group">
 				<label for="iNomorMeja">Nomor Meja</label>
@@ -62,9 +64,10 @@
 				<label for="">Status Order</label>
 				<select name="status_order" class="form-control">
 					<option value="">Status Order :</option>
-					<option value="Menunggu">Menunggu</option>
+					<option value="Pending">Pending</option>
+					<option value="Menunggu Pembayaran">Menunggu Pembayaran</option>
+					<option value="Beres">Beres</option>
 					<option value="Dibatalkan">Dibatalkan</option>
-					<option value="Dikonfirmasi">Dikonfirmasi</option>
 				</select>
 			</div><!--End Form Group-->
 

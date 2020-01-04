@@ -1,28 +1,27 @@
-<!-- NAVBAR -->
-<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="brand">
-		<a href="{{route('admin.home')}}"><img src="{{ url('klorofil/img/ngapak.png') }}" width="50px" alt="Ngapak Logo" class="img-responsive logo"></a>
-	</div>
-	<div class="container-fluid">
-		<div class="navbar-btn">
-			<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
-		</div>
+<nav class="navbar navbar-expand p-0">
+ <a class="navbar-brand text-center col-xs-12 col-md-3 col-lg-2 mr-0" href="{{route('admin.home')}}">         <img src="{{url('polished/assets/ngapak.png')}}" alt="logo" width="100px"></a>
+  <button class="btn btn-link d-block d-md-none" data-toggle="collapse" data-target="#sidebar-nav" role="button" >
+    <span class="oi oi-menu"></span>
+  </button>
+  
+  <div class="border-primary-darkest bg-primary-darkest form-control d-none d-md-block w-60 ml-3 mr-5">
+    <marquee class="text-white" behavior="alternate" direction="">Selamat Datang di Halaman Backend dari Ngapak Resto.</marquee>
+  </div>
 
-		<div id="navbar-menu">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-user"></i> <span>{{Auth::user()->fullname}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-					<ul class="dropdown-menu">
-						<li><a href="#" data-toggle="modal" data-target="#profilModal"><i class="lnr lnr-user"></i> <span>Profile</span></a></li>
-						<li><a href="{{ route('admin.user.setting') }}"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-						<li><a href="#" data-toggle="modal" data-target="#logoutModal"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</div>
+  <div class="dropdown d-none d-md-block pr-5">
+    
+    <button class="btn btn-link btn-link-primary dropdown-toggle" id="navbar-dropdown" data-toggle="dropdown">
+      <span class="oi oi-person"></span> {{Auth::user()->fullname}}
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" id="navbar-dropdown">
+      <a href="#" class="dropdown-item" data-toggle="modal" data-target="#profilModal"><span class="oi oi-person"></span> Profile</a>
+      <a href="{{ route('admin.user.setting') }}" class="dropdown-item"><span class="oi oi-cog"></span> Setting</a>
+      <div class="dropdown-divider"></div>
+      <a href="#" class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><span class="oi oi-account-logout"></span> Sign Out</a>
+    </div>
+  </div>
 </nav>
-<!-- END NAVBAR -->
+
 
 @push('modal')
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog">
@@ -43,8 +42,8 @@
             onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">Dahlah Logout Baee
         </a>
-			
-		<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+      
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
 

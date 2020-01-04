@@ -1,10 +1,6 @@
-@extends('admin.main')
+@extends('admin.main2')
 @section('title','User Setting')
 @section('content')
-
-<div class="container-fluid">
-	<h1>User Setting</h1>
-	<hr>
 
 	@if(session('result') == 'success')
 	<div class="alert alert-success data-dismissible" role="alert">
@@ -23,9 +19,9 @@
 		<div class="col-md-6">
 			<form method="POST" action="{{ route('admin.user.setting') }}">
 				<div class="card mb-3">
-					<div class="card-header">
-						<h2>Setting</h5>
-					</div>
+					<div class="card-header bg-primary pb-1">
+			        	<h5 class="text-light"><span class="oi oi-cog"></span> Edit Data User</h5>
+			   		</div>
 					<div class="card-body">
 						@csrf
 						<div class="form-group form-label-group">
@@ -66,7 +62,7 @@
 							<div class="invalid-feedback">{{ $errors->first('password') }}</div>
 							@endif
 							<div class="form-text text-muted">
-								<small>Kosongkan Bila Password Tidak Diubah.</small>
+								<small class="text-muted">Kosongkan Bila Password Tidak Diubah.</small>
 							</div>
 						</div>
 
@@ -80,14 +76,13 @@
 						</div>
 
 						<div class="card-footer">
-							<button type="submit" class="btn btn-success shadow-sm">Update</button>
+							<button type="submit" class="btn btn-primary">Simpan Perubahan</button>
 						</div>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
-</div>
 
 <!-- @push('modal')
 <div class="modal fade" id="settingModal" tabindex="-1" role="dialog">
