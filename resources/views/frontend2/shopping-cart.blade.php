@@ -10,7 +10,7 @@
 		<div class="row">
 
 			<div class="col-md-9 mx-auto">
-				<a href="{{route('cancel')}}" class="btn btn-danger">Batal Memesan [X]</a>
+				<a href="{{route('cancel')}}" class="btn btn-danger"><span class="oi oi-trash"></span> Batal Memesan</a><a class="btn btn-success" href="{{route('menu-masakan')}}"><span class="oi oi-arrow-circle-left"></span> Kembali Ke Menu</a>
 				<table class="table">
 				  <thead class="thead-dark">
 				    <tr>
@@ -49,7 +49,7 @@
 
 				<strong class="float-right" style="color: green; text-transform: uppercase;">Total : Rp.{{number_format($totalPrice,0,',','.')}},</strong>
 				<br>
-				<a href="{{route('checkout')}}" class="btn btn-success float-right">Checkout</a>
+				<a href="{{route('checkout')}}" class="btn btn-success float-right"><span class="oi oi-check"></span> Proceed to Checkout</a>
 			 </div>	
 					
 		</div>

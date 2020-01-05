@@ -92,7 +92,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	Route::group(['prefix'=>'entri','middleware'=>'level.admin'], function()
 	{
 		Route::get('/', 'OrderController@entri')->name('entri.order');
-		Route::get('/detail/{id_order}','OrderController@edit')->name('entri.detail');
+		Route::get('/accept/{id_order}','OrderController@terimaEntri')->name('entri.accept');
 	});
 	// End Entri Order
 

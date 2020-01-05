@@ -22,7 +22,7 @@
 		      Tampilkan Menurut Kategori
 		    </button>
 		    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-		    	@foreach($kategori as $dt)
+		      @foreach($kategori as $dt)
 		      <a href="{{route('show.category', ['id'=> $dt->id])}}" class="btn btn-primary btn-block">{{$dt->nama_kategori}}</a>
 		      @endforeach
 		    </div>
@@ -31,10 +31,10 @@
 	
 	<div class="row">
 		@foreach($data as $dt)
-		<div class="col-sm-6 col-md-4">
+		<div class="col-sm-6 col-md-4 pb-4">
 			<div class="card-group">
 			  <div class="card">
-			    <img class="card-img-top" src="{{url('storage/gambar/'.$dt->gambar)}}" style="width: 100%; height: 50%;" alt="Card image cap">
+			    <img class="card-img-top img-responsive" src="{{url('storage/gambar/'.$dt->gambar)}}" style="width: 100%; height: 280px;" alt="Card image cap">
 			    <div class="card-body">
 			      <small>{{$dt->kode_masakan}} | {{$dt->nama_kategori}}</small>	
 			      <h5 class="card-title">{{$dt->nama_masakan}}</h5>

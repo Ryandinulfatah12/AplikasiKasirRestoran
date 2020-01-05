@@ -56,7 +56,7 @@ class OrderController extends Controller
     public function edit($id_order)
     {
         $data = Order::where('id_order',$id_order)->first();
-        return view('admin.pages.order.entri.detail',['rc'=>$data]);
+        return view('admin.pages.order.edit',['rc'=>$data]);
     }
 
     public function update (Request $req)
@@ -95,7 +95,19 @@ class OrderController extends Controller
     public function entri(Request $req)
     {     
         $orders = Order::where('status_order','Pending')->get();
+        $orders->transform(function($order) {
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
         return view('admin.pages.order.entri.entri', compact('orders'));
+    }
+
+    public function terimaEntri($id_order)
+    {
+        $orders = Order::where('id_order',$id_order)->first();
+        $orders->update(['status_order' => 'Menunggu Pembayaran']);
+        alert()->success('Accepted!','Entri ini telah Berhasil Dikonfirmasi!.')->autoclose(4000);
+        return redirect()->route('entri.order');
     }
 
 

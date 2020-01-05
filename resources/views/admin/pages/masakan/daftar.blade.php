@@ -44,7 +44,7 @@
 	              @foreach($data as $dt)
 	              <tr>
 	                  <th scope="row">{{$loop->iteration}}</th>
-				      <td><img src="{{url('storage/gambar/'.$dt->gambar)}}" width="75px"></td>
+				      <td><img class="img-responsive" src="{{url('storage/gambar/'.$dt->gambar)}}" width="75px"></td>
 				      <td>
 				      	<small class="text-muted">{{$dt->kode_masakan}}</small><br>
 						<strong>{{$dt->nama_masakan}}</strong>,

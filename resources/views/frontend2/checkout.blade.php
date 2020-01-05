@@ -29,7 +29,7 @@
 							<textarea  name="keterangan"
 							class="form-control {{ $errors->has('keterangan')?'is-invalid':'' }} "
 							value="{{ old('keterangan') }}"
-							id="" placeholder="Keterangan Order Anda" required autofocus></textarea>
+							id="" placeholder="Masukan Keterangan Order Anda Sedetail-detailnya..." required autofocus></textarea>
 							@if($errors->has('keterangan'))
 							<div class="invalid-feedback">{{ $errors->first('keterangan') }}</div>
 							@endif

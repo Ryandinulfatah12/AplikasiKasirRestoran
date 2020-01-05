@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Masakan;
 use App\Kategori;
 use Alert;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -82,8 +83,13 @@ class MasakanController extends Controller
         ])->validate();
 
         if (!empty($req->gambar)) { 
+        $idimg = Masakan::find($req->id);
         $filename = rand(1,999).'_'.str_replace(' ', '', $req->gambar->getClientOriginalName());
-        $req->file('gambar')->storeAs('/public/gambar', $filename);
+
+        if ($req->hasFile('gambar')) {
+            $req->file('gambar')->storeAs('/public/gambar', $filename);
+            File::delete(storage_path('public/gambar' .$idimg->gambar));
+        }
 
             $field = [
                     'nama_masakan'=>$req->nama_masakan,

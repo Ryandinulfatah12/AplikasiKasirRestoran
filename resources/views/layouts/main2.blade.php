@@ -40,7 +40,7 @@
 <body>
 
 <nav class="navbar navbar-expand p-0 bg-success-darkest">
- <a class="navbar-brand text-center col-xs-12 col-md-3 col-lg-2 mr-0" href="{{route('menu-masakan')}}">         <img src="{{url('polished/assets/ngapak.png')}}" alt="logo" width="100px"></a>
+ <a class="navbar-brand text-center col-xs-12 col-md-3 col-lg-2 mr-0" href="{{route('menu-masakan')}}">         <img src="{{url('polished/assets/ngapak.png')}}" alt="logo" width="120px"></a>
   
   <div class="border-success-darker bg-success-darker form-control d-none d-md-block w-60 ml-3 mr-5">
     <marquee class="text-white" behavior="alternate" direction="">Selamat Datang di Ngapak Resto, Semoga harimu Menyenangkan.</marquee>

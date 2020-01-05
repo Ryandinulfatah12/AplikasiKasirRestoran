@@ -33,6 +33,11 @@ class Order extends Model
     	return $this->belongsTo('App\User');
     }
 
+    public function transaksi()
+    {
+        return $this->hasOne(Transaksi::class);
+    }
+
     // public function masakan()
     // {
     //     return $this->belongsToMany(Masakan::class)->withPivot(['subtotal']);

@@ -14,6 +14,7 @@
               <th scope="col">Kode Order</th>
               <th scope="col">No Meja</th>
               <th scope="col">Dipesan pada</th>
+              <th scope="col">Item</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
@@ -25,7 +26,19 @@
               <td>{{$order->no_meja}}</td>
               <td>{{$order->created_at}}</td>
               <td>
-                <a class="btn btn-success" href="{{route('entri.detail', ['id_order'=>$order->id_order])}}">Lihat Detail</a>
+                @foreach($order->cart->items as $item)
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <span class="badge badge-light">{{$item['item']['nama_masakan']}}</span> 
+                    <span class="badge badge-warning">Qty {{$item['qty']}}</span> 
+                    <span class="badge badge-danger">Subtotal : Rp.{{number_format($item['harga']),0,',','.'}}</span>
+                  </li>
+                </ul>
+               @endforeach
+              </td>
+
+              <td>
+                <a class="btn btn-success" href="{{route('entri.accept', ['id_order'=>$order->id_order])}}">Finish</a>
               </td>
             </tr>
             @endforeach
