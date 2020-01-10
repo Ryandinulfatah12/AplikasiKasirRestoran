@@ -45,7 +45,6 @@ class TransaksiController extends Controller
     public function payment(Request $req, $id_order)
     {
         $orders =  Order::where('id_order', $id_order)->first();
-        $orders->update(['status_order' => 'Beres']);
         return view('admin.pages.transaksi.kasir.payment', ['orders'=>$orders]);
     }
 
@@ -61,10 +60,16 @@ class TransaksiController extends Controller
         if ($req->kembalian < 0) {
             return back()->with('result','fail');
         } else {
-            alert()->success('Anda Telah Berhasil Melakukan Transaksi.', 'Berhasil!')->autoclose(4000);
+            
             $transaksi->save();
-
-            return redirect()->route('cashier');
+            return back()->with('result','success');
         }
+    }
+
+    public function getFinish($id_order)
+    {
+        $orders = Order::where('id_order', $id_order)->first();
+        $orders->update(['status_order' => 'Beres']);
+        return redirect()->route('cashier');
     }
 }

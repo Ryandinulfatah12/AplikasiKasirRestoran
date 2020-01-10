@@ -104,6 +104,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 		Route::get('/','TransaksiController@kasir')->name('cashier');
 		Route::get('/payment/{id_order}','TransaksiController@payment')->name('payment');
 		Route::post('/payment','TransaksiController@bayar')->name('bayar');
+		Route::get('/finish/{id_order}','TransaksiController@getFinish')->name('getFinish');
 	});
 	// End Cashier
 

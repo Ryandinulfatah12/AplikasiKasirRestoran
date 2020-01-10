@@ -110,9 +110,11 @@
 
 <div class="col-lg-12 pt-3 mx-auto">
   <div class="card shadow-sm ">
-    <div class="card-header bg-primary text-light">
+    <div class="card-header bg-primary text-light d-inline">
+      <a class="btn btn-success float-right" href=""><span class="oi oi-print"></span> Export Excel</a><a class="btn btn-danger float-right" href=""><span class="oi oi-print"></span> Export PDF</a>
       <h6><b>Laporan Pesanan & Transaksi</b></h6>
     </div>
+    <!-- Chart Tag -->
     <div class="card-body">
         <canvas id="chartresto"></canvas>
     </div>

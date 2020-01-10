@@ -17,7 +17,12 @@
 
 		            <div class="card-body">
 
-		            	@if(session('result') == 'fail')
+		            	@if(session('result') == 'success')
+						<div class="alert alert-success" role="alert">
+						  <h4 class="alert-heading">Berhasil!</h4>Anda Telah Berhasil Melakukan Transaksi.
+						  <a href="{{route('getFinish', ['id_order' => $orders->id_order])}}" class="btn btn-success btn-lg">Clear Transaction.</a>
+						</div>
+						@elseif(session('result') == 'fail')
 						<div class="alert alert-danger data-dismissible" role="alert">
 						  <h4 class="alert-heading">Uang Anda Kurang!</h4>Ada Kesalahan Saat Menginputkan, Silahkan Di Check Kembali.
 						  <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -55,7 +60,7 @@
 						</div>
 						
 		                <div class="form-group">
-		                  <button id="btnPay" type="submit" class="btn btn-success">Bayar</button>
+		                  <button id="btnPay" type="submit" class="btn btn-success" onclick="return confirm('Checkout?')">Bayar</button>
 		                </div>
 
 		              </form>
@@ -82,11 +87,6 @@
 		$(".txtKembalian").val(kembalian);
 
 		$("#form-bayar").submit();
-		// if (kembalian < 0) {
-		// 	alert('Uang Anda Kurang!');
-		// } else {
-		// 	$("#form-bayar").submit();
-		// }
 		
 
 	});
