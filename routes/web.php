@@ -6,7 +6,6 @@ Route::get('/', function() {
 });
 
 
-
 Route::group(['prefix' => 'frontend','middleware'=>['auth']], function() {
 	Route::get('/', function() {
 		return redirect('/frontend/menu');
@@ -57,6 +56,9 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 
 		Route::get('/setting','UserSettingController@form')->name('admin.user.setting');
 		Route::post('/setting', 'UserSettingController@update');
+
+		//export ke EXcel
+		Route::get('/export', 'UserController@exportExcel')->name('user.export.excel');
 	});
 	// End User
 
@@ -101,6 +103,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	{
 		Route::get('/','TransaksiController@kasir')->name('cashier');
 		Route::get('/payment/{id_order}','TransaksiController@payment')->name('payment');
+		Route::post('/payment','TransaksiController@bayar')->name('bayar');
 	});
 	// End Cashier
 

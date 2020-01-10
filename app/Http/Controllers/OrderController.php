@@ -84,6 +84,7 @@ class OrderController extends Controller
     public function delete(Request $req)
     {
         $result = Order::find($req->id_order);
+        $result->transaksi()->delete();
 
         if ($result->delete() ){
             alert()->success('Data Berhasil Terhapus dari Database.', 'Terhapus!')->autoclose(3000);
@@ -106,7 +107,7 @@ class OrderController extends Controller
     {
         $orders = Order::where('id_order',$id_order)->first();
         $orders->update(['status_order' => 'Menunggu Pembayaran']);
-        alert()->success('Accepted!','Entri ini telah Berhasil Dikonfirmasi!.')->autoclose(4000);
+        alert()->success('Entri ini telah Berhasil Dikonfirmasi!.','Accepted!')->autoclose(4000);
         return redirect()->route('entri.order');
     }
 

@@ -25,7 +25,7 @@ class FrontEndController extends Controller
     {   
     	$data = Masakan::join('kategori','kategori.id','masakan.kategori_id')
             ->orWhere('nama_masakan','like',"%{$req->keyword}%")
-            ->orWhere('kategori_id', $req->id)
+            ->orWhere('kategori.id',"{$req->kategori_id}")
             ->select('masakan.*','nama_kategori')
             ->orderBy('updated_at','desc')
             ->paginate(10);
@@ -150,6 +150,7 @@ class FrontEndController extends Controller
             $order->no_meja = $req->no_meja;
             $order->id_user = $req->id_user;
             $order->cart = serialize($cart);
+            $order->subtotal = $cart->totalPrice;
             $order->keterangan = $req->keterangan;
             $order->status_order = $req->status_order;
 
@@ -157,6 +158,7 @@ class FrontEndController extends Controller
         } catch (Exception $e) {
             
         }
+        alert()->success('Entri Order Anda Telah Dikirim ke Waiter!.', 'Request has been Sent!');
         Session::forget('cart');
         return redirect()->route('thankyou');      
     }

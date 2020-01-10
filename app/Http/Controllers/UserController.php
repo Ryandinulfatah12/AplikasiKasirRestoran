@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Alert;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -102,6 +104,11 @@ class UserController extends Controller
             return redirect()->route('admin.user');
     	}
     	
+    }
+
+    public function exportExcel() 
+    {
+        return Excel::download(new UsersExport, 'DataUsers.xlsx');
     }
 
 }

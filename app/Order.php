@@ -11,7 +11,7 @@ class Order extends Model
     protected $table = 'orders';
     protected $primaryKey = 'id_order';
 
-    protected $fillable = ['kode_order','no_meja','id_user','keterangan','status_order'];
+    protected $fillable = ['kode_order','no_meja','id_user','cart','subtotal','keterangan','status_order'];
 
     public static function getId()
     {
@@ -30,7 +30,7 @@ class Order extends Model
 
     public function user()
     {
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo(User::class);
     }
 
     public function transaksi()

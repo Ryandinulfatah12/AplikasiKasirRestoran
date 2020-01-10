@@ -29,7 +29,6 @@
             <thead class="border-0">
               <tr>
                   <th scope="col">#</th>
-				  <th scope="col">Kode Transaksi</th>
 			      <th scope="col">Pemesan</th>
 			      <th scope="col">Kode Order</th>
 			      <th scope="col">Tanggal</th>
@@ -41,14 +40,13 @@
               @foreach($data as $dt)
               <tr>
                   <th scope="row">{{$loop->iteration}}</th>
-			      <td>{{$dt->kode_transaksi}}</td>
 			      <td>{{$dt->fullname}}</td>
 			      <td>{{$dt->kode_order}}</td>
 			      <td>{{$dt->created_at}}</td>
 			      <td>Rp.{{number_format($dt->total_bayar,0,',','.')}},</td>
 			      <td>
 			          <a href="#" class="btn btn-success btn-sm">
-			          	Edit
+			          	Print
 			          </a>
 
 			          <button class="btn btn-danger btn-sm btn-trash"

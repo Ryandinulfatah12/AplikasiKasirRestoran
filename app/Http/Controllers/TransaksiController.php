@@ -19,7 +19,7 @@ class TransaksiController extends Controller
     {
         $data = DB::table('transactions')
             ->join('users', 'transactions.user_id', '=', 'users.id')
-            ->join('orders', 'transactions.order_id', '=', 'orders.id_order')
+            ->join('orders', 'transactions.order_id_order', '=', 'orders.id_order')
             ->select('transactions.*', 'users.fullname', 'orders.*')
             ->paginate(10);
             return view('admin.pages.transaksi.data', ['data'=>$data]);
@@ -35,19 +35,36 @@ class TransaksiController extends Controller
         }
     }
 
-    public function kasir()
+    public function kasir(Request $req)
     {
-        return view('admin.pages.transaksi.kasir.data');
+        $orders = Order::where('status_order','Menunggu Pembayaran')->get();
+        
+        return view('admin.pages.transaksi.kasir.data', compact('orders'));
     }
 
     public function payment(Request $req, $id_order)
     {
-        $orders =  Order::where('id_order', $id_order)->get();
-        $orders->transform(function($order) {
-            $order->cart = unserialize($order->cart);
-            return $order;
-        });
-
+        $orders =  Order::where('id_order', $id_order)->first();
+        $orders->update(['status_order' => 'Beres']);
         return view('admin.pages.transaksi.kasir.payment', ['orders'=>$orders]);
+    }
+
+    public function bayar(Request $req)
+    {
+
+        $transaksi = new Transaksi;
+        $transaksi->user_id = $req->user_id;
+        $transaksi->order_id_order = $req->order_id_order;
+        $transaksi->total_bayar = $req->total_bayar;
+        $transaksi->kembalian = $req->kembalian;
+
+        if ($req->kembalian < 0) {
+            return back()->with('result','fail');
+        } else {
+            alert()->success('Anda Telah Berhasil Melakukan Transaksi.', 'Berhasil!')->autoclose(4000);
+            $transaksi->save();
+
+            return redirect()->route('cashier');
+        }
     }
 }

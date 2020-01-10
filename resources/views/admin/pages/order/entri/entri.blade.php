@@ -5,7 +5,7 @@
 
 <div class="container">
 
-  <div class="col-lg-11 pl-5">
+  <div class="col-lg-12">
       <h1>Entri Order</h1>
       <table class="table table-bordered" id="datatabled">
           <thead class="border-0">
@@ -15,6 +15,8 @@
               <th scope="col">No Meja</th>
               <th scope="col">Dipesan pada</th>
               <th scope="col">Item</th>
+              <th scope="col">Keterangan</th>
+              <th scope="col">Total</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
@@ -36,9 +38,11 @@
                 </ul>
                @endforeach
               </td>
+              <td>{{$order->keterangan}}</td>
+              <td class="text-success-darkest">Rp. {{number_format($order->subtotal),0,',','.'}}</td>
 
               <td>
-                <a class="btn btn-success" href="{{route('entri.accept', ['id_order'=>$order->id_order])}}">Finish</a>
+                <a class="btn btn-success" href="{{route('entri.accept', ['id_order'=>$order->id_order])}}">Accept Order</a>
               </td>
             </tr>
             @endforeach

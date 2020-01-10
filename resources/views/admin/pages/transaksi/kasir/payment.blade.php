@@ -3,52 +3,12 @@
 @section('content')
 
 <div class="container-fluid">
-	<h2>Pembayaran</h2>
 
-  <div class="col-lg-12">
-		<div class="col-lg-12">
-          <table class="table shadow-0">
-              <thead>
-                <tr>
-                  <th scope="col">Kode Pemesanan</th>
-                  <th scope="col">ID User</th>
-                  <th scope="col">No Meja</th>
-                  <th scope="col">Dipesan pada</th>
-                  <th scope="col">Detail Pesan Item</th>
-                </tr>
-              </thead>
-              <tbody>
-              	@foreach($orders as $order)
-                <tr>
-                  <th scope="row">{{$order->kode_order}}</th>
-                  <td>{{$order->id_user}}</td>
-                  <td>{{$order->no_meja}}</td>
-                  <td>{{$order->created_at}}</td>
-				  
-				  
-                  <td>
-                  	@foreach($order->cart->items as $item)
-                  	<ul class="list-group list-group-flush">
-	                  <li class="list-group-item">
-	                  	<span class="badge badge-light">{{$item['item']['nama_masakan']}}</span> 
-	                  	<span class="badge badge-info">Harga Satuan : Rp.{{number_format($item['item']['harga']),0,',','.'}}</span>
-	                  	<span class="badge badge-warning">Qty {{$item['qty']}}</span> 
-	                  	<span class="badge badge-danger">Subtotal : Rp.{{number_format($item['harga']),0,',','.'}}</span>
-	                  </li>
-	                </ul>
-	                @endforeach
-                  </td>
+  <div class="row">
 
-                </tr>
-                <td class="text-success-darker"><p style="text-transform: uppercase; font-weight: bold; float: right;">Total	: Rp.{{number_format($order->cart->totalPrice),0,',','.'}}</p></td>
-                @endforeach
-              </tbody>
-          </table>
-        </div>
+        <div class=" col-lg-5 mx-auto">
 
-        <div class=" col-lg-6">
-
-		      <div class="row p-4">
+		      <div class="row">
 		        <div class="card">
 
 		            <div class="card-header bg-success text-white pb-1">
@@ -57,31 +17,47 @@
 
 		            <div class="card-body">
 
-		              <form action="#">
+		            	@if(session('result') == 'fail')
+						<div class="alert alert-danger data-dismissible" role="alert">
+						  <h4 class="alert-heading">Uang Anda Kurang!</h4>Ada Kesalahan Saat Menginputkan, Silahkan Di Check Kembali.
+						  <button type="button" class="close" data-dismiss="alert">&times;</button>
+						</div>
+						@endif
+					
+		            	<b>Tagihan Anda</b> <strong class="text-success-darker">Rp. {{number_format($orders->subtotal),0,',','.'}}</strong>
+
+		              <form id="form-bayar" action="{{route('bayar')}}" method="POST">
+		              	@csrf
+		              	<!-- Tagihan -->
+		              	<input type="hidden" id="txtTotal" class="form-control" value="{{$orders->subtotal}}">
+
+		              	<!-- Ambil ID USER -->
+		              	<input type="hidden" name="user_id" value="{{$orders->id_user}}">
+
+		              	<!-- Ambil ID ORDER -->
+		              	<input type="hidden" name="order_id_order" value="{{$orders->id_order}}">
+
 		              	<label>Uang</label>
 		                <div class="input-group mb-3">
 							<div class="input-group-prepend">
 							  <span class="input-group-text bg-success-lighter text-white">Rp.</span>
 							</div>
-							<input type="number" class="form-control" placeholder="Uang Masuk">
-							<div class="input-group-append">
-							  <span class="input-group-text bg-success-lighter text-white">.00</span>
-							</div>
+							<input type="number" name="total_bayar" id="txtBayar" class="form-control" placeholder="Uang Masuk">
 						</div>
 						<label>Kembalian</label>
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
 							  <span class="input-group-text bg-success-lighter text-white">Rp.</span>
 							</div>
-							<input type="number" class="form-control" placeholder="Uang Kembalian" disabled>
-							<div class="input-group-append">
-							  <span class="input-group-text bg-success-lighter text-white">.00</span>
-							</div>
-						</div>
+							<input type="number" class="form-control txtKembalian" placeholder="Uang Kembalian" disabled="">
 
+							<input type="hidden" name="kembalian" class="txtKembalian">
+						</div>
+						
 		                <div class="form-group">
-		                  <button class="btn btn-success">Bayar</button>
+		                  <button id="btnPay" type="submit" class="btn btn-success">Bayar</button>
 		                </div>
+
 		              </form>
 
 			        </div>    
@@ -95,3 +71,27 @@
 </div>
 
 @endsection
+
+@push('js')
+
+<script type="text/javascript">
+	$("#btnPay").click(function () {
+		var total = $("#txtTotal").val();
+		var bayar= $("#txtBayar").val();
+		var kembalian = parseInt(bayar) - parseInt(total);
+		$(".txtKembalian").val(kembalian);
+
+		$("#form-bayar").submit();
+		// if (kembalian < 0) {
+		// 	alert('Uang Anda Kurang!');
+		// } else {
+		// 	$("#form-bayar").submit();
+		// }
+		
+
+	});
+
+	
+</script>
+
+@endpush

@@ -51,9 +51,9 @@
 			    </div>
 			    <div class="card-footer">
 			    	@if($dt['status_masakan']=='Ada')
-			      		<a href="{{route('add.cart', ['id' => $dt->id])}}" class="btn btn-success btn-block"><i class="fa fa-cart-plus" aria-hidden="true"></i> Pesan</a>
+			      		<a href="{{route('add.cart', ['id' => $dt->id])}}" class="btn btn-success btn-block"><span class="oi oi-cart"></span> Pesan</a>
 			        @else
-			       		 <button type="button" class="btn btn-secondary btn-block" title="Stok Habis" disabled><i class="fa fa-times-circle-o" aria-hidden="true"></i> Stok Habis</button>
+			       		 <button type="button" class="btn btn-secondary btn-block" title="Stok Habis" disabled><span class="oi  oi-circle-x"></span> Stok Habis</button>
 			        @endif
 			    </div>
 			  </div>

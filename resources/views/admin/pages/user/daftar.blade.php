@@ -19,6 +19,7 @@
 	    <div class="row">
 			<div class="col-md-6 mb-3">
 				<a href="" data-toggle="modal" data-target="#tambahUser" class="btn btn-primary"><span class="oi oi-plus"> Buat Baru</span></a>
+				<a class="btn btn-success" href="{{route('user.export.excel')}}"><span class="oi oi-print"></span> Export Excel</a>
 			</div>
 
 			<!-- <div class="col-md-6 mb-3">
