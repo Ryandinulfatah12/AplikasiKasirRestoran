@@ -19,6 +19,13 @@
   @stack('css')
 
   <style>
+    .container-fluid {
+      background: url('polished/assets/background.png') no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
     .grid-highlight {
       padding-top: 1rem;
       padding-bottom: 1rem;
@@ -35,47 +42,28 @@
     hr+.display-2+.display-3 {
       margin-bottom: 2rem;
     }
+
+    .intro {
+      background-color: #000;
+      opacity: 70%;
+      padding: 20px 20px 20px 20px;
+      border-radius: 20px;
+    }
+
   </style>
 
 </head>
 
 <body>
 
-    <!-- navbar -->
-    @include('admin.navbar2')
-    <!-- endnavbar -->
-
   <div class="container-fluid h-100 p-0">
-    <div style="min-height: 100%" class="flex-row d-flex align-items-stretch m-0">
-        <!-- sidebar -->
-        @include('admin.sidebar2')
-        <!-- endsidebar -->
-        <div class="col-lg-10 col-md-9 p-4">
-            
-            @yield('content')
-
-        </div>
-      </div>
+     @yield('content')
   </div>
-
-  <!-- Logout Modal -->
-  @stack('modal')
-  <!-- End Logout modal -->
-
   
-  <script src="{{url('polished/js/sweetalert.min.js')}}"></script>
-  @include('sweet::alert')
+ 
   <script src="{{url('polished/js/jquery-3.3.1.slim.min.js')}}"></script>
   <script src="{{url('polished/js/popper.min.js')}}"></script>
   <script src="{{url('polished/js/bootstrap.min.js')}}"></script>
-  <script src="{{url('polished/js/Chart.bundle.min.js')}}"></script>
-  <script src="{{url('polished/js/script.js')}}"></script>
-  <script src="{{url('polished/js/jquery.dataTables.min.js')}}"></script>
-  <script>
-    $(document).ready( function () {
-      $('#datatabled').DataTable();
-    } );
-  </script>
   @stack('js')
   
 </body>

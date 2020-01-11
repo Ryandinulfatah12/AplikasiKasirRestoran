@@ -11,10 +11,10 @@
       <li><a href="{{route('admin.user')}}"><span class="oi oi-people"></span> Users</a></li>
       <li><a href="{{ route('admin.masakan') }}"><span class="oi oi-puzzle-piece"></span></span> Daftar Masakan</a></li>
       <li><a href="{{route('admin.masakan.kategori')}}"><span class="oi oi-tags"></span> Kategori</a></li>
-      <li><a href="{{route('entri.order')}}"><span class="oi oi-bell"></span> <span class="badge badge-primary">{{$entri->count()}}</span> Entri Order</a></li>
+      <li><a href="{{route('entri.order')}}"><span class="oi oi-bell"></span> Entri Order <span class="badge badge-warning">{{$entri->count()}}</span></a></li>
       @endif
       @if(Auth::user()->level =='admin' || Auth::user()->level =='kasir')
-      <li><a href="{{route('cashier')}}"><span class="oi oi-cart"></span> <span class="badge badge-primary">{{$cashier->count()}}</span> Cashier</a></li>
+      <li><a href="{{route('cashier')}}"><span class="oi oi-cart"></span> Cashier <span class="badge badge-warning">{{$cashier->count()}}</span></a></li>
       <div class="pt-4">
           <a href="#" class="pl-3 fs-smallest fw-bold text-muted">Rekap Data</a> 
           <ul class="list-unstyled">

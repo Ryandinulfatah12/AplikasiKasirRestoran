@@ -130,6 +130,16 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	});
 	// End Order
 
+	// Start Report
+	Route::prefix('/report')->group(function() {
+		Route::get('/invoice/{kode_order}','reportController@invoice')->name('invoice');
+		Route::group(['middleware' => ['admin']], function() {
+			Route::get('/','reportController@buat')->name('report');
+			Route::post('/','reportController@render')->name('report.render');
+		});
+	});
+	// End Report
+
 });
 
 Auth::routes();

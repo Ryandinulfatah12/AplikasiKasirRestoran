@@ -165,6 +165,7 @@ class FrontEndController extends Controller
 
     public function thanks()
     {
+        //$orders = Order::where('id_order', $id_order)->get();
         return view('frontend2.thanks');
     }
 }
