@@ -19,11 +19,11 @@
 	<table border="0" cellspacing="0" cellpadding="0">
 	    <thead>
 	        <tr>
-	            <th>Kode Order</th>
-	            <th>Nomor Meja</th>
-	            <th>Dipesan Pada</th>
-	            <th class="text-left">Item Pesanan</th>
-	            <th class="text-right">Total</th>
+	            <th><b>KODE DELIVERY</b></th>
+	            <th><b>NOMOR MEJA</b></th>
+	            <th><b>DIPESAN PADA</b></th>
+	            <th class="text-left"><b>DETAIL PESANAN</b></th>
+	            <th class="text-right"><b>TOTAL</b></th>
 	        </tr>
 	    </thead>
 	    <tbody>
@@ -52,14 +52,14 @@
 	            <td colspan="2"></td>
 	            <td colspan="2">Total Tagihan</td>
 	            @foreach($orders as $order)
-	            <td><strong>Rp.{{number_format($order->subtotal),0,',','.'}}</strong></td>
+	            <td><strong class="text-danger">Rp.{{number_format($order->subtotal),0,',','.'}}</strong></td>
 	            @endforeach
 	        </tr>
 	        <tr>
 	            <td colspan="2"></td>
 	            <td colspan="2">Uang Masuk</td>
 	            @foreach($data as $dt)
-	            <td>Rp.{{number_format($dt->total_bayar),0,',','.'}}</td>
+	            <td><strong class="text-success-darker">Rp.{{number_format($dt->total_bayar),0,',','.'}}</strong></td>
 	            @endforeach
 	        </tr>
 	        <tr>
