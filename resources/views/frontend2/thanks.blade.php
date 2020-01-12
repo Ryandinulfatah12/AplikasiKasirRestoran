@@ -6,7 +6,7 @@
 	@if(session('result') == 'success')
 	<div class="alert alert-success" role="alert">
 	  <h4 class="alert-heading">Berhasil Memesan!</h4>Pesanan Anda Akan Diproses Sebentar Lagi.
-	  <a href="{{route('delivery', ['kode_order' => $data->kode_order])}}" target="_blank" class="btn btn-success btn-lg"><span class="oi oi-print"></span> Cetak</a>
+	  <a href="" target="_blank" class="btn btn-success btn-lg"><span class="oi oi-print"></span> Cetak</a>
 	</div>
 	@endif
 	<h1>Pesanan anda sedang Diproses...<span class="oi oi-loop-circular mt-4 fs-9 spin"></span></h1>

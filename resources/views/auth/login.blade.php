@@ -16,24 +16,23 @@
 @section('content')
 <div class="container">
 
-	<div class="row">
-		<div class="col-md-8 pt-5">
+	<div class="row pt-5">
+		<div class="col-md-8">
 			<div class="intro text-white">
 				<h2><b><u>Aplikasi Table Service Restaurant.</u></b></h2>
 				<b>Sebuah Aplikasi Table Service yang Dirancang dengan Sistem POS (Point Of Sales), yang Dimana didalamnya Berisikan Sistem Client Server</b>
 			</div>
 		</div>
 
-		<div class="col-md-4 pt-5">
+		<div class="col-md-4">
           <div class="card bg-light-lightest shadow-sm rounded">
-            <div class="card-header bg-danger-darker pb-1">
+            <div class="card-header bg-danger-darkest pb-1">
                 <h5 class="text-center text-white"><span class="oi oi-account-login"></span> <strong>Login Account</strong></h5>
             </div>
             <div class="card-body">
               <form class="form-auth-small" method="POST" action="{{ route('login') }}">
 					@csrf
 					<div class="form-group">
-						<label for="username" class="control-label sr-only">Username</label>
 						<input type="text" class="form-control border-danger {{$errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" placeholder="Masukan Username" required autofocus>
 
 						@if ($errors->has('username'))
@@ -43,7 +42,6 @@
 			        	@endif
 					</div>
 					<div class="form-group">
-						<label for="password" class="control-label sr-only">Password</label>
 						<input type="password" class="form-control border-danger {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" placeholder="Masukan Password" required>
 
 						@if ($errors->has('password'))
