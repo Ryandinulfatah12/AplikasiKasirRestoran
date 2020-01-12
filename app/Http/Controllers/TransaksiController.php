@@ -17,10 +17,10 @@ class TransaksiController extends Controller
      */
     public function index(Request $req)
     {
-        $data = DB::table('transactions')
-            ->join('users', 'transactions.user_id', '=', 'users.id')
+        $data = Transaksi::join('users', 'transactions.user_id', 'users.id')
             ->join('orders', 'transactions.order_id_order', '=', 'orders.id_order')
             ->select('transactions.*', 'users.fullname', 'orders.*')
+            ->orderBy('transactions.updated_at','desc')
             ->paginate(10);
             return view('admin.pages.transaksi.data', ['data'=>$data]);
     }
@@ -70,6 +70,7 @@ class TransaksiController extends Controller
     {
         $orders = Order::where('id_order', $id_order)->first();
         $orders->update(['status_order' => 'Beres']);
+        alert()->success('Transaksi Telah Berhasil','Transaction Clear!')->autoclose(4000);
         return redirect()->route('cashier');
     }
 }

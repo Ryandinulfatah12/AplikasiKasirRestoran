@@ -25,11 +25,17 @@ class FrontEndController extends Controller
     {   
     	$data = Masakan::join('kategori','kategori.id','masakan.kategori_id')
             ->orWhere('nama_masakan','like',"%{$req->keyword}%")
-            ->orWhere('kategori.id',"{$req->kategori_id}")
+            ->orWhere('kategori.id',$req->kategori_id)
             ->select('masakan.*','nama_kategori')
             ->orderBy('updated_at','desc')
             ->paginate(10);
             return view('frontend2.menu', compact('data'));
+    }
+
+    public function showCategory($id)
+    {
+        $data = Masakan::where('kategori_id', $id)->get();
+        return view('frontend2.menu', compact('data'));    
     }
 
     public function showItem(Request $req, $id)
@@ -49,7 +55,7 @@ class FrontEndController extends Controller
 
         $req->session()->put('cart', $cart);
         //return json_encode($req->session()->get('cart'));
-        return redirect()->route('menu-masakan');
+        return back()->with('result','success');
         
     }
 
@@ -107,7 +113,7 @@ class FrontEndController extends Controller
     public function destroy()
     {
         Session::forget('cart');
-        return redirect()->route('menu-masakan');
+        return redirect()->route('menu-masakan')->with('result','clear');
     }
 
     public function getCheckout()
@@ -160,7 +166,7 @@ class FrontEndController extends Controller
         }
         alert()->success('Entri Order Anda Telah Dikirim ke Waiter!.', 'Request has been Sent!');
         Session::forget('cart');
-        return redirect()->route('thankyou');      
+        return redirect()->route('thankyou')->with('result','success');      
     }
 
     public function thanks()

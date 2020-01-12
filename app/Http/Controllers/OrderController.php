@@ -11,8 +11,6 @@ use Alert;
 class OrderController extends Controller
 {
     public function data(Request $req) {
-    	// 
-
     	$data = Order::join('users','users.id','orders.id_user')
     		->where('no_meja','like',"%{$req->keyword}%")
             ->select('orders.*', 'fullname')

@@ -14,14 +14,20 @@ class AksesAdmin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $role1 = null)
+    public function handle($request, Closure $next, $role1 = null, $role2 = null, $role3 = null, $role4 = null)
     {
-        if (Auth::user()->level == 'kasir' && $role1 = 'kasir') {
+        if (Auth::user()->level == 'pelanggan' && $role4 = 'pelanggan') {
+            return $next($request);
+        } else if (Auth::user()->level == 'owner' && $role3 = 'owner') {
+            return $next($request);
+        } else if (Auth::user()->level == 'waiter' && $role2 = 'waiter') {
+            return $next($request);
+        } else if (Auth::user()->level == 'kasir' && $role1 = 'kasir') {
             return $next($request);
         } else if(Auth::user()->level == 'admin') {
         return $next($request);
         }
 
-        return abort(403);
+        return abort(404);
     }
 }

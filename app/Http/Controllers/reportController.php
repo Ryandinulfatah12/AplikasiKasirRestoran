@@ -25,4 +25,15 @@ class reportController extends Controller
         });
     	return view('admin.pages.report.invoice', compact('data'), compact('orders'));
     }
+
+    public function delivery(Request $req)
+    {
+        $data = Order::join('users','users.id','orders.id_user')
+            ->select('orders.*', 'fullname')
+            ->where('orders.kode_order',$req->kode_order)
+            ->first();
+        return view('admin.pages.report.delivery', compact('data'));
+    }
+
+
 }

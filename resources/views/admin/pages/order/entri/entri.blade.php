@@ -42,7 +42,7 @@
               <td class="text-success-darkest">Rp. {{number_format($order->subtotal),0,',','.'}}</td>
 
               <td>
-                <a class="btn btn-success" href="{{route('entri.accept', ['id_order'=>$order->id_order])}}">Accept Order</a>
+                <a class="btn btn-success" href="{{route('entri.accept', ['id_order'=>$order->id_order])}}" onclick="return confirm('Accept Entri?')">Accept Order</a>
               </td>
             </tr>
             @endforeach

@@ -34,11 +34,11 @@
 				      	<a class="btn btn-success" href="{{route('addone', ['id' => $dt['item']['id']])}}"><i class="oi oi-plus" aria-hidden="true"></i></a>
 						<div class="btn-group">
 						  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						    Action
+						    Aksi
 						  </button>
 						  <div class="dropdown-menu">
-						    <a class="dropdown-item" href="{{route('reducebyone', ['id' => $dt['item']['id']])}}">Reduce By One</a>
-						    <a class="dropdown-item" href="{{route('remove.items', ['id' => $dt['item']['id']])}}">Reduce All</a>
+						    <a class="dropdown-item" href="{{route('reducebyone', ['id' => $dt['item']['id']])}}">Kurangi 1 Item</a>
+						    <a class="dropdown-item" href="{{route('remove.items', ['id' => $dt['item']['id']])}}">Kurangi Semua</a>
 						  </div>
 						</div>
 				      </td>

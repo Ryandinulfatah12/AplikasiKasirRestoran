@@ -5,7 +5,7 @@ Route::get('/', function() {
 	return view('auth.login');
 });
 
-
+// FRONTEND ROUTING
 Route::group(['prefix' => 'frontend','middleware'=>['auth']], function() {
 	Route::get('/', function() {
 		return redirect('/frontend/menu');
@@ -14,7 +14,7 @@ Route::group(['prefix' => 'frontend','middleware'=>['auth']], function() {
 	//tampilkan menu masakan (database)
 	Route::get('/menu', 'FrontEndController@menu')->name('menu-masakan');
 	//tampilkan menurut kategori
-	Route::get('/kategori/{id}','FrontEndController@menu')->name('show.category');
+	Route::get('/kategori/{nama_kategori}','FrontEndController@showCategory')->name('show.category');
 
 	//menambahkan item ke cart menggunakan session
 	Route::get('/cart/{id}','FrontEndController@AddToCart')->name('add.cart');
@@ -37,11 +37,21 @@ Route::group(['prefix' => 'frontend','middleware'=>['auth']], function() {
 	//Ucapan Terimakasih
 	Route::get('/thanks','FrontEndController@thanks')->name('thankyou');
 });
+// ENDFRONTEND ROUTING
 
+// BACKEND ROUTING
 Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	Route::get('/', function() {
-		return view('admin.pages.dashboard');
-	})->name('admin.home');
+		$orders = App\Order::where('status_order','Beres')->get();
+		$transaksi = App\Transaksi::all();
+
+		//SIAPKAN DATA CHART ORDER
+		$orderchart = [];
+		foreach($orders as $ochart) {
+			$orderchart[] = $ochart->count();
+		}
+		return view('admin.pages.dashboard', compact('orderchart'));
+	})->name('admin.home')->middleware('level.admin:owner');
 
 	//USER Route
 	Route::prefix('user')->group(function() {
@@ -91,7 +101,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	// End KAtegori
 
 	//Entri Order rOUTE
-	Route::group(['prefix'=>'entri','middleware'=>'level.admin'], function()
+	Route::group(['prefix'=>'entri','middleware'=>'level.admin:waiter'], function()
 	{
 		Route::get('/', 'OrderController@entri')->name('entri.order');
 		Route::get('/accept/{id_order}','OrderController@terimaEntri')->name('entri.accept');
@@ -109,7 +119,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	// End Cashier
 
 	// Transaksi Route
-	Route::group(['prefix'=>'transaksi','middleware'=>'level.admin'], function()
+	Route::group(['prefix'=>'transaksi','middleware'=>'level.admin:kasir:waiter'], function()
 	{
 		Route::get('/', 'TransaksiController@index')->name('admin.transaksi');
 		Route::delete('/', 'TransaksiController@delete');
@@ -117,7 +127,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	// End Transaksi
 
 	// Oredr Route
-	Route::group(['prefix'=>'order','middleware'=>'level.admin'], function()
+	Route::group(['prefix'=>'order','middleware'=>'level.admin:kasir:waiter'], function()
 	{
 		Route::get('/', 'OrderController@data')->name('admin.order');
 		Route::delete('/', 'OrderController@delete');
@@ -133,6 +143,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	// Start Report
 	Route::prefix('/report')->group(function() {
 		Route::get('/invoice/{kode_order}','reportController@invoice')->name('invoice');
+		Route::get('/delivery/{kode_order}', 'reportController@delivery')->name('delivery');
 		Route::group(['middleware' => ['admin']], function() {
 			Route::get('/','reportController@buat')->name('report');
 			Route::post('/','reportController@render')->name('report.render');
@@ -141,6 +152,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	// End Report
 
 });
+// ENDBACKEND ROUTING
 
 Auth::routes();
 

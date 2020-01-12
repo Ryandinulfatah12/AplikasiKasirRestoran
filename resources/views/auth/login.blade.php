@@ -4,13 +4,11 @@
 @push('css')
 <style>
 	.card {
-		background-color: rgba(30, 0, 0, 0.7);
+		background-color: rgba(255, 255, 255, 0.5);
 	}
 	.form-control {
-		background-color: transparent;
+		background: rgba(255, 255, 255, 0.8);
 	    box-shadow: 0 1px 5px -2px rgba(0,0,0,.2);
-	  
-		color: white;
 	}
 </style>
 @endpush
@@ -69,7 +67,7 @@
 			        @if (Route::has('password.request'))
 					<div class="bottom">
 						<span class="helper-text"><i class="oi oi-lock"></i> <a class="text-white" href="{{ route('password.request') }}">Forgot password?</a></span>
-						<span class="helper-text"><i class="oi oi-lock"></i> <a class="text-white" href="{{ route('register') }}"><u>Register Account</u></a></span>
+						<span class="helper-text"><i class="oi oi-lock"></i> <a class="text-danger-darker" href="{{ route('register') }}"><u>Register Account</u></a></span>
 					</div>
 					@endif
 				</form>

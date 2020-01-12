@@ -16,18 +16,38 @@
     </div>
 
     <div class="row">
-    	<?php $kategori = App\Kategori::get(); ?>
+    	<?php
+    	 $kategori = App\Kategori::get();
+    	  ?>
     	<div class="btn-group" role="group">
 		    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		      Tampilkan Menurut Kategori
-		    </button>
+		    </button> 
 		    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+		      <a class="btn btn-primary btn-block" href="{{route('menu-masakan')}}">Semua Masakan</a>
 		      @foreach($kategori as $dt)
 		      <a href="{{route('show.category', ['id'=> $dt->id])}}" class="btn btn-primary btn-block">{{$dt->nama_kategori}}</a>
 		      @endforeach
 		    </div>
+
 		 </div>
     </div>
+
+    @if(session('result') == 'success')
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+	  <strong>1 Item Ditambahkan!</strong> Anda Telah Menambahkan Item Ke Keranjang Anda. <strong>Ayo Pesan Lagi.</strong> Atau Mau <span class="oi oi-arrow-thick-right"></span> <a href="{{route('shopping.cart')}}" class="btn btn-success btn-sm"><span class="oi oi-cart"></span> Lihat Keranjang</a>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+	@elseif(session('result') == 'clear')
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+	  <strong>Terhapus!</strong> Anda Telah Menghapus Semua Item Keranjang Anda. <strong>Ayo Silahkan Pesan!</strong>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+	@endif
 	
 	<div class="row">
 		@foreach($data as $dt)

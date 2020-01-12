@@ -131,7 +131,7 @@
         labels: ["Order", "Transaksi"],
         datasets: [{
             label: 'Data Harian',
-            data: [2, 2],
+            data: {!!json_encode($orderchart)!!},
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(255, 159, 64, 0.2)'
@@ -147,5 +147,10 @@
     type: 'bar',
     data: data,
   });
+
+    // Auto Refresh Dashboard
+     setTimeout(function(){
+         location.reload();
+     },60000); // 5000 milliseconds atau 5 seconds.
 </script>
 @endpush
