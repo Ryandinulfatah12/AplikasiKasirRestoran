@@ -33,15 +33,26 @@
 	            <td>{{$order->no_meja}}</td>
 	            <td>{{$order->created_at}}</td>
 	            <td class="text-left"> 
-	            	@foreach($order->cart->items as $item)
-	                <ul class="list-group list-group-flush">
-				        <li class="list-group-item">
-				          <span>{{$item['item']['nama_masakan']}}</span> |
-				          <span>Harga Satuan : Rp.{{number_format($item['item']['harga']),0,',','.'}}</span> |
-				          <span>Qty {{$item['qty']}}</span> 
-				        </li>
-				      </ul>
-	                @endforeach
+	                <table class="table shadow-0">
+	                	<thead class="border-0">
+				            <tr>
+				              <th scope="col">#</th>
+				              <th scope="col">Item</th>
+				              <th scope="col">Qty</th>
+				              <th scope="col">Subtotal</th>
+				            </tr>
+				          </thead>
+	                      <tbody>
+	                        @foreach($order->cart->items as $item)
+	                        <tr>
+	                          <th scope="row">{{$loop->iteration}}</th>
+	                          <td>{{$item['item']['nama_masakan']}}</td>
+	                          <td>{{$item['qty']}}</td>
+	                          <td>Rp.{{number_format($item['harga']),0,',','.'}}</td>
+	                        </tr>
+	                        @endforeach
+	                      </tbody>
+	                  </table>
 	            </td>
 	            <td class="text-right"><strong>Rp.{{number_format($order->subtotal),0,',','.'}}</strong></td>
 	        </tr>

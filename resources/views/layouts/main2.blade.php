@@ -16,30 +16,11 @@
 
   <link rel="icon" href="{{url('polished/assets/fav.png')}}">
 
-  <style>
-    .grid-highlight {
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      background-color: #5c6ac4;
-      border: 1px solid #202e78;
-      color: #fff;
-    }
-
-    hr {
-      margin: 6rem 0;
-    }
-
-    hr+.display-3,
-    hr+.display-2+.display-3 {
-      margin-bottom: 2rem;
-    }
-  </style>
-
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand p-0 bg-success-darkest">
+<nav class="navbar sticky-top navbar-expand p-0 bg-success-darkest">
  <a class="navbar-brand text-center col-xs-12 col-md-3 col-lg-2 mr-0" href="{{route('menu-masakan')}}">         <img src="{{url('polished/assets/ngapak.png')}}" alt="logo" width="120px"></a>
   
   <div class="border-success-darker bg-success-darker form-control d-none d-md-block w-60 ml-3 mr-5">
@@ -47,6 +28,8 @@
   </div>
 
   <a class="navbar-brand text-right" href="{{route('shopping.cart')}}"><i class="oi oi-cart"></i> Cart <span class="badge badge-warning">{{Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span></a>
+
+  <a class="navbar-brand text-right" href="{{route('history')}}"><span class="oi oi-book"></span> History</a>
 
   <div class="dropdown d-none d-md-block pr-5">
     

@@ -35,5 +35,10 @@ class reportController extends Controller
         return view('admin.pages.report.delivery', compact('data'));
     }
 
+    public function buat(Request $req)
+    {
+        return view('admin.pages.report.buat');
+    }
+
 
 }

@@ -1,3 +1,4 @@
+
 @extends('admin.main2')
 @section('title','Entri Order')
 
@@ -28,15 +29,18 @@
               <td>{{$order->no_meja}}</td>
               <td>{{$order->created_at}}</td>
               <td>
-                @foreach($order->cart->items as $item)
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <span class="badge badge-light">{{$item['item']['nama_masakan']}}</span> 
-                    <span class="badge badge-warning">Qty {{$item['qty']}}</span> 
-                    <span class="badge badge-danger">Subtotal : Rp.{{number_format($item['harga']),0,',','.'}}</span>
-                  </li>
-                </ul>
-               @endforeach
+                  <table class="table shadow-0">
+                      <tbody>
+                        @foreach($order->cart->items as $item)
+                        <tr>
+                          <th scope="row">{{$loop->iteration}}</th>
+                          <td>{{$item['item']['nama_masakan']}}</td>
+                          <td>{{$item['qty']}}</td>
+                          <td>Rp.{{number_format($item['harga']),0,',','.'}}</td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                  </table>
               </td>
               <td>{{$order->keterangan}}</td>
               <td class="text-success-darkest">Rp. {{number_format($order->subtotal),0,',','.'}}</td>

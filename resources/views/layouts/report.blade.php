@@ -67,7 +67,7 @@
         
       </div>
 
-  
+  @stack('modal')
 </body>
 <script type="text/javascript">
  $('#printInvoice').click(function(){

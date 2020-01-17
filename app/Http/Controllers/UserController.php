@@ -14,7 +14,9 @@ class UserController extends Controller
 {
     public function daftar(Request $req)
     {
-    	$data = User::where('fullname','like',"%{$req->keyword}%")->paginate(10);
+    	$data = User::where('fullname','like',"%{$req->keyword}%")
+        ->orderBy('updated_at','desc')
+        ->paginate(10);
     	return view('admin.pages.user.daftar', ['data'=>$data]);
     }
 

@@ -5,33 +5,35 @@
 <div class="container">
 	<h1>Daftar Menu Masakan</h1>
 
-	<div class="col-md-6 mb-3">
-      <form method="GET" action="{{ route('menu-masakan') }}">
-        @csrf
-        <div class="input-group">
-          <input type="text" name="keyword" value="{{ request('keyword') }}" class="form-control" placeholder="Cari Sesuatu..." id="keyword" autofocus>
-          <span class="input-group-btn"><button type="button" name="cari" class="btn btn-success" autofocus>Cari</button></span>
-        </div>
-      </form>
+	<div class="row mb-4">
+		<div class="col-md-6">
+			<form method="GET" action="{{ route('menu-masakan') }}">
+	        @csrf
+	        <div class="input-group">
+	          <input type="text" name="keyword" value="{{ request('keyword') }}" class="form-control border-success" placeholder="Cari Sesuatu..." id="keyword" autofocus>
+	          <button type="submit" class="btn btn-success">Cari</button>
+	        </div>
+	      </form>
+		</div>
+      <div class="float-right">
+	      	<?php
+	    	 $kategori = App\Kategori::get();
+	    	  ?>
+	    	<div class="btn-group" role="group">
+			    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			      Tampilkan Menurut Kategori
+			    </button> 
+			    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+			      <a class="btn btn-dark btn-block" href="{{route('menu-masakan')}}">Semua Masakan</a>
+			      @foreach($kategori as $dt)
+			      <a href="{{route('show.category', ['id'=> $dt->id])}}" class="btn btn-dark btn-block">{{$dt->nama_kategori}}</a>
+			      @endforeach
+			    </div>
+
+			 </div>
+		</div>
     </div>
 
-    <div class="row">
-    	<?php
-    	 $kategori = App\Kategori::get();
-    	  ?>
-    	<div class="btn-group" role="group">
-		    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		      Tampilkan Menurut Kategori
-		    </button> 
-		    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-		      <a class="btn btn-primary btn-block" href="{{route('menu-masakan')}}">Semua Masakan</a>
-		      @foreach($kategori as $dt)
-		      <a href="{{route('show.category', ['id'=> $dt->id])}}" class="btn btn-primary btn-block">{{$dt->nama_kategori}}</a>
-		      @endforeach
-		    </div>
-
-		 </div>
-    </div>
 
     @if(session('result') == 'success')
 	<div class="alert alert-success alert-dismissible fade show" role="alert">

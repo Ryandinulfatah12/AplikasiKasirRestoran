@@ -28,6 +28,8 @@ Route::group(['prefix' => 'frontend','middleware'=>['auth']], function() {
 
 	//view cart
 	Route::get('/shopping-cart','FrontEndController@getCart')->name('shopping.cart');
+	// View History Order
+	Route::get('/history', 'FrontEndController@history')->name('history');
 
 	//view checkout untuk verifikasi tagihan
 	Route::get('/checkout','FrontEndController@getCheckout')->name('checkout');
@@ -144,7 +146,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	Route::prefix('/report')->group(function() {
 		Route::get('/invoice/{kode_order}','reportController@invoice')->name('invoice');
 		Route::get('/delivery/{kode_order}', 'reportController@delivery')->name('delivery');
-		Route::group(['middleware' => ['admin']], function() {
+		Route::group(['middleware' => 'level.admin'], function() {
 			Route::get('/','reportController@buat')->name('report');
 			Route::post('/','reportController@render')->name('report.render');
 		});

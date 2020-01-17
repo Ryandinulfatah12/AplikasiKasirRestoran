@@ -174,4 +174,14 @@ class FrontEndController extends Controller
         //$orders = Order::where('id_order', $id_order)->get();
         return view('frontend2.thanks');
     }
+
+    public function history()
+    {
+        $orders = Auth::user()->orders;
+        $orders->transform(function($order) {
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
+        return view('frontend2.history', compact('orders'));   
+    }
 }
