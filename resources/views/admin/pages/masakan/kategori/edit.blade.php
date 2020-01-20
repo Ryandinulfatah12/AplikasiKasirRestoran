@@ -31,7 +31,7 @@
 							<input type="text" name="nama_kategori"
 							class="form-control {{ $errors->has('nama_kategori')?'is-invalid':'' }} "
 							value="{{ old('nama_kategori',$rc->nama_kategori) }}"
-							id="iKategori" placeholder="Nama Kategori" required autofocus>
+							id="iNamaKategori" required autofocus>
 							@if($errors->has('nama_kategori'))
 							<div class="invalid-feedback">{{ $errors->first('nama_kategori') }}</div>
 							@endif

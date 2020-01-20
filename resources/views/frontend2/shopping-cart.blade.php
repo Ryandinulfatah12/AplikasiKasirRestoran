@@ -10,7 +10,7 @@
 		<div class="row">
 
 			<div class="col-md-9 mx-auto">
-				<a href="{{route('cancel')}}" class="btn btn-danger"><span class="oi oi-trash"></span> Batal Memesan</a><a class="btn btn-success" href="{{route('menu-masakan')}}"><span class="oi oi-arrow-circle-left"></span> Kembali Ke Menu</a>
+				<a href="{{route('cancel')}}" class="btn btn-danger"><span class="oi oi-trash"></span> Batal Memesan</a><a class="btn btn-success" href="{{route('menu-masakan')}}"><span class="oi oi-arrow-circle-left"></span> Pesan Menu Lagi</a>
 				<table class="table">
 				  <thead class="thead-dark">
 				    <tr>
@@ -28,19 +28,14 @@
 				      <th scope="row">{{$loop->iteration}}</th>
 				      <td>{{$dt['item']['nama_masakan']}}</td>
 				      <td>Rp.{{number_format($dt['item']['harga'],0,',','.')}},</td>
-				      <td><span class="badge badge-warning">{{$dt['qty']}}</span></td>
+				      <td>
+				      	<a class="btn btn-danger btn-sm" href="{{route('reducebyone', ['id' => $dt['item']['id']])}}"><span class="oi oi-minus"></span></a>
+				      	<span class="btn btn-warning" disabled>{{$dt['qty']}}</span>
+				      	<a class="btn btn-success btn-sm" href="{{route('addone', ['id' => $dt['item']['id']])}}"><i class="oi oi-plus" aria-hidden="true"></i></a> 
+				      </td>
 				      <td>Rp.{{number_format($dt['harga'],0,',','.')}},</td>
 				      <td>
-				      	<a class="btn btn-success" href="{{route('addone', ['id' => $dt['item']['id']])}}"><i class="oi oi-plus" aria-hidden="true"></i></a>
-						<div class="btn-group">
-						  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						    Aksi
-						  </button>
-						  <div class="dropdown-menu">
-						    <a class="dropdown-item" href="{{route('reducebyone', ['id' => $dt['item']['id']])}}">Kurangi 1 Item</a>
-						    <a class="dropdown-item" href="{{route('remove.items', ['id' => $dt['item']['id']])}}">Kurangi Semua</a>
-						  </div>
-						</div>
+						  <a class="btn btn-danger btn-sm" href="{{route('remove.items', ['id' => $dt['item']['id']])}}"><span class="oi oi-x"></span></a>
 				      </td>
 				    </tr>
 				    @endforeach

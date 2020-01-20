@@ -38,6 +38,7 @@
 				            <tr>
 				              <th scope="col">#</th>
 				              <th scope="col">Item</th>
+				              <th scope="col">Harga Satuan</th>
 				              <th scope="col">Qty</th>
 				              <th scope="col">Subtotal</th>
 				            </tr>
@@ -47,6 +48,7 @@
 	                        <tr>
 	                          <th scope="row">{{$loop->iteration}}</th>
 	                          <td>{{$item['item']['nama_masakan']}}</td>
+	                          <td>Rp.{{number_format($item['item']['harga']),0,',','.'}}</td>
 	                          <td>{{$item['qty']}}</td>
 	                          <td>Rp.{{number_format($item['harga']),0,',','.'}}</td>
 	                        </tr>

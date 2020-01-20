@@ -28,12 +28,12 @@
 					<div class="card-body">
 						<div class="form-group form-label-group">
 							<label for="iKategori">Kategori</label>
-							<input type="text" name="nama_kategori"
-							class="form-control {{ $errors->has('nama_kategori')?'is-invalid':'' }} "
-							value="{{ old('nama_kategori') }}"
+							<input type="text" name="kategori"
+							class="form-control {{ $errors->has('kategori')?'is-invalid':'' }} "
+							value="{{ old('kategori') }}"
 							id="iKategori" placeholder="Nama Kategori" required autofocus>
-							@if($errors->has('nama_kategori'))
-							<div class="invalid-feedback">{{ $errors->first('nama_kategori') }}</div>
+							@if($errors->has('kategori'))
+							<div class="invalid-feedback">{{ $errors->first('kategori') }}</div>
 							@endif
 						</div><!--End Form Group-->
 					</div>	

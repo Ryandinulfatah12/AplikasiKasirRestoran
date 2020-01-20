@@ -9,7 +9,7 @@
 		<div class="card mb-3">
 		  @foreach($orders as $order)
 		  <div class="card-header bg-dark text-white">
-		    Orderan ke {{$loop->iteration}}
+		    Orderan ke {{$loop->iteration}} | {{$order->kode_order}}
 		  </div>
 		  <div class="card-body">
 		    <ul class="list-group list-group-flush">

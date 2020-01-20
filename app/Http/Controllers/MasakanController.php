@@ -147,14 +147,13 @@ class MasakanController extends Controller
 
     public function saveKategori(Request $req)
     {
-        
         \Validator::make($req->all(), [
-            'nama_kategori'=>'required|between:3,100',
+            'kategori'=>'required|between:3,100|unique:kategori,nama_kategori',
         ])->validate();
 
         $result = new Kategori;
         
-        $result->nama_kategori  = $req->nama_kategori ;
+        $result->nama_kategori  = $req->kategori ;
 
         if ($result->save()) {
             alert()->success('Data Berhasil Tersimpan ke Database.', 'Tersimpan!')->autoclose(4000);
@@ -174,14 +173,10 @@ class MasakanController extends Controller
     public function updateKategori(Request $req)
     {
         \Validator::make($req->all(), [
-            'nama_kategori'=>'required',
+            'nama_kategori'=>'required|between:3,100|unique:kategori,nama_kategori,'.$req->id,
         ])->validate();
-
-        $field = [
-                'nama_kategori'=>$req->nama_kategori,
-            ];
            
-        $result = Kategori::where('id',$req->id)->update($field);
+        $result = Kategori::where('id',$req->id)->update(['nama_kategori' => $req->nama_kategori,]);
         
         if ($result) {
             alert()->success('Berhasil Mengupdate Data.', 'Terupdate!')->autoclose(4000);
