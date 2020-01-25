@@ -13,6 +13,7 @@
       <li><a href="{{route('admin.user')}}"><span class="oi oi-people"></span> Users</a></li>
       <li><a href="{{ route('admin.masakan') }}"><span class="oi oi-puzzle-piece"></span></span> Daftar Masakan</a></li>
       <li><a href="{{route('admin.masakan.kategori')}}"><span class="oi oi-tags"></span> Kategori</a></li>
+      <li><a href="{{route('daftar.discounts')}}"><span class="oi oi-dollar"></span> Manage Discounts</a></li>
       @endif
 
       @if(Auth::user()->level =='admin' || Auth::user()->level =='waiter')

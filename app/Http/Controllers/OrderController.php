@@ -26,17 +26,12 @@ class OrderController extends Controller
 
     public function save(Request $req)
     {
-        //Ambil ID Terakhir
-        $id = Order::getId();
-        foreach ($id as $value);
-        $idLama = $value->id_order;
-        $idBaru = $idLama + 1;
-        $blt = date('mY');
 
-        $kode_ord = 'ORD'.$blt.$idBaru;
+        $blt = date('ms');
+        $kode_ord = 'INV'.$blt.$idBaru;
 
         $result = new Order;
-        $result->kode_order = $kode_ord.sprintf("%02s", $req->kode_order);
+        $result->kode_order = $kode_ord.sprintf("%03s", $req->kode_order);
         $result->no_meja = $req->no_meja;
         $result->id_user = $req->id_user;
         $result->keterangan = $req->keterangan;

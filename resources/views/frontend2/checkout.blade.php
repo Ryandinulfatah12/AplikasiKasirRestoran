@@ -15,7 +15,7 @@
 					<div class="card-body">
 						<div class="form-group form-label-group">
 							<label for="">Nomor Meja Anda</label>
-							<input type="number" name="no_meja"
+							<input type="number" min="1" max="50" name="no_meja"
 							class="form-control {{ $errors->has('no_meja')?'is-invalid':'' }} "
 							value="{{ old('no_meja') }}"
 							id="" placeholder="Masukan Nomor Meja Anda..." required autofocus>
@@ -30,11 +30,12 @@
 							<textarea  name="keterangan"
 							class="form-control {{ $errors->has('keterangan')?'is-invalid':'' }} "
 							value="{{ old('keterangan') }}"
-							id="" placeholder="Masukan Keterangan Terkait Masakan yang akan anda pesan..." required autofocus></textarea>
+							id="" placeholder="Masukan Keterangan Terkait Masakan yang akan anda pesan..."></textarea>
 							@if($errors->has('keterangan'))
 							<div class="invalid-feedback">{{ $errors->first('keterangan') }}</div>
 							@endif
 							<small class="text-muted">ex**: Rendangnya Jangan Terlalu Pedas, Es nya jangan terlalu banyak.</small>
+							<small class="text-muted">| Lewati bila tidak ingin menambah keterangan.</small>
 						</div><!--End Form Group-->
 						<small class="text-muted"></small>
 

@@ -7,12 +7,12 @@
     <div class="col-lg-12 pl-3">
     	<h1>Data Rekap Order</h1>
 
-	    <div class="row">
+	    <!-- <div class="row">
 			<div class="col-md-6 mb-3">
 				<a href="{{route('admin.order.add')}}" class="btn btn-primary"><span class="oi oi-plus"></span> Buat Baru</a>
 			</div>
 
-			<!-- <div class="col-md-6 mb-3">
+			<div class="col-md-6 mb-3">
 				<form method="GET" action="#">
 					@csrf
 					<div class="input-group">
@@ -20,8 +20,8 @@
 						<span class="input-group-btn"><button type="button" name="cari" class="btn btn-primary">Cari</button></span>
 					</div>
 				</form>
-			</div> -->
-		</div>   	
+			</div>
+		</div>  -->  	
 
         <table id="datatabled" class="table">
             <thead class="border-0">
@@ -42,7 +42,7 @@
                   <th scope="row">{{$loop->iteration}}</th>
 			      <td>{{$dt->kode_order}}</td>
 			      <td>{{$dt->no_meja}}</td>
-			      <td>{{$dt->created_at}}</td>
+			      <td>{{date('d F Y - H:i', strtotime($dt->created_at))}}</td>
 			      <td>{{$dt->fullname}}</td>
 			      <td>{{$dt->keterangan}}</td>
 			      <td>

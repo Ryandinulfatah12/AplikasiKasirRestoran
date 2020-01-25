@@ -12,7 +12,7 @@
 	    <div class="col invoice-details">
 	    	@foreach($data as $dt)
 	        <h1 class="invoice-id">{{$dt->kode_order}}</h1>
-	        <div class="date">Date of Invoice: {{$dt->created_at}}</div>
+	        <div class="date">Date of Invoice: {{date('d F Y - H:i',strtotime($dt->created_at))}}</div>
 	        @endforeach
 	    </div>
 	</div>
@@ -31,7 +31,7 @@
 	        <tr>
 	            <td>{{$order->kode_order}}</td>
 	            <td>{{$order->no_meja}}</td>
-	            <td>{{$order->created_at}}</td>
+	            <td>{{date('d F Y - H:i',strtotime($order->created_at))}}</td>
 	            <td class="text-left"> 
 	                <table class="table shadow-0">
 	                	<thead class="border-0">
@@ -61,6 +61,11 @@
 	        @endforeach
 	    </tbody>
 	    <tfoot>
+	    	<tr>
+	            <td colspan="2"></td>
+	            <td colspan="2">PPN 10%</td>
+	            <td><strong class="text-warning-darker">Rp.{{number_format(7000),0,',','.'}}</strong></td>
+	        </tr>
 	        <tr>
 	            <td colspan="2"></td>
 	            <td colspan="2">Total Tagihan</td>
@@ -87,7 +92,7 @@
 	<div class="thanks">Thank you!</div>
 	<div class="notices">
 	    <div>NOTICE:</div>
-	    <div class="notice">Awoakwaowkawok.</div>
+	    <div class="notice">Grandtotal/Tagihan Sudah Termasuk PPN 10%.</div>
 	</div>
 
 @endsection

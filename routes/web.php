@@ -74,6 +74,17 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	});
 	// End User
 
+	// Discount
+	Route::group(['prefix'=>'discounts','middleware'=>'level.admin'], function() 
+	{
+		Route::get('/','DiscountController@daftar')->name('daftar.discounts');
+		Route::post('/','DiscountController@save')->name('saveDiscount');
+		Route::get('/edit/{id}','DiscountController@edit')->name('getEdit');
+		Route::post('/edit/{id}','DiscountController@update');
+		Route::delete('/','DiscountController@destroy');
+	});
+	// End Discount
+
 	// Masakan Route
 	Route::group(['prefix'=>'masakan','middleware'=>'level.admin'], function()
 	{
@@ -128,7 +139,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	});
 	// End Transaksi
 
-	// Oredr Route
+	// Order Route
 	Route::group(['prefix'=>'order','middleware'=>'level.admin:kasir:waiter'], function()
 	{
 		Route::get('/', 'OrderController@data')->name('admin.order');

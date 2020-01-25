@@ -27,7 +27,9 @@
               <th scope="row">{{$loop->iteration}}</th>
               <td>{{$order->kode_order}}</td>
               <td>{{$order->no_meja}}</td>
-              <td>{{$order->created_at}}</td>
+              <td>
+                {{date('d F Y H:i', strtotime($order->created_at))}}
+              </td>
               <td>
                   <table class="table shadow-0">
                       <tbody>
@@ -58,5 +60,10 @@
 
 @endsection
 
-
-
+@push('js')
+<script src="{{url('polished/js/moment.min.js')}}">
+</script>
+<script>
+  moment().format();
+</script>
+@endpush

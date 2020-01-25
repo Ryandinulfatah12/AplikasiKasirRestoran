@@ -30,7 +30,7 @@
 				      <td>Rp.{{number_format($dt['item']['harga'],0,',','.')}},</td>
 				      <td>
 				      	<a class="btn btn-danger btn-sm" href="{{route('reducebyone', ['id' => $dt['item']['id']])}}"><span class="oi oi-minus"></span></a>
-				      	<span class="btn btn-warning" disabled>{{$dt['qty']}}</span>
+				      	<span class="btn btn-warning" disabled><b>{{$dt['qty']}}</b></span>
 				      	<a class="btn btn-success btn-sm" href="{{route('addone', ['id' => $dt['item']['id']])}}"><i class="oi oi-plus" aria-hidden="true"></i></a> 
 				      </td>
 				      <td>Rp.{{number_format($dt['harga'],0,',','.')}},</td>
@@ -42,7 +42,11 @@
 				  </tbody>
 				</table>
 
-				<strong class="float-right" style="color: green; text-transform: uppercase;">Total : Rp.{{number_format($totalPrice,0,',','.')}},</strong>
+				<strong class="float-right" style="color: orange; text-transform: uppercase;">Total : Rp.{{number_format($totalPrice,0,',','.')}},</strong>
+				<br>
+				<strong class="float-right" style="color: grey; text-transform: uppercase;">PPN 10%: Rp.{{number_format(7000,0,',','.')}},</strong>
+				<br>
+				<strong class="float-right" style="color: green; text-transform: uppercase;">Grandtotal : Rp.{{number_format($totalPrice+7000,0,',','.')}},</strong>
 				<br>
 				<a href="{{route('checkout')}}" class="btn btn-success float-right"><span class="oi oi-check"></span> Proceed to Checkout</a>
 			 </div>	

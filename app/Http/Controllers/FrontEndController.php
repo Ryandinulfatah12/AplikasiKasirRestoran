@@ -55,6 +55,7 @@ class FrontEndController extends Controller
 
         $req->session()->put('cart', $cart);
         //return json_encode($req->session()->get('cart'));
+
         return back()->with('result','success');
         
     }
@@ -140,26 +141,21 @@ class FrontEndController extends Controller
         $cart = new Cart($oldCart);
 
          //Ambil ID Terakhir
-        $id_order = Order::getId();
-        foreach ($id_order as $value);
-        $idLama = $value->id_order;
-        $idBaru = $idLama + 1;
-        $blt = date('mY');
 
-        $kode_ord = 'ORD'.$blt.$idBaru;
+        $blt = date('ms');
+        $kode_ord = 'INV'.$blt;
 
 
         try {
             //insert order
             $order = new Order;
-            $order->kode_order = $kode_ord.sprintf("%02s", $req->kode_order);
+            $order->kode_order = $kode_ord.sprintf("%03s", $req->kode_order);
             $order->no_meja = $req->no_meja;
             $order->id_user = $req->id_user;
             $order->cart = serialize($cart);
-            $order->subtotal = $cart->totalPrice;
+            $order->subtotal = $cart->totalPrice+7000;
             $order->keterangan = $req->keterangan;
             $order->status_order = $req->status_order;
-
             $order->save();
         } catch (Exception $e) {
             
@@ -171,13 +167,14 @@ class FrontEndController extends Controller
 
     public function thanks()
     {
-        //$orders = Order::where('id_order', $id_order)->get();
         return view('frontend2.thanks');
+        redirect()->route('history');
     }
 
     public function history()
     {
-        $orders = Auth::user()->orders;
+        $orders = Order::where('id_user',Auth::id())
+                ->orderBy('updated_at','desc')->get();
         $orders->transform(function($order) {
             $order->cart = unserialize($order->cart);
             return $order;

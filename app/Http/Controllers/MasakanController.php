@@ -30,13 +30,9 @@ class MasakanController extends Controller
 
     public function save(Request $req)
     {
-        //Ambil ID Terakhir
-        $id = Masakan::getId();
-        foreach ($id as $value);
-        $idLama = $value->id;
-        $idBaru = $idLama + 1;
-
-        $kode_mkn = 'MKN'.$idBaru;
+        //buat kode masakan
+        $blt = date('ms');
+        $kode_mkn = 'MKN'.$blt;
         
     	\Validator::make($req->all(), [
     		'nama_masakan'=>'required|between:3,100',

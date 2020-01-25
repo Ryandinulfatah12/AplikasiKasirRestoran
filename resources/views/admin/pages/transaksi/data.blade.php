@@ -42,7 +42,7 @@
                   <th scope="row">{{$loop->iteration}}</th>
 			      <td>{{$dt->fullname}}</td>
 			      <td>{{$dt->kode_order}}</td>
-			      <td>{{$dt->created_at}}</td>
+			      <td>{{date('d F Y - H:i', strtotime($dt->created_at))}}</td>
 			      <td>Rp.{{number_format($dt->total_bayar,0,',','.')}},</td>
 			      <td>
 			          <a href="{{route('invoice', ['kode_order' => $dt->kode_order])}}" class="btn btn-success btn-sm" target="_blank">

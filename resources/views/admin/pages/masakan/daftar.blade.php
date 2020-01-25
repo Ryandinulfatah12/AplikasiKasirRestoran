@@ -68,6 +68,7 @@
 
 						<!-- kolom hapus -->
 				          <button class="btn btn-danger btn-sm btn-trash"
+				          id="tombol-hapus" 
 				          data-id="{{ $dt->id }}"
 				          type="button">
 				          	<span class="oi oi-trash"></span>
