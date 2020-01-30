@@ -31,6 +31,7 @@
                   <th scope="col">#</th>
 			      <th scope="col">Pemesan</th>
 			      <th scope="col">Kode Order</th>
+			      <th scope="col">Kode Transaksi</th>
 			      <th scope="col">Tanggal</th>
 			      <th scope="col">Total Bayar</th>
 			      <th scope="col">Aksi</th>
@@ -42,6 +43,7 @@
                   <th scope="row">{{$loop->iteration}}</th>
 			      <td>{{$dt->fullname}}</td>
 			      <td>{{$dt->kode_order}}</td>
+			      <td>{{$dt->kode_transaksi}}</td>
 			      <td>{{date('d F Y - H:i', strtotime($dt->created_at))}}</td>
 			      <td>Rp.{{number_format($dt->total_bayar,0,',','.')}},</td>
 			      <td>

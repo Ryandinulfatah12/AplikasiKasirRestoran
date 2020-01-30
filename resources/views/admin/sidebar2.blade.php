@@ -17,11 +17,11 @@
       @endif
 
       @if(Auth::user()->level =='admin' || Auth::user()->level =='waiter')
-      <li><a href="{{route('entri.order')}}"><span class="oi oi-bell"></span> Entri Order <span class="badge badge-warning">{{$entri->count()}}</span></a></li>
+      <li><a href="{{route('entri.order')}}"><span class="oi oi-bell bell"></span> Entri Order <span class="badge badge-warning float-right">{{$entri->count()}}</span></a></li>
       @endif
 
       @if(Auth::user()->level =='admin' || Auth::user()->level =='kasir')
-      <li><a href="{{route('cashier')}}"><span class="oi oi-cart"></span> Cashier <span class="badge badge-warning">{{$cashier->count()}}</span></a></li>
+      <li><a href="{{route('cashier')}}"><span class="oi oi-cart"></span> Cashier <span class="badge badge-warning float-right">{{$cashier->count()}}</span></a></li>
       @endif
 
       @if(Auth::user()->level =='admin' || Auth::user()->level =='kasir' || Auth::user()->level =='waiter')

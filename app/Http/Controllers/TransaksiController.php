@@ -37,7 +37,7 @@ class TransaksiController extends Controller
 
     public function kasir(Request $req)
     {
-        $orders = Order::where('status_order','Menunggu Pembayaran')->get();
+        $orders = Order::where('status_order','Menunggu Pembayaran')->orderBy('updated_at','desc')->get();
         
         return view('admin.pages.transaksi.kasir.data', compact('orders'));
     }
@@ -50,8 +50,11 @@ class TransaksiController extends Controller
 
     public function bayar(Request $req)
     {
+        $blt = date('ms');
+        $kode_ord = 'TSC'.$blt;
 
         $transaksi = new Transaksi;
+        $transaksi->kode_transaksi = $kode_ord.sprintf("%03s", $req->kode_transaksi);
         $transaksi->user_id = $req->user_id;
         $transaksi->order_id_order = $req->order_id_order;
         $transaksi->total_bayar = $req->total_bayar;

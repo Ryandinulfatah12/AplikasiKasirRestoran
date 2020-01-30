@@ -1,14 +1,15 @@
 @extends('layouts.main2')
 @section('title','History Order')
+<link rel="stylesheet" href="{{url('polished/css/bounce.css')}}">
 @section('content')
 
 <div class="container">
 	<h1 class="text-center mt-4 mb-4">Riwayat Semua Data Order User Ini</h1>
 
 	<div class="col-lg-9 mx-auto">
-		<div id="card" class="card mb-3">
+		<div id="card" class="card">
 		  @foreach($orders as $order)
-		  <div class="card-header">
+		  <div class="card-header bg-dark text-white">
 		   	<b>{{$order->kode_order}} - No Meja {{$order->no_meja}}</b>
 		  </div>
 		  <div class="card-body">
@@ -21,11 +22,11 @@
 				@endforeach
 			 </ul>
 		  </div>
-		  <div class="card-footer mb-4">
+		  <div class="card-footer">
 		    <strong class="float-right" style="text-transform: uppercase; color: green;">Total : Rp.{{number_format($order->subtotal,0,',','.')}},</strong><span class="badge badge-dark">Diorder pada : {{date('d F Y - H:i', strtotime($order->created_at))}}</span> <span class="badge badge-secondary">Status	:
             <?php 
 		            if ($order['status_order']=='Pending') {
-		                echo "<span class='badge badge-warning text-dark'>SEDANG DIPROSES</span>";
+		                echo "<span class='badge badge-warning text-dark bounce'>SEDANG DIPROSES</span>";
 		            } elseif($order['status_order']=='Menunggu Pembayaran') {
 		            	echo "<span class='badge badge-warning'>SEDANG DIPROSES | Menunggu Pembayaran</span>";
 		            } elseif($order['status_order']=='Beres') {

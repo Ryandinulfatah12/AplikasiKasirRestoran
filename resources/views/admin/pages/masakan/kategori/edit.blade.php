@@ -23,7 +23,7 @@
 				@csrf
 				<div class="card">
 					<div class="card-header bg-primary pb-1">
-			        	<h5 class="text-right"><span  class="oi oi-pencil"></span> Edit Data Kategori</h5>
+			        	<h5 class="text-center text-white"><span  class="oi oi-pencil"></span> Edit Data Kategori</h5>
 			   		</div>
 					<div class="card-body">
 						<div class="form-group form-label-group">

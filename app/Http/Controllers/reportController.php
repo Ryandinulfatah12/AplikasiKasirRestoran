@@ -37,7 +37,16 @@ class reportController extends Controller
 
     public function buat(Request $req)
     {
-        return view('admin.pages.report.buat');
+        $data = DB::table('transactions')
+            ->join('users', 'transactions.user_id', '=', 'users.id')
+            ->join('orders', 'transactions.order_id_order', '=', 'orders.id_order')
+            ->select('transactions.*', 'users.fullname', 'orders.*')
+            ->orderBy('transactions.updated_at','desc')
+            ->get();
+
+        $pendapatan = DB::table('orders')->sum('subtotal');
+
+        return view('admin.pages.report.buat', compact('data'), compact('pendapatan'));
     }
 
 

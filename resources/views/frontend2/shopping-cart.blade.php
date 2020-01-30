@@ -10,11 +10,12 @@
 		<div class="row">
 
 			<div class="col-md-9 mx-auto">
-				<a href="{{route('cancel')}}" class="btn btn-danger"><span class="oi oi-trash"></span> Batal Memesan</a><a class="btn btn-success" href="{{route('menu-masakan')}}"><span class="oi oi-arrow-circle-left"></span> Pesan Menu Lagi</a>
+				<a href="{{route('cancel')}}" class="btn btn-danger mr-2 mb-2"><span class="oi oi-trash"></span> Batal Memesan</a><a class="btn btn-success mb-2" href="{{route('menu-masakan')}}"><span class="oi oi-arrow-circle-left"></span> Pesan Menu Lagi</a>
 				<table class="table">
 				  <thead class="thead-dark">
 				    <tr>
 				      <th scope="col">#</th>
+				      <th scope="col">Gambar</th>
 				      <th scope="col">Nama Masakan</th>
 				      <th scope="col">Harga Satuan</th>
 				      <th scope="col">Jumlah Pesanan</th>
@@ -26,6 +27,9 @@
 				  	@foreach($data as $dt)
 				    <tr>
 				      <th scope="row">{{$loop->iteration}}</th>
+				      <td>
+				      	<img src="{{url('storage/gambar/'.$dt['item']['gambar'])}}" alt="Gambar Masakan" class="img-thumnail" width="50px">
+				      </td>
 				      <td>{{$dt['item']['nama_masakan']}}</td>
 				      <td>Rp.{{number_format($dt['item']['harga'],0,',','.')}},</td>
 				      <td>

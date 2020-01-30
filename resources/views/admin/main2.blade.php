@@ -14,7 +14,7 @@
   <!-- <link rel="stylesheet" href="polaris-navbar.css"> -->
   <link rel="stylesheet" href="{{url('polished/css/open-iconic-bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{url('polished/css/font-awesome.min.css')}}">
-
+  <link rel="stylesheet" href="{{url('polished/css/bounce.css')}}">
   <link rel="icon" href="{{url('polished/assets/fav.png')}}">
   @stack('css')
 
@@ -34,6 +34,16 @@
     hr+.display-3,
     hr+.display-2+.display-3 {
       margin-bottom: 2rem;
+    }
+
+    .form-control {
+      border-radius: 8px;
+    }
+    .card {
+      border-radius: 8px;
+    }
+    .btn {
+      border-radius: 8px;
     }
   </style>
 

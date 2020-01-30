@@ -88,7 +88,7 @@ class OrderController extends Controller
 
     public function entri(Request $req)
     {     
-        $orders = Order::where('status_order','Pending')->get();
+        $orders = Order::where('status_order','Pending')->orderBy('updated_at','desc')->get();
         $orders->transform(function($order) {
             $order->cart = unserialize($order->cart);
             return $order;

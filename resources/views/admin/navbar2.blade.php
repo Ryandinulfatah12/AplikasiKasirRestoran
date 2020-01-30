@@ -8,6 +8,8 @@
     <marquee class="text-white" behavior="alternate" direction="">Selamat Datang di Halaman Backend dari Ngapak Resto.</marquee>
   </div>
 
+  <a class="navbar-brand text-right" href="{{route('menu-masakan')}}"><span class="oi oi-book"></span> Ke Menu Masakan</a>
+
   <div class="dropdown d-none d-md-block pr-5">
     
     <button class="btn btn-link btn-link-primary dropdown-toggle" id="navbar-dropdown" data-toggle="dropdown">

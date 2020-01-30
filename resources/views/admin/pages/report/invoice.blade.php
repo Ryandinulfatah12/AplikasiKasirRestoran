@@ -11,7 +11,7 @@
 	    </div>
 	    <div class="col invoice-details">
 	    	@foreach($data as $dt)
-	        <h1 class="invoice-id">{{$dt->kode_order}}</h1>
+	        <h1 class="invoice-id">{{$dt->kode_transaksi}}</h1>
 	        <div class="date">Date of Invoice: {{date('d F Y - H:i',strtotime($dt->created_at))}}</div>
 	        @endforeach
 	    </div>

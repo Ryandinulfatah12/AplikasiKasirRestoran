@@ -17,10 +17,21 @@
   <link rel="icon" href="{{url('polished/assets/fav.png')}}">
 
 </head>
+<style>
+  .form-control {
+      border-radius: 8px;
+    }
+    .card {
+      border-radius: 8px;
+    }
+    .btn {
+      border-radius: 8px;
+    }
+</style>
 
 <body>
 
-<nav class="navbar sticky-top navbar-expand p-0 bg-success-darkest">
+<nav class="navbar navbar-expand p-0 bg-success-darkest sticky-top">
  <a class="navbar-brand text-center col-xs-12 col-md-3 col-lg-2 mr-0" href="{{route('menu-masakan')}}">         <img src="{{url('polished/assets/ngapak.png')}}" alt="logo" width="120px"></a>
   
   <div class="border-success-darker bg-success-darker form-control d-none d-md-block w-60 ml-3 mr-5">

@@ -26,7 +26,7 @@
                       <h2 class="fw-bold">{{$orders->count()}}</h2>
                       <h6>New orders!!</h6>
                     </div>
-                    <span class="oi oi-bell p-2 fs-9 text-danger-lightest"></span>
+                    <span class="oi oi-bell bell p-2 fs-9 text-danger-lightest"></span>
                 </div>
             </div>
             <div class="card-footer border-0 text-center p-1 bg-danger-lighter">
@@ -111,7 +111,7 @@
 <div class="col-lg-12 pt-3 mx-auto">
   <div class="card shadow-sm ">
     <div class="card-header bg-primary text-light d-inline">
-      <a class="btn btn-success float-right" href=""><span class="oi oi-print"></span> Export Excel</a><a class="btn btn-danger float-right" href="{{route('report')}}"><span class="oi oi-print"></span> Buat Report</a>
+      <a class="btn btn-success float-right" href=""><span class="oi oi-print"></span> Export Excel</a><a class="btn btn-danger float-right" href="{{route('report')}}"><span class="oi oi-print"></span> Lihat Laporan</a>
       <h6><b>Laporan Pesanan & Transaksi</b></h6>
     </div>
     <!-- Chart Tag -->

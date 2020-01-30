@@ -34,8 +34,10 @@ class FrontEndController extends Controller
 
     public function showCategory($id)
     {
-        $data = Masakan::where('kategori_id', $id)->get();
-        return view('frontend2.menu', compact('data'));    
+        $data = Masakan::where('kategori_id', $id)
+        ->join('kategori','kategori.id','masakan.kategori_id')
+        ->get();
+        return view('frontend2.menu', compact('data'));
     }
 
     public function showItem(Request $req, $id)
@@ -140,8 +142,7 @@ class FrontEndController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
-         //Ambil ID Terakhir
-
+         //buat kode order
         $blt = date('ms');
         $kode_ord = 'INV'.$blt;
 
@@ -167,8 +168,13 @@ class FrontEndController extends Controller
 
     public function thanks()
     {
-        return view('frontend2.thanks');
-        redirect()->route('history');
+        $orders = Order::where('id_user',Auth::id())
+                ->orderBy('updated_at','desc')->take(1)->get();
+        $orders->transform(function($order) {
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
+        return view('frontend2.thanks', compact('orders'));
     }
 
     public function history()
