@@ -28,7 +28,7 @@ class FrontEndController extends Controller
             ->orWhere('kategori.id',$req->kategori_id)
             ->select('masakan.*','nama_kategori')
             ->orderBy('updated_at','desc')
-            ->paginate(10);
+            ->paginate(9);
             return view('frontend2.menu', compact('data'));
     }
 

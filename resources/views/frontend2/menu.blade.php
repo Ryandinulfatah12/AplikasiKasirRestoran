@@ -1,8 +1,40 @@
 @extends('layouts.main2')
 @section('title','Daftar Menu Masakan')
+<style>
+	.img-fluid{
+		filter: brightness(50%);
+		object-fit: cover;
+	}
+
+	.carousel-caption {
+		top: 0px;
+		text-shadow: 1px 1px black;
+	}
+
+	.container {
+		background: #fff;
+		border-radius: 20px;
+		position: relative;
+		top: -150px;
+		
+	}
+</style>
 @section('content')
 
-<div class="container">
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="img-fluid d-block w-100 h-50" src="{{url('polished/assets/bg2.png')}}" alt="First slide">
+      <div class="carousel-caption">
+	    <h2>Hai {{Auth::user()->fullname}}</h2>
+		<h1>Selamat Datang di Ngapak Resto</h1>
+	  </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="menu">
+
 	<h1>Daftar Menu Masakan</h1>
 
 	<div class="row mb-4">
@@ -56,7 +88,7 @@
 	
 	<div class="row">
 		@foreach($data as $dt)
-		<div class="col-sm-6 col-md-4 pb-4">
+		<div class="col-md-4 pb-4">
 			<div class="card-group">
 			  <div class="card">
 			    <img class="card-img-top img-responsive" src="{{url('storage/gambar/'.$dt->gambar)}}" style="width: 100%; height: 280px;" alt="Card image cap">
@@ -86,6 +118,12 @@
 		</div>
 		@endforeach
 	</div>
+
+	{{
+		$data->appends(request()->only('keyword'))
+		->links('vendor.pagination.bootstrap-4')
+	}}
+	<br>
 
 </div>
 

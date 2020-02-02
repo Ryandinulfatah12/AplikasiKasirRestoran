@@ -1,15 +1,47 @@
 @extends('layouts.main2')
 @section('title','Terima Kasih')
+<style>
+	.img-fluid{
+		filter: brightness(50%);
+		object-fit: cover;
+	}
+
+	.carousel-caption {
+		top: 0px;
+		text-shadow: 1px 1px black;
+	}
+
+	.container {
+		padding: 10px 10px 10px 10px;
+		background: #fff;
+		border-radius: 20px;
+		position: relative;
+		top: -100px;
+		
+	}
+</style>
 @section('content')
 
-<div class="col-7 pt-5 mx-auto">
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="img-fluid d-block w-100 h-50" src="{{url('polished/assets/bg2.png')}}" alt="First slide">
+      <div class="carousel-caption">
+	    <h2>Terimakasih telah Memesan.</h2>
+		<h1 class="text-center">Mohon Tunggu Sebentar...<span class="oi oi-loop-circular mt-4 fs-9 spin"></span></h1>
+	  </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
 	@if(session('result') == 'success')
 	<div class="alert alert-success" role="alert">
 	  <h4 class="alert-heading">Berhasil Memesan!</h4>Pesanan Anda Akan Diproses Sebentar Lagi.
 	  <a href="{{route('history')}}" target="_blank" class="btn btn-success btn-lg"><span class="oi oi-book"></span> LIhat Riwayat Order Anda</a>
 	</div>
 	@endif
-	<h1 class="text-center">Pesanan anda sedang Diproses...<span class="oi oi-loop-circular mt-4 fs-9 spin"></span></h1>
 	<div class="card border-secondary text-dark shadow-sm">
 	  <div class="card-header bg-secondary">
 	    <span class="btn p-0" data-toggle="collapse" data-target="#collapsible-card-2">
@@ -63,5 +95,7 @@
 	  </div>
 	</div>
 </div>
+
+
 
 @endsection
