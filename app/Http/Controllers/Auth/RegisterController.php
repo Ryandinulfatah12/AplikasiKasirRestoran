@@ -48,7 +48,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:100', 'unique:users'],
+            'fullname' => ['required', 'string', 'min:3','max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -63,15 +64,17 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'username' => $data['username'],
+            'fullname'=>$data['fullname'],
             'email' => $data['email'],
+            'level'=>$data['level'],
             'password' => Hash::make($data['password']),
         ]);
     }
 
     protected function redirectTo()
     {
-        return route('admin.home');
+        return route('menu-masakan');
     }
     
 }

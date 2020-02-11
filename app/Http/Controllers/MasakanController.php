@@ -31,7 +31,7 @@ class MasakanController extends Controller
     public function save(Request $req)
     {
         //buat kode masakan
-        $blt = date('ms');
+        $blt = date('s');
         $kode_mkn = 'MKN'.$blt;
         
     	\Validator::make($req->all(), [

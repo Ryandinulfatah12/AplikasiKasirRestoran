@@ -107,6 +107,7 @@ class FrontEndController extends Controller
         if (!Session::has('cart')) {
             return view('frontend2.shopping-cart');
         }   
+        //$ppn = (['totalPrice']*10%);
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
         return view('frontend2.shopping-cart', ['data' => $cart->items, 'totalPrice'=>$cart->totalPrice]);
@@ -154,7 +155,7 @@ class FrontEndController extends Controller
             $order->no_meja = $req->no_meja;
             $order->id_user = $req->id_user;
             $order->cart = serialize($cart);
-            $order->subtotal = $cart->totalPrice+7000;
+            $order->subtotal = $cart->totalPrice;
             $order->keterangan = $req->keterangan;
             $order->status_order = $req->status_order;
             $order->save();

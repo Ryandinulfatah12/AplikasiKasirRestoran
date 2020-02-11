@@ -34,7 +34,7 @@
 				      <td>Rp.{{number_format($dt['item']['harga'],0,',','.')}},</td>
 				      <td>
 				      	<a class="btn btn-danger btn-sm" href="{{route('reducebyone', ['id' => $dt['item']['id']])}}"><span class="oi oi-minus"></span></a>
-				      	<span class="btn btn-warning" disabled><b>{{$dt['qty']}}</b></span>
+				      	<span class="btn btn-secondary" disabled><b>{{$dt['qty']}}</b></span>
 				      	<a class="btn btn-success btn-sm" href="{{route('addone', ['id' => $dt['item']['id']])}}"><i class="oi oi-plus" aria-hidden="true"></i></a> 
 				      </td>
 				      <td>Rp.{{number_format($dt['harga'],0,',','.')}},</td>

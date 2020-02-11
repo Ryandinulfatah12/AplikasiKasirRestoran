@@ -28,11 +28,13 @@ class reportController extends Controller
 
     public function delivery(Request $req)
     {
-        $data = Order::join('users','users.id','orders.id_user')
-            ->select('orders.*', 'fullname')
-            ->where('orders.kode_order',$req->kode_order)
-            ->first();
-        return view('admin.pages.report.delivery', compact('data'));
+        $orders = Order::where('id_user',Auth::id())
+                ->orderBy('updated_at','desc')->take(1)->get();
+        $orders->transform(function($order) {
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
+        return view('admin.pages.report.delivery', compact('orders'));
     }
 
     public function buat(Request $req)

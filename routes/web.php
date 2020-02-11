@@ -38,6 +38,8 @@ Route::group(['prefix' => 'frontend','middleware'=>['auth']], function() {
 
 	//Ucapan Terimakasih
 	Route::get('/thanks','FrontEndController@thanks')->name('thankyou');
+	//print invoice report
+	Route::get('/delivery', 'reportController@delivery')->name('delivery');
 });
 // ENDFRONTEND ROUTING
 
@@ -156,7 +158,6 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	// Start Report
 	Route::prefix('/report')->group(function() {
 		Route::get('/invoice/{kode_order}','reportController@invoice')->name('invoice');
-		Route::get('/delivery/{kode_order}', 'reportController@delivery')->name('delivery');
 		Route::group(['middleware' => 'level.admin'], function() {
 			Route::get('/','reportController@buat')->name('report');
 			Route::post('/','reportController@render')->name('report.render');
@@ -169,6 +170,3 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 
 Auth::routes();
 
-Route::any('register', function() {
-	return abort(404);
-});
