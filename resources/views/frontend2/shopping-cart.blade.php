@@ -10,7 +10,7 @@
 		<div class="row">
 
 			<div class="col-md-9 mx-auto">
-				<a href="{{route('cancel')}}" class="btn btn-danger mr-2 mb-2"><span class="oi oi-trash"></span> Batal Memesan</a><a class="btn btn-success mb-2" href="{{route('menu-masakan')}}"><span class="oi oi-arrow-circle-left"></span> Pesan Menu Lagi</a>
+				<a href="{{route('cancel')}}" class="btn btn-danger mr-2 mb-2" onclick="return confirm('Hapus Semua Data di Keranjang?')"><span class="oi oi-trash"></span> Batal Memesan</a><a class="btn btn-success mb-2" href="{{route('menu-masakan')}}"><span class="oi oi-arrow-circle-left"></span> Pesan Menu Lagi</a>
 				<table class="table">
 				  <thead class="thead-dark">
 				    <tr>
@@ -46,12 +46,12 @@
 				  </tbody>
 				</table>
 
-				<strong class="float-right" style="color: orange; text-transform: uppercase;">Total : Rp.{{number_format($totalPrice,0,',','.')}},</strong>
+				<strong class="float-right" style="color: green; text-transform: uppercase;">Total : Rp.{{number_format($totalPrice,0,',','.')}},</strong>
 				<br>
-				<strong class="float-right" style="color: grey; text-transform: uppercase;">PPN 10%: Rp.{{number_format(7000,0,',','.')}},</strong>
+				<!-- <strong class="float-right" style="color: grey; text-transform: uppercase;">PPN 10%: Rp.{{number_format(7000,0,',','.')}},</strong>
 				<br>
 				<strong class="float-right" style="color: green; text-transform: uppercase;">Grandtotal : Rp.{{number_format($totalPrice+7000,0,',','.')}},</strong>
-				<br>
+				<br> -->
 				<a href="{{route('checkout')}}" class="btn btn-success float-right"><span class="oi oi-check"></span> Proceed to Checkout</a>
 			 </div>	
 					

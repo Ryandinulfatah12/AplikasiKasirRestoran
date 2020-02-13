@@ -61,11 +61,11 @@
 	        @endforeach
 	    </tbody>
 	    <tfoot>
-	    	<tr>
+	    	<!-- <tr>
 	            <td colspan="2"></td>
 	            <td colspan="2">PPN 10%</td>
 	            <td><strong class="text-warning-darker">Rp.{{number_format(7000),0,',','.'}}</strong></td>
-	        </tr>
+	        </tr> -->
 	        <tr>
 	            <td colspan="2"></td>
 	            <td colspan="2">Total Tagihan</td>

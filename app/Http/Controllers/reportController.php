@@ -51,5 +51,22 @@ class reportController extends Controller
         return view('admin.pages.report.buat', compact('data'), compact('pendapatan'));
     }
 
+    public function print(Request $req)
+    {
+        $data = DB::table('transactions')
+            ->join('users', 'transactions.user_id', '=', 'users.id')
+            ->join('orders', 'transactions.order_id_order', '=', 'orders.id_order')
+            ->select('transactions.*', 'users.fullname', 'orders.*')
+            ->where('orders.kode_order', $req->kode_order)
+            ->get();
+
+        $orders = Order::where('kode_order',$req->kode_order)->get();
+        $orders->transform(function($order) {
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
+        return view('admin.pages.report.print',compact('data'),compact('orders'));
+    }
+
 
 }

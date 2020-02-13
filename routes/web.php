@@ -57,8 +57,8 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 		return view('admin.pages.dashboard', compact('orderchart'));
 	})->name('admin.home')->middleware('level.admin:owner');
 
-	//USER Route
-	Route::prefix('user')->group(function() {
+	// User
+	Route::group(['prefix'=>'user','middleware'=>'level.admin'], function(){
 		Route::get('/', 'UserController@daftar')->name('admin.user')->middleware('level.admin');
 		Route::delete('/', 'UserController@delete')->middleware('level.admin');
 
@@ -71,7 +71,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 		Route::get('/setting','UserSettingController@form')->name('admin.user.setting');
 		Route::post('/setting', 'UserSettingController@update');
 
-		//export ke EXcel
+		//export data user terdaftar ke Excel
 		Route::get('/export', 'UserController@exportExcel')->name('user.export.excel');
 	});
 	// End User
@@ -134,7 +134,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	// End Cashier
 
 	// Transaksi Route
-	Route::group(['prefix'=>'transaksi','middleware'=>'level.admin:kasir:waiter'], function()
+	Route::group(['prefix'=>'transaksi','middleware'=>'level.admin:kasir'], function()
 	{
 		Route::get('/', 'TransaksiController@index')->name('admin.transaksi');
 		Route::delete('/', 'TransaksiController@delete');
@@ -142,7 +142,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	// End Transaksi
 
 	// Order Route
-	Route::group(['prefix'=>'order','middleware'=>'level.admin:kasir:waiter'], function()
+	Route::group(['prefix'=>'order','middleware'=>'level.admin:waiter'], function()
 	{
 		Route::get('/', 'OrderController@data')->name('admin.order');
 		Route::delete('/', 'OrderController@delete');
@@ -161,6 +161,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 		Route::group(['middleware' => 'level.admin'], function() {
 			Route::get('/','reportController@buat')->name('report');
 			Route::post('/','reportController@render')->name('report.render');
+			Route::get('/print','reportController@print')->name('print');
 		});
 	});
 	// End Report

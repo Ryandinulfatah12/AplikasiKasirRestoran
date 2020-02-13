@@ -30,6 +30,7 @@
     <div class="toolbar hidden-print">
         <div class="text-right">
             <button id="printInvoice" class="btn btn-info"><i class="oi oi-print"></i> Print</button>
+            <a href="{{route('print')}}" class="btn btn-danger">PRINT</a>
         </div>
         <hr>
     </div>
@@ -71,7 +72,7 @@
 </body>
 <script type="text/javascript">
  $('#printInvoice').click(function(){
-          Popup($('.invoice')[0].outerHTML);
+          Popup($('#invoice')[0].outerHTML);
           function Popup(data) 
           {
               window.print();

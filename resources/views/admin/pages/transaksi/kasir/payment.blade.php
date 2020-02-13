@@ -29,7 +29,7 @@
 						</div>
 						@endif
 					
-		            	<b>Tagihan Anda</b> <strong class="text-success-darker">Rp. {{number_format($orders->subtotal),0,',','.'}}</strong> <b>(Sudah Termasuk PPN 10%.)</b>
+		            	<b>Tagihan Anda</b> <strong class="text-success-darker">Rp. {{number_format($orders->subtotal),0,',','.'}}</strong> <b>(Silahkan Masukan Nominal Sesuai Tagihan anda)</b>
 
 		              <form id="form-bayar" action="{{route('bayar')}}" method="POST">
 		              	@csrf

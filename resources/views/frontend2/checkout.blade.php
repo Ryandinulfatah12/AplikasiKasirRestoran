@@ -12,6 +12,14 @@
 					<div class="card-header bg-success-darker pb-1">
 			        	<h5 class="text-light"><span  class="oi oi-cart"></span> Verifikasi Nomor Meja</h5>
 			   		</div>
+			   		@if(session('info') == 1)
+			   		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+					  <strong>Meja Sedang Digunakan</strong> Saat ini, Nomor Meja yang anda pilih sedang dipakai,silahkan cek nomor meja anda sendiri.
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					    <span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+			   		@endif
 					<div class="card-body">
 						<div class="form-group form-label-group">
 							<label for="">Nomor Meja Anda</label>

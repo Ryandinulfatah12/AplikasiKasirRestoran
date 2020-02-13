@@ -60,8 +60,8 @@
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-danger">
-        <h3 class="modal-title text-white">Anda Mau Logout?</h3>
+      <div class="modal-header bg-secondary">
+        <h3 class="modal-title">Anda Mau Logout?</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span class="text-white" aria-hidden="true">&times;</span>
         </button>

@@ -48,6 +48,10 @@ class LoginController extends Controller
 
         if ($user['level'] == 'pelanggan') {
             return route('menu-masakan');
+        } else if($user['level'] == 'kasir'){
+            return route('cashier');
+        } else if($user['level']=='waiter') {
+            return route('entri.order');
         } else {
             return route('admin.home');
         }

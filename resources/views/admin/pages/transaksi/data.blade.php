@@ -23,7 +23,7 @@
 
 <div class="row pl-3 pt-2 mb-5">
     <div class="col-lg-11 pl-5">
-    	<h1>Rekap Data Transaksi</h1>
+    	<h1>Data Transaksi Masuk</h1>
 
         <table id="datatabled" class="table">
             <thead class="border-0">

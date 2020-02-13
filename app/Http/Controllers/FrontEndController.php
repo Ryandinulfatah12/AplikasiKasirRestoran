@@ -36,7 +36,7 @@ class FrontEndController extends Controller
     {
         $data = Masakan::where('kategori_id', $id)
         ->join('kategori','kategori.id','masakan.kategori_id')
-        ->get();
+        ->paginate(9);
         return view('frontend2.menu', compact('data'));
     }
 
@@ -132,8 +132,6 @@ class FrontEndController extends Controller
         //return response()->json(['data'=> $cart->items, 'total' => $total]);
     }
 
-   
-
     public function postCheckout(Request $req)
     {
         if (!Session::has('cart')) {
@@ -143,13 +141,18 @@ class FrontEndController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
+        $check = Order::where('no_meja', $req->no_meja)->where('status_order','!=','Beres')->count();
+        if ($check > 0) {
+            return back()->with('info',1);
+        }
+
          //buat kode order
         $blt = date('ms');
         $kode_ord = 'INV'.$blt;
 
 
         try {
-            //insert order
+            //insert order,
             $order = new Order;
             $order->kode_order = $kode_ord.sprintf("%03s", $req->kode_order);
             $order->no_meja = $req->no_meja;

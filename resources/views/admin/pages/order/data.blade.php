@@ -5,7 +5,7 @@
 
 <div class="row pl-3 pt-2 mb-5">
     <div class="col-lg-12 pl-3">
-    	<h1>Data Rekap Order</h1>
+    	<h1>Data Semua Orderan Masuk</h1>
 
 	    <!-- <div class="row">
 			<div class="col-md-6 mb-3">
