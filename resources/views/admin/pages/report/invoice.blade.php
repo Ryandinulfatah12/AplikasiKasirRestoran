@@ -1,5 +1,11 @@
 @extends('layouts.report')
 @section('title','Your Invoice')
+<!-- <div class="toolbar hidden-print">
+    <div class="text-right">
+        <button id="printInvoice" class="btn btn-info"><i class="oi oi-print"></i> Print</button>
+    </div>
+    <hr>
+</div> -->
 @section('content')
 
 <div class="row contacts">
@@ -96,3 +102,15 @@
 	</div>
 
 @endsection
+@push('js')
+<script type="text/javascript">
+ $('#printInvoice').click(function(){
+          Popup($('#invoice')[0].outerHTML);
+          function Popup(data) 
+          {
+              window.print();
+              return true;
+          }
+      });
+</script>
+@endpush

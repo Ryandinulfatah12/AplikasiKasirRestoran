@@ -161,7 +161,8 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 		Route::group(['middleware' => 'level.admin'], function() {
 			Route::get('/','reportController@buat')->name('report');
 			Route::post('/','reportController@render')->name('report.render');
-			Route::get('/print','reportController@print')->name('print');
+			Route::get('/pdf','reportController@pdf')->name('print.pdf');
+			Route::get('/excel','reportController@excel')->name('print.excel');
 		});
 	});
 	// End Report

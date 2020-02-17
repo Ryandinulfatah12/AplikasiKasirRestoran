@@ -111,7 +111,7 @@
 <div class="col-lg-12 pt-3 mx-auto">
   <div class="card shadow-sm ">
     <div class="card-header bg-primary text-light d-inline">
-      <a class="btn btn-success float-right" href=""><span class="oi oi-print"></span> Export Excel</a><a class="btn btn-danger float-right" href="{{route('report')}}"><span class="oi oi-print"></span> Lihat Laporan</a>
+      <a class="btn btn-success float-right ml-3" href="{{route('print.excel')}}"><span class="oi oi-print"></span> Export Excel</a><a class="btn btn-danger float-right" href="{{route('print.pdf')}}"><span class="oi oi-print"></span> Export PDF</a>
       <h6><b>Laporan Pesanan & Transaksi</b></h6>
     </div>
     <!-- Chart Tag -->

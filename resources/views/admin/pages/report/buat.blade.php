@@ -1,4 +1,4 @@
-@extends('layouts.report')
+@extends('admin.main2')
 @section('title','Buat Laporan')
 @section('content')
 
