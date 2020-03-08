@@ -28,6 +28,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+var moment = require('moment');
 const app = new Vue({
     el: '#app'
 });

@@ -98,19 +98,14 @@
 	<div class="thanks">Thank you!</div>
 	<div class="notices">
 	    <div>NOTICE:</div>
-	    <div class="notice">Grandtotal/Tagihan Sudah Termasuk PPN 10%.</div>
+	    <div class="notice">Jika ada keluhan mengenai aplikasi silahkan, hubungi petugas.</div>
 	</div>
 
 @endsection
 @push('js')
 <script type="text/javascript">
- $('#printInvoice').click(function(){
-          Popup($('#invoice')[0].outerHTML);
-          function Popup(data) 
-          {
-              window.print();
-              return true;
-          }
-      });
+ window.onload = function () {
+ 	window.print();
+ }
 </script>
 @endpush

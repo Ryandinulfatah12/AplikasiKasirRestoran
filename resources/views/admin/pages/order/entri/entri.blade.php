@@ -28,7 +28,7 @@
               <td>{{$order->kode_order}}</td>
               <td>{{$order->no_meja}}</td>
               <td>
-                {{date('d F Y H:i', strtotime($order->created_at))}}
+                {{date('d F Y - H:i', strtotime($order->created_at))}}
               </td>
               <td>
                   <table class="table shadow-0">
@@ -64,6 +64,15 @@
 <script src="{{url('polished/js/moment.min.js')}}">
 </script>
 <script>
-  moment().format();
+  import moment from 'moment';
+
+  export default {
+    computed: {
+      formattedDate() {
+        return moment(this.givenDate).format('YYYY');
+      }
+    },
+    //
+  }
 </script>
 @endpush

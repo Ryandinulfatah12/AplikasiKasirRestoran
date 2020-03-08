@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{{url('polished/css/open-iconic-bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{url('polished/css/font-awesome.min.css')}}">
   <link rel="stylesheet" href="{{url('polished/css/bounce.css')}}">
+  <link rel="stylesheet" href="{{url('polished/css/dataTables.bootstrap4.min.css')}}">
   <link rel="icon" href="{{url('polished/assets/fav.png')}}">
   @stack('css')
 
@@ -78,13 +79,22 @@
   <script src="{{url('polished/js/jquery-3.3.1.slim.min.js')}}"></script>
   <script src="{{url('polished/js/popper.min.js')}}"></script>
   <script src="{{url('polished/js/bootstrap.min.js')}}"></script>
-  <script src="{{url('polished/js/Chart.bundle.min.js')}}"></script>
   <script src="{{url('polished/js/script.js')}}"></script>
   <script src="{{url('polished/js/jquery.dataTables.min.js')}}"></script>
   <script>
     $(document).ready( function () {
       $('#datatabled').DataTable();
+        paging:false;
     } );
+
+    // $(document).ready(function () {
+    //   $('#datatabled').DataTable({
+    //       serverSide: true,
+    //       processing: true,
+    //       paging: true,
+    //       bJQueryUI: true
+    //   });
+    // });
   </script>
   @stack('js')
   

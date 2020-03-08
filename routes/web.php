@@ -54,7 +54,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 		foreach($orders as $ochart) {
 			$orderchart[] = $ochart->count();
 		}
-		return view('admin.pages.dashboard', compact('orderchart'));
+		$transaksichart = [];
+		foreach($transaksi as $t){
+			$transaksichart[] = $t->count();
+		}
+		return view('admin.pages.dashboard', compact('orderchart'), compact('transaksichart'));
 	})->name('admin.home')->middleware('level.admin:owner');
 
 	// User
@@ -158,7 +162,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	// Start Report
 	Route::prefix('/report')->group(function() {
 		Route::get('/invoice/{kode_order}','reportController@invoice')->name('invoice');
-		Route::group(['middleware' => 'level.admin'], function() {
+		Route::group(['middleware' => 'level.admin:owner'], function() {
 			Route::get('/','reportController@buat')->name('report');
 			Route::post('/','reportController@render')->name('report.render');
 			Route::get('/pdf','reportController@pdf')->name('print.pdf');

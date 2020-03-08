@@ -116,8 +116,9 @@
     </div>
     <!-- Chart Tag -->
     <div class="card-body">
-        <canvas id="chartresto"></canvas>
+        <canvas id="myAreaChart" width="100%" height="30"></canvas>
     </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
   </div>
 </div>
 
@@ -125,12 +126,44 @@
 @endsection
 
 @push('js')
-<script type="text/javascript">
+<script src="{{url('polished/js/Chart.min.js')}}"></script>
+<script src="{{url('polished/js/chart-area-demo.js')}}"></script>
+<?php 
+
+ $data = App\Transaksi::join('orders', 'transactions.order_id_order', '=', 'orders.id_order')
+            ->select('transactions.created_at', 'orders.subtotal')
+            ->get();
+
+$star_date = strtotime(date('Y-m-d'));
+$date = strtotime("-10 days", $star_date);
+$x = 0;
+$data_tgl = "";
+$data_transaksi = "";
+$data_price = "";
+while($x < 10) {
+  $x++;
+  $date = strtotime("+1 days", $date);
+  $tanggal = date('Y-m-d', $date);
+  $tgl = date('d M', $date);
+  $jum = $data->where('created_at', '=', date('Y-m-d'),'like',$tanggal)->count();
+  $price = $data->where('created_at', '=', date('Y-m-d'),'like',$tanggal)->sum('subtotal');
+  $data_tgl .= "'$tgl',";
+  $data_transaksi .= "'$jum',";
+
+}
+
+
+ ?>
+ <script type="text/javascript">
+   var tanggal = [<?= $data_tgl ?>];
+   var transaksi = [<?= $data_transaksi ?>];
+ </script>
+<!-- <script type="text/javascript">
   var ctx = document.getElementById('chartresto');
   var data = {
-        labels: ["Order", "Transaksi"],
+        labels: ["Order", "Transaksi Masuk"],
         datasets: [{
-            label: 'Data Harian',
+            label: 'Data Keseluruhan',
             data: {!!json_encode($orderchart)!!},
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -152,5 +185,5 @@
      setTimeout(function(){
          location.reload();
      },60000); // 5000 milliseconds atau 5 seconds.
-</script>
+</script> -->
 @endpush

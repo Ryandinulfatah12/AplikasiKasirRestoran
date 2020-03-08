@@ -18,6 +18,34 @@
 
 </head>
 <style>
+  @media screen and (max-width: 450px) {
+        h1 {
+          font-size: 35px;
+        }
+        .container {
+          width: 90%;
+        }
+    }
+    @media screen and (max-width: 550px) {
+          h1 {
+            font-size: 35px;
+          }
+      .container {
+          width: 90%;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+          h1 {
+            font-size: 35px;
+          }
+          .navbar-brand {
+            left: -40px;
+          }
+      .container {
+          width: 90%;
+        }
+    }
   .form-control {
       border-radius: 8px;
     }

@@ -18,6 +18,7 @@
 		top: -150px;
 		
 	}
+
 </style>
 @section('content')
 
@@ -33,7 +34,7 @@
   </div>
 </div>
 
-<div class="container" id="menu">
+<div class="container shadow-sm" id="menu">
 
 	<h1>Daftar Menu Masakan</h1>
 

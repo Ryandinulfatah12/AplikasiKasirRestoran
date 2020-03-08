@@ -20,12 +20,16 @@
 
   <style>
     .container-fluid {
-      background: url('polished/assets/background.png') no-repeat center center fixed; 
+      background: linear-gradient(rgba(29, 93, 221, 0.81), rgba(29, 93, 221, 0.81)),
+      url('polished/assets/background.png') no-repeat center center fixed; 
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;
+      position: relative;
+      z-index: 1;
     }
+
     .grid-highlight {
       padding-top: 1rem;
       padding-bottom: 1rem;
