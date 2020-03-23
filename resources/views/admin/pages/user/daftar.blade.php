@@ -33,52 +33,50 @@
 			</div> -->
 		</div>
 
-        <table id="datatabled" class="table">
-            <thead class="border-0">
-                <tr>
-			      <th scope="col">#</th>
-			      <th scope="col">Nama</th>
-			      <th scope="col">Username</th>
-			      <th scope="col">Email</th>
-			      <th scope="col">Hak Akses</th>
-			      <th scope="col">Aksi</th>
-			    </tr>
-            </thead>
-            <tbody>
-              @foreach($data as $dt)
-              <tr>
-                  <th scope="row">{{$loop->iteration}}</th>
-			      <td>{{$dt->fullname}}</td>
-			      <td>{{$dt->username}}</td>
-			      <td>{{$dt->email}}</td>
-			      <td>{{$dt->level}}</td>
+		<div class="table-responsive-md">
+			<table id="datatabled" class="table">
+	            <thead class="border-0">
+	                <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Nama</th>
+				      <th scope="col">Username</th>
+				      <th scope="col">Email</th>
+				      <th scope="col">Hak Akses</th>
+				      <th scope="col">Aksi</th>
+				    </tr>
+	            </thead>
+	            <tbody>
+	              @foreach($data as $dt)
+	              <tr>
+	                  <th scope="row">{{$loop->iteration}}</th>
+				      <td>{{$dt->fullname}}</td>
+				      <td>{{$dt->username}}</td>
+				      <td>{{$dt->email}}</td>
+				      <td>{{$dt->level}}</td>
 
-			      <td>
-			          <a href="{{ route('admin.user.edit', ['id'=>$dt->id]) }}" class="btn btn-success btn-sm">
-			          	<span class="oi oi-pencil"></span>
-			          </a>
+				      <td>
+				          <a href="{{ route('admin.user.edit', ['id'=>$dt->id]) }}" class="btn btn-success btn-sm">
+				          	<span class="oi oi-pencil"></span>
+				          </a>
 
-			          @if($dt->id != Auth::id() )
-			          <button class="btn btn-danger btn-sm btn-trash"
-			          id="tombol-hapus" 
-			          data-id="{{ $dt->id }}"
-			          type="button">
-			          	<span class="oi oi-trash"></span>
-			          </button>
-			          @endif
-			      </td>
-              </tr>
-              @endforeach
-            </tbody>
-    	</table>
+				          @if($dt->id != Auth::id() )
+				          <button class="btn btn-danger btn-sm btn-trash"
+				          id="tombol-hapus" 
+				          data-id="{{ $dt->id }}"
+				          type="button">
+				          	<span class="oi oi-trash"></span>
+				          </button>
+				          @endif
+				      </td>
+	              </tr>
+	              @endforeach
+	            </tbody>
+	    	</table>
+		</div>
+        
+
       </div>  
 </div>
-
-	{{
-
-		$data->appends(request()->only('keyword'))
-		->links('vendor.pagination.bootstrap-4')
-	}}
 
 </div>
 

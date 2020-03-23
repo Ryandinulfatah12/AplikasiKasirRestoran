@@ -157,6 +157,11 @@ while($x < 10) {
  <script type="text/javascript">
    var tanggal = [<?= $data_tgl ?>];
    var transaksi = [<?= $data_transaksi ?>];
+
+   // Auto Refresh Dashboard
+     setTimeout(function(){
+         location.reload();
+     },60000); // 5000 milliseconds atau 5 seconds.
  </script>
 <!-- <script type="text/javascript">
   var ctx = document.getElementById('chartresto');

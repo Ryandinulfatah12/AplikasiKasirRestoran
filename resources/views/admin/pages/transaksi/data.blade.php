@@ -25,42 +25,45 @@
     <div class="col-lg-11 pl-5">
     	<h1>Data Transaksi Masuk</h1>
 
-        <table id="datatabled" class="table">
-            <thead class="border-0">
-              <tr>
-                  <th scope="col">#</th>
-			      <th scope="col">Pemesan</th>
-			      <th scope="col">Kode Order</th>
-			      <th scope="col">Kode Transaksi</th>
-			      <th scope="col">Tanggal</th>
-			      <th scope="col">Total Bayar</th>
-			      <th scope="col">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($data as $dt)
-              <tr>
-                  <th scope="row">{{$loop->iteration}}</th>
-			      <td>{{$dt->fullname}}</td>
-			      <td>{{$dt->kode_order}}</td>
-			      <td>{{$dt->kode_transaksi}}</td>
-			      <td>{{date('d F Y - H:i', strtotime($dt->created_at))}}</td>
-			      <td>Rp.{{number_format($dt->total_bayar,0,',','.')}},</td>
-			      <td>
-			          <a href="{{route('invoice', ['kode_order' => $dt->kode_order])}}" class="btn btn-success btn-sm" target="_blank">
-			          	<span class="oi oi-print"></span>
-			          </a>
+		<div class="table-responsive-md">
+			<table id="datatabled" class="table">
+	            <thead class="border-0">
+	              <tr>
+	                  <th scope="col">#</th>
+				      <th scope="col">Pemesan</th>
+				      <th scope="col">Kode Order</th>
+				      <th scope="col">Kode Transaksi</th>
+				      <th scope="col">Tanggal</th>
+				      <th scope="col">Total Bayar</th>
+				      <th scope="col">Aksi</th>
+	              </tr>
+	            </thead>
+	            <tbody>
+	              @foreach($data as $dt)
+	              <tr>
+	                  <th scope="row">{{$loop->iteration}}</th>
+				      <td>{{$dt->fullname}}</td>
+				      <td>{{$dt->kode_order}}</td>
+				      <td>{{$dt->kode_transaksi}}</td>
+				      <td>{{date('d F Y - H:i', strtotime($dt->created_at))}}</td>
+				      <td>Rp.{{number_format($dt->total_bayar,0,',','.')}},</td>
+				      <td>
+				          <a href="{{route('invoice', ['kode_order' => $dt->kode_order])}}" class="btn btn-success btn-sm" target="_blank">
+				          	<span class="oi oi-print"></span>
+				          </a>
 
-			          <button class="btn btn-danger btn-sm btn-trash"
-			          data-id="{{$dt->id}}"
-			          type="button">
-			          	<span class="oi oi-trash"></span>
-			          </button>
-			      </td>
-              </tr>
-              @endforeach
-            </tbody>
-    </table>
+				          <button class="btn btn-danger btn-sm btn-trash"
+				          data-id="{{$dt->id}}"
+				          type="button">
+				          	<span class="oi oi-trash"></span>
+				          </button>
+				      </td>
+	              </tr>
+	              @endforeach
+	            </tbody>
+	    	</table>
+		</div>
+        
       </div>  
 </div>
 

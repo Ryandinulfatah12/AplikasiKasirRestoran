@@ -22,58 +22,60 @@
 				</form>
 			</div>
 		</div>  -->  	
+		<div class="table-responsive-md">
+			<table id="datatabled" class="table">
+	            <thead class="border-0">
+	                <tr>
+				      <th scope="col">#</th>
+					  <th scope="col">Kode Delivery</th>      
+				      <th scope="col">Nomor Meja</th>
+				      <th scope="col">Tanggal Order</th>
+				      <th scope="col">Pemesan</th>
+				      <th scope="col">Keterangan</th>
+				      <th scope="col">Status</th>
+				      <th scope="col">Aksi</th>
+				    </tr>
+	            </thead>
+	            <tbody>
+	              @foreach($data as $dt)
+	              <tr>
+	                  <th scope="row">{{$loop->iteration}}</th>
+				      <td>{{$dt->kode_order}}</td>
+				      <td>{{$dt->no_meja}}</td>
+				      <td>{{date('d F Y - H:i', strtotime($dt->created_at))}}</td>
+				      <td>{{$dt->fullname}}</td>
+				      <td>{{$dt->keterangan}}</td>
+				      <td>
+				      	<?php 
+			            if ($dt['status_order']=='Pending') {
+			                echo "<span class='badge badge-warning text-secondary'>Pending</span>";
+			            } elseif($dt['status_order']=='Menunggu Pembayaran') {
+			            	echo "<span class='badge badge-warning'>Menunggu Pembayaran</span>";
+			            } elseif($dt['status_order']=='Beres') {
+			            	echo "<span class='badge badge-success'>Beres</span>";
+			            } else {
+			            	echo "<span class='badge badge-danger'>Dibatalkan</span>";
+			            }
+			     		?>
+				      </td>
 
-        <table id="datatabled" class="table">
-            <thead class="border-0">
-                <tr>
-			      <th scope="col">#</th>
-				  <th scope="col">Kode Delivery</th>      
-			      <th scope="col">Nomor Meja</th>
-			      <th scope="col">Tanggal Order</th>
-			      <th scope="col">Pemesan</th>
-			      <th scope="col">Keterangan</th>
-			      <th scope="col">Status</th>
-			      <th scope="col">Aksi</th>
-			    </tr>
-            </thead>
-            <tbody>
-              @foreach($data as $dt)
-              <tr>
-                  <th scope="row">{{$loop->iteration}}</th>
-			      <td>{{$dt->kode_order}}</td>
-			      <td>{{$dt->no_meja}}</td>
-			      <td>{{date('d F Y - H:i', strtotime($dt->created_at))}}</td>
-			      <td>{{$dt->fullname}}</td>
-			      <td>{{$dt->keterangan}}</td>
-			      <td>
-			      	<?php 
-		            if ($dt['status_order']=='Pending') {
-		                echo "<span class='badge badge-warning text-secondary'>Pending</span>";
-		            } elseif($dt['status_order']=='Menunggu Pembayaran') {
-		            	echo "<span class='badge badge-warning'>Menunggu Pembayaran</span>";
-		            } elseif($dt['status_order']=='Beres') {
-		            	echo "<span class='badge badge-success'>Beres</span>";
-		            } else {
-		            	echo "<span class='badge badge-danger'>Dibatalkan</span>";
-		            }
-		     		?>
-			      </td>
+				      <td>
+				          <a href="{{route('admin.order.edit', ['id_order'=>$dt->id_order])}}" class="btn btn-success btn-sm">
+				          	<span class="oi oi-pencil"></span>
+				          </a>
 
-			      <td>
-			          <a href="{{route('admin.order.edit', ['id_order'=>$dt->id_order])}}" class="btn btn-success btn-sm">
-			          	<span class="oi oi-pencil"></span>
-			          </a>
-
-			          <button class="btn btn-danger btn-sm btn-trash"
-			          data-id="{{$dt->id_order}}"
-			          type="button">
-			          	<span class="oi oi-trash"></span>
-			          </button>
-			      </td>
-              </tr>
-              @endforeach
-            </tbody>
-    	</table>
+				          <button class="btn btn-danger btn-sm btn-trash"
+				          data-id="{{$dt->id_order}}"
+				          type="button">
+				          	<span class="oi oi-trash"></span>
+				          </button>
+				      </td>
+	              </tr>
+	              @endforeach
+	            </tbody>
+	    	</table>
+		</div>
+        
       </div>  
 </div>
 

@@ -15,7 +15,7 @@ class OrderController extends Controller
     		->where('no_meja','like',"%{$req->keyword}%")
             ->select('orders.*', 'fullname')
             ->orderBy('updated_at','desc')
-            ->paginate(10);
+            ->get();
     		return view('admin.pages.order.data', ['data'=>$data]);
     }
 

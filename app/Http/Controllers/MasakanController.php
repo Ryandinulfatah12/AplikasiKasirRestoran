@@ -18,7 +18,7 @@ class MasakanController extends Controller
             ->where('nama_masakan','like',"%{$req->keyword}%")
             ->select('masakan.*','nama_kategori')
             ->orderBy('updated_at','desc')
-            ->paginate(10);
+            ->get();
             return view('admin.pages.masakan.daftar', ['data'=>$data]);
 
     }

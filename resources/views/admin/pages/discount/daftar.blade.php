@@ -10,40 +10,43 @@
 				<a href="" data-toggle="modal" data-target="#tambahDiscount" class="btn btn-primary"><span class="oi oi-plus"> Buat Baru</span></a>
 			</div>
 		</div>
+		
+		<div class="table-responsive-md">
+			<table id="datatabled" class="table">
+	            <thead class="border-0">
+	                <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Kode Voucher</th>
+				      <th scope="col">Percent Off</th>
+				      <th scope="col">Aksi</th>
+				    </tr>
+	            </thead>
+	            <tbody>
+	              @foreach($discount as $dt)
+	              <tr>
+	                  <th scope="row">{{$loop->iteration}}</th>
+				      <td>{{$dt->kode_discount}}</td>
+				      <td>{{$dt->percent_off}}%</td>
 
-        <table id="datatabled" class="table">
-            <thead class="border-0">
-                <tr>
-			      <th scope="col">#</th>
-			      <th scope="col">Kode Voucher</th>
-			      <th scope="col">Percent Off</th>
-			      <th scope="col">Aksi</th>
-			    </tr>
-            </thead>
-            <tbody>
-              @foreach($discount as $dt)
-              <tr>
-                  <th scope="row">{{$loop->iteration}}</th>
-			      <td>{{$dt->kode_discount}}</td>
-			      <td>{{$dt->percent_off}}%</td>
+				      <td>
+				          <a href="{{route('getEdit',['id' =>$dt->id])}}" class="btn btn-success btn-sm">
+				          	<span class="oi oi-pencil"></span>
+				          </a>
 
-			      <td>
-			          <a href="{{route('getEdit',['id' =>$dt->id])}}" class="btn btn-success btn-sm">
-			          	<span class="oi oi-pencil"></span>
-			          </a>
+				          <button class="btn btn-danger btn-sm btn-trash"
+				          id="tombol-hapus" 
+				          data-id="{{ $dt->id }}"
+				          type="button">
+				          	<span class="oi oi-trash"></span>
+				          </button>
+				      </td>
+	              </tr>
+	              @endforeach
+	            </tbody>
+	    	</table>
 
-			          <button class="btn btn-danger btn-sm btn-trash"
-			          id="tombol-hapus" 
-			          data-id="{{ $dt->id }}"
-			          type="button">
-			          	<span class="oi oi-trash"></span>
-			          </button>
-			      </td>
-              </tr>
-              @endforeach
-            </tbody>
-    	</table>
-      </div>  
+		</div>
+	 </div>  
 </div>
 
 @endsection

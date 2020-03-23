@@ -16,7 +16,7 @@ class UserController extends Controller
     {
     	$data = User::where('fullname','like',"%{$req->keyword}%")
         ->orderBy('updated_at','desc')
-        ->paginate(10);
+        ->get();
     	return view('admin.pages.user.daftar', ['data'=>$data]);
     }
 

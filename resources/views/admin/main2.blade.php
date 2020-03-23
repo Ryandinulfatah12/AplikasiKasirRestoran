@@ -81,21 +81,9 @@
   <script src="{{url('polished/js/bootstrap.min.js')}}"></script>
   <script src="{{url('polished/js/script.js')}}"></script>
   <script src="{{url('polished/js/jquery.dataTables.min.js')}}"></script>
-  <script>
-    $(document).ready( function () {
-      $('#datatabled').DataTable();
-        paging:false;
-    } );
-
-    // $(document).ready(function () {
-    //   $('#datatabled').DataTable({
-    //       serverSide: true,
-    //       processing: true,
-    //       paging: true,
-    //       bJQueryUI: true
-    //   });
-    // });
-  </script>
+  <script src="{{url('polished/js/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{url('polished/js/datatables-demo.js')}}"></script>
+  
   @stack('js')
   
 </body>

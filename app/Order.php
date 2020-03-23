@@ -5,6 +5,7 @@ use Auth;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class Order extends Model
 {
@@ -74,6 +75,8 @@ class Order extends Model
     {
         return $this->hasOne(Transaksi::class);
     }
+
+    
 
     // public function masakan()
     // {

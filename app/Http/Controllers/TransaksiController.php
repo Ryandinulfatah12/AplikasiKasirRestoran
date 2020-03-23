@@ -21,7 +21,7 @@ class TransaksiController extends Controller
             ->join('orders', 'transactions.order_id_order', '=', 'orders.id_order')
             ->select('transactions.*', 'users.fullname', 'orders.*')
             ->orderBy('transactions.updated_at','desc')
-            ->paginate(10);
+            ->get();
             return view('admin.pages.transaksi.data', ['data'=>$data]);
     }
 

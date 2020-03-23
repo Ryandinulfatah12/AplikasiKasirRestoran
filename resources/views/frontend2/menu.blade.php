@@ -86,13 +86,18 @@
 	  </button>
 	</div>
 	@endif
-	
+
+	@if($data->isEmpty())
+	<div class="col">
+		<h4 class="text-center text-muted">Menu tidak tersedia...</h4>
+	</div>
+	@else
 	<div class="row">
 		@foreach($data as $dt)
 		<div class="col-md-4 pb-4">
 			<div class="card-group">
 			  <div class="card">
-			    <img class="card-img-top img-responsive" src="{{url('storage/gambar/'.$dt->gambar)}}" style="width: 100%; height: 280px;" alt="Card image cap">
+			    <a href="{{url('storage/gambar/'.$dt->gambar)}}"><img class="card-img-top img-responsive" src="{{url('storage/gambar/'.$dt->gambar)}}" style="width: 100%; height: 280px;" alt="Card image cap"></a>
 			    <div class="card-body">
 			      <small>{{$dt->kode_masakan}} | {{$dt->nama_kategori}}</small>	
 			      <h5 class="card-title">{{$dt->nama_masakan}}</h5>
@@ -119,6 +124,7 @@
 		</div>
 		@endforeach
 	</div>
+	@endif
 
 	{{
 		$data->appends(request()->only('keyword'))

@@ -30,54 +30,56 @@
 					</form>
 				</div> -->
 			</div>    	
+			<div class="table-responsive-md">
+		        <table id="datatabled" class="table">
+		            <thead class="border-0">
+		                <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">Gambar</th>
+					      <th scope="col">Item</th>
+					      <th scope="col">Aksi</th>
+					    </tr>
+		            </thead>
+		            <tbody>
+		              @foreach($data as $dt)
+		              <tr>
+		                  <th scope="row">{{$loop->iteration}}</th>
+					      <td><a href="{{url('storage/gambar/'.$dt->gambar)}}"><img class="img-fluid" src="{{url('storage/gambar/'.$dt->gambar)}}" width="75px"></a></td>
+					      <td>
+					      	<small class="text-muted">{{$dt->kode_masakan}}</small><br>
+							<strong>{{$dt->nama_masakan}}</strong>,
+							Harga Rp.{{number_format($dt->harga,0,',','.')}}, 
+							Stok <?php 
+				            if ($dt['status_masakan']=='Ada') {
+				                echo "<span class='badge badge-success'>Ada</span>";
+				            } else {
+				                echo "<span class='badge badge-danger'>Habis</span>";
+				            }
+				     		?>
+							<br>
+							<small class="text-muted">{{$dt->nama_kategori}}</small>
+					      </td>
 
-	        <table id="datatabled" class="table">
-	            <thead class="border-0">
-	                <tr>
-				      <th scope="col">#</th>
-				      <th scope="col">Gambar</th>
-				      <th scope="col">Item</th>
-				      <th scope="col">Aksi</th>
-				    </tr>
-	            </thead>
-	            <tbody>
-	              @foreach($data as $dt)
-	              <tr>
-	                  <th scope="row">{{$loop->iteration}}</th>
-				      <td><img class="img-responsive" src="{{url('storage/gambar/'.$dt->gambar)}}" width="75px"></td>
-				      <td>
-				      	<small class="text-muted">{{$dt->kode_masakan}}</small><br>
-						<strong>{{$dt->nama_masakan}}</strong>,
-						Harga Rp.{{number_format($dt->harga,0,',','.')}}, 
-						Stok <?php 
-			            if ($dt['status_masakan']=='Ada') {
-			                echo "<span class='badge badge-success'>Ada</span>";
-			            } else {
-			                echo "<span class='badge badge-danger'>Habis</span>";
-			            }
-			     		?>
-						<br>
-						<small class="text-muted">{{$dt->nama_kategori}}</small>
-				      </td>
+					      <td>
+					          <!-- kolom edit -->
+							<a href="{{ route('admin.masakan.edit', ['id'=>$dt->id]) }}" class="btn btn-success btn-sm">
+					          	<span class="oi oi-pencil"></span>
+					         </a>
 
-				      <td>
-				          <!-- kolom edit -->
-						<a href="{{ route('admin.masakan.edit', ['id'=>$dt->id]) }}" class="btn btn-success btn-sm">
-				          	<span class="oi oi-pencil"></span>
-				         </a>
-
-						<!-- kolom hapus -->
-				          <button class="btn btn-danger btn-sm btn-trash"
-				          id="tombol-hapus" 
-				          data-id="{{ $dt->id }}"
-				          type="button">
-				          	<span class="oi oi-trash"></span>
-				          </button>
-				      </td>
-	              </tr>
-	              @endforeach
-	            </tbody>
-	    	</table>
+							<!-- kolom hapus -->
+					          <button class="btn btn-danger btn-sm btn-trash"
+					          id="tombol-hapus" 
+					          data-id="{{ $dt->id }}"
+					          type="button">
+					          	<span class="oi oi-trash"></span>
+					          </button>
+					      </td>
+		              </tr>
+		              @endforeach
+		            </tbody>
+		    	</table>
+		    </div>
+		    	
 	      </div>  
 	</div>
 

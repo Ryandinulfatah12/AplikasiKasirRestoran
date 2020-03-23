@@ -5,8 +5,14 @@
 
 <div class="container">
 	<h1 class="text-center mt-4 mb-4">Riwayat Semua Data Order User Ini</h1>
-
-	<div class="col-lg-9 mx-auto">
+	<hr>
+	
+	@if($orders->isEmpty())
+	<div class="col">
+		<h4 class="text-center text-muted">Riwayat pesanan kosong...</h4>
+	</div>
+	@else
+	<div class="col-9 mx-auto">
 		<div id="card" class="card">
 		  @foreach($orders as $order)
 		  <div class="card-header bg-dark text-white">
@@ -39,6 +45,7 @@
 		  @endforeach
 		</div>
 	</div>
+	@endif
 	
 </div>
 
