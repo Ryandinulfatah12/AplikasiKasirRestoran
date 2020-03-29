@@ -99,8 +99,8 @@ class OrderController extends Controller
     public function terimaEntri($id_order)
     {
         $orders = Order::where('id_order',$id_order)->first();
-        $orders->update(['status_order' => 'Menunggu Pembayaran']);
-        alert()->success('Entri ini telah Berhasil Dikonfirmasi!.','Accepted!')->autoclose(4000);
+        $orders->update(['status_order' => 'Beres']);
+        alert()->success('Pesanan Berhasil Diantar!.','Berhasil!')->persistent('oke');
         return redirect()->route('entri.order');
     }
 

@@ -78,10 +78,5 @@ class Order extends Model
 
     
 
-    // public function masakan()
-    // {
-    //     return $this->belongsToMany(Masakan::class)->withPivot(['subtotal']);
-    // }
-
     
 }

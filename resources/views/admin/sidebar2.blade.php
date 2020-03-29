@@ -17,14 +17,14 @@
       @endif
 
       @if(Auth::user()->level =='admin' || Auth::user()->level =='waiter')
-      <li><a href="{{route('entri.order')}}"><span class="oi oi-bell bell"></span> Entri Order <span class="badge badge-warning float-right">{{$entri->count()}}</span></a></li>
+      <li><a href="{{route('entri.order')}}"><span class="oi oi-pencil"></span> Waiter <span class="badge badge-warning float-right">{{$entri->count()}}</span></a></li>
       @endif
 
       @if(Auth::user()->level =='admin' || Auth::user()->level =='kasir')
-      <li><a href="{{route('cashier')}}"><span class="oi oi-cart"></span> Cashier <span class="badge badge-warning float-right">{{$cashier->count()}}</span></a></li>
+      <li><a href="{{route('cashier')}}"><span class="oi oi-bell bell"></span> Cashier <span class="badge badge-warning float-right">{{$cashier->count()}}</span></a></li>
       @endif
 
-      @if(Auth::user()->level =='admin' || Auth::user()->level =='kasir' || Auth::user()->level =='waiter')
+      @if(Auth::user()->level =='admin' || Auth::user()->level =='kasir')
       <div class="pt-4">
           <a href="#" class="pl-3 fs-smallest fw-bold text-muted">Rekap Data</a> 
           <ul class="list-unstyled">

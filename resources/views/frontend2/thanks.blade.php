@@ -38,7 +38,7 @@
 
 	@if(session('result') == 'success')
 	<div class="alert alert-success" role="alert">
-	  <h4 class="alert-heading">Berhasil Memesan!</h4>Pesanan Anda Akan Diproses Sebentar Lagi.
+	  <h4 class="alert-heading">Berhasil Memesan!</h4>Silahkan lakukan Pembayaran ke Kasir terlebih dahulu.
 	  <a href="{{route('history')}}" target="_blank" class="btn btn-success btn-lg"><span class="oi oi-book"></span> LIhat Riwayat Order Anda</a>
 	  <a href="{{route('delivery')}}" target="_blank" class="btn btn-info"><span class="oi oi-print"></span> Cetak</a>
 	</div>

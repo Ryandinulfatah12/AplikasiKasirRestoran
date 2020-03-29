@@ -24,7 +24,6 @@
         }
         .container {
           width: 90%;
-          box-shadow: 5px 5px 5px black;
         }
     }
     @media screen and (max-width: 550px) {
@@ -33,7 +32,6 @@
           }
       .container {
           width: 90%;
-          box-shadow: 5px 5px 5px black;
         }
     }
 
@@ -46,7 +44,6 @@
           }
       .container {
           width: 90%;
-          box-shadow: 5px 5px 5px black;
         }
     }
   .form-control {
@@ -146,6 +143,7 @@
   </div>
 
   @stack('modal')
+  @stack('js')
 
   <script src="{{url('polished/js/sweetalert.min.js')}}"></script>
   @include('sweet::alert')

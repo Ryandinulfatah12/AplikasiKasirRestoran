@@ -48,7 +48,7 @@
 				      <td>
 				      	<?php 
 			            if ($dt['status_order']=='Pending') {
-			                echo "<span class='badge badge-warning text-secondary'>Pending</span>";
+			                echo "<span class='badge badge-warning text-secondary'>Menunggu Diantar</span>";
 			            } elseif($dt['status_order']=='Menunggu Pembayaran') {
 			            	echo "<span class='badge badge-warning'>Menunggu Pembayaran</span>";
 			            } elseif($dt['status_order']=='Beres') {

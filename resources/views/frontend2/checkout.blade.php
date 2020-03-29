@@ -38,7 +38,7 @@
 							<textarea  name="keterangan"
 							class="form-control {{ $errors->has('keterangan')?'is-invalid':'' }} "
 							value="{{ old('keterangan') }}"
-							id="" placeholder="Masukan Keterangan Terkait Masakan yang akan anda pesan..."></textarea>
+							id="" placeholder="Ketikan sesuatu..."></textarea>
 							@if($errors->has('keterangan'))
 							<div class="invalid-feedback">{{ $errors->first('keterangan') }}</div>
 							@endif
@@ -48,7 +48,7 @@
 						<small class="text-muted"></small>
 
 						<input type="hidden" name="id_user" value="{{Auth::user()->id}}">
-						<input type="hidden" value="Pending" name="status_order">
+						<input type="hidden" value="Menunggu Pembayaran" name="status_order">
 					</div>	
 
 					<div class="card-footer">

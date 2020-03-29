@@ -16,6 +16,7 @@
 		border-radius: 20px;
 		position: relative;
 		top: -150px;
+		box-shadow: 0 3px 20px rgba(0,0,0,0.5);
 		
 	}
 
@@ -27,16 +28,43 @@
     <div class="carousel-item active">
       <img class="img-fluid d-block w-100 h-50" src="{{url('polished/assets/bg2.png')}}" alt="First slide">
       <div class="carousel-caption">
-	    <h2>Hai {{Auth::user()->fullname}}</h2>
-		<h1>Selamat Datang di Ngapak Resto</h1>
+	    <h1 class="mt-5"><?php 
+	          date_default_timezone_set("Asia/Jakarta");
+
+	            $b = time();
+	            $hour = date("G",$b);
+
+	            if ($hour>=0 && $hour<=11)
+	            {
+	            echo "Selamat Pagi";
+	            }
+	            elseif ($hour >=12 && $hour<=14)
+	            {
+	            echo "Selamat Siang";
+	            }
+	            elseif ($hour >=15 && $hour<=17)
+	            {
+	            echo "Selamat Sore";
+	            }
+	            elseif ($hour >=17 && $hour<=18)
+	            {
+	            echo "Selamat Petang";
+	            }
+	            elseif ($hour >=19 && $hour<=23)
+	            {
+	            echo "Selamat Malam";
+	            }
+
+	       ?>, {{Auth::user()->fullname}}
+	    </h1>
 	  </div>
     </div>
   </div>
 </div>
 
-<div class="container shadow-sm" id="menu">
+<div class="container" id="menu">
 
-	<h1>Daftar Menu Masakan</h1>
+	<h2>Daftar Menu Masakan</h2>
 
 	<div class="row mb-4">
 		<div class="col-md-7">
@@ -54,18 +82,19 @@
 		      	<?php
 		    	 $kategori = App\Kategori::get();
 		    	  ?>
-		    	<div class="btn-group" role="group">
-				    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				      Tampilkan Menurut Kategori
-				    </button> 
-				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-				      <a class="btn btn-dark btn-block" href="{{route('menu-masakan')}}">Semua Masakan</a>
-				      @foreach($kategori as $dt)
-				      <a href="{{route('show.category', ['id'=> $dt->id])}}" class="btn btn-dark btn-block">{{$dt->nama_kategori}}</a>
-				      @endforeach
-				    </div>
 
-				 </div>
+				<div class="btn-group dropleft">
+				  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    Filter by Kategori
+				  </button>
+				    <div class="dropdown-menu">
+				    	<a class="dropdown-item" href="{{route('menu-masakan')}}">Semua Menu</a>
+				    @foreach($kategori as $dt)
+					  <a class="dropdown-item" href="{{route('show.category', ['id'=> $dt->id])}}">{{$dt->nama_kategori}}</a>
+					@endforeach  
+					</div>
+				</div>
+
 			</div>
 		</div>	
     </div>
@@ -134,4 +163,19 @@
 
 </div>
 
+
 @endsection
+
+@push('js')
+<script type="text/javascript">
+	$(function () {
+		var current = window.location.href;
+		$('.dropdown-item').each(function(){
+			var $this = $(this);
+			if ($this.attr('href') == current ) {
+				$(this).addClass('active');
+			}
+		});
+	});
+</script>
+@endpush

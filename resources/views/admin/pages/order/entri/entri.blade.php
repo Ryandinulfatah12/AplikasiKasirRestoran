@@ -1,13 +1,13 @@
 
 @extends('admin.main2')
-@section('title','Entri Order')
+@section('title','Waiter')
 
 @section('content')
 
 <div class="container">
 
   <div class="col-lg-12">
-      <h1>Entri Order</h1>
+      <h1>Entri Pesanan</h1>
         <div class="table-responsive-md">
           <table class="table table-bordered" id="datatabled">
               <thead class="border-0">
@@ -49,7 +49,7 @@
                   <td class="text-success-darkest">Rp. {{number_format($order->subtotal),0,',','.'}}</td>
 
                   <td>
-                    <a class="btn btn-success" href="{{route('entri.accept', ['id_order'=>$order->id_order])}}" onclick="return confirm('Accept Entri?')">Accept Order</a>
+                    <a class="btn btn-success" href="{{route('entri.accept', ['id_order'=>$order->id_order])}}" onclick="return confirm('Sudah Diantar Waiter?')">Diantar</a>
                   </td>
                 </tr>
                 @endforeach

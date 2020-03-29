@@ -46,19 +46,8 @@ Route::group(['prefix' => 'frontend','middleware'=>['auth']], function() {
 // BACKEND ROUTING
 Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	Route::get('/', function() {
-		$orders = App\Order::where('status_order','Beres')->get();
-		$transaksi = App\Transaksi::all();
 
-		//SIAPKAN DATA CHART ORDER
-		$orderchart = [];
-		foreach($orders as $ochart) {
-			$orderchart[] = $ochart->count();
-		}
-		$transaksichart = [];
-		foreach($transaksi as $t){
-			$transaksichart[] = $t->count();
-		}
-		return view('admin.pages.dashboard', compact('orderchart'), compact('transaksichart'));
+		return view('admin.pages.dashboard');
 	})->name('admin.home')->middleware('level.admin:owner');
 
 	// User
@@ -146,7 +135,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	// End Transaksi
 
 	// Order Route
-	Route::group(['prefix'=>'order','middleware'=>'level.admin:waiter'], function()
+	Route::group(['prefix'=>'order','middleware'=>'level.admin:kasir'], function()
 	{
 		Route::get('/', 'OrderController@data')->name('admin.order');
 		Route::delete('/', 'OrderController@delete');

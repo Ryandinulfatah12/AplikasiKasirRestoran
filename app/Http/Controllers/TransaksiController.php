@@ -38,6 +38,10 @@ class TransaksiController extends Controller
     public function kasir(Request $req)
     {
         $orders = Order::where('status_order','Menunggu Pembayaran')->orderBy('updated_at','desc')->get();
+            $orders->transform(function($order) {
+                $order->cart = unserialize($order->cart);
+                return $order;
+            });
         
         return view('admin.pages.transaksi.kasir.data', compact('orders'));
     }
@@ -72,8 +76,8 @@ class TransaksiController extends Controller
     public function getFinish($id_order)
     {
         $orders = Order::where('id_order', $id_order)->first();
-        $orders->update(['status_order' => 'Beres']);
-        alert()->success('Transaksi Telah Berhasil','Transaction Clear!')->autoclose(4000);
+        $orders->update(['status_order' => 'Pending']);
+        alert()->success('Transaksi Telah Berhasil!.','Berhasil')->persistent('oke');
         return redirect()->route('cashier');
     }
 }

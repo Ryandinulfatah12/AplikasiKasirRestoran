@@ -165,7 +165,7 @@ class FrontEndController extends Controller
         } catch (Exception $e) {
             
         }
-        alert()->success('Entri Order Anda Telah Dikirim ke Waiter!.', 'Request has been Sent!');
+        alert()->success('Silahkan lakukan Pembayaran ke Kasir!.', 'Order Berhasil')->persistent('oke');
         Session::forget('cart');
         return redirect()->route('thankyou')->with('result','success');      
     }
