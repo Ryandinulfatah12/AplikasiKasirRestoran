@@ -63,6 +63,7 @@ class TransaksiController extends Controller
         $transaksi->order_id_order = $req->order_id_order;
         $transaksi->total_bayar = $req->total_bayar;
         $transaksi->kembalian = $req->kembalian;
+        $transaksi->tanggal_transaksi = $req->tanggal_transaksi;
 
         if ($req->kembalian < 0) {
             return back()->with('result','fail');

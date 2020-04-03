@@ -10,7 +10,7 @@
 
 <div class="row contacts">
 	    <div class="col invoice-to">
-	        <div class="text-gray-light">INVOICE TO:</div>
+	        <div class="text-gray-light">RECEIPT TO:</div>
 	        @foreach($data as $dt)
 	        <h2 class="to">{{$dt->fullname}}</h2>
 	        @endforeach

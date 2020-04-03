@@ -20,6 +20,13 @@
 		
 	}
 
+	@media (min-width: 576px) { 
+		.carousel-caption {
+		top: -15px;
+		text-shadow: 1px 1px black;
+	}
+	}
+
 </style>
 @section('content')
 
@@ -57,6 +64,7 @@
 
 	       ?>, {{Auth::user()->fullname}}
 	    </h1>
+	    <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg">Petunjuk Order</button>
 	  </div>
     </div>
   </div>
@@ -165,6 +173,114 @@
 
 
 @endsection
+
+@push('modal')
+<!-- Large modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title text-center">PETUNJUK PENGGUNAAN APLIKASI</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="guide">
+			<img src="{{url('polished/assets/guide/brand.png')}}" width="">
+			<small class="text-muted">Gambar 1</small>
+			<p>1. Brand Logo untuk mengenalkan logo restaurant sekaligus menjadi <b>navigasi ke menu awal</b>.</p>
+		</div>
+		<hr>
+		<div class="guide">
+			<img src="{{url('polished/assets/guide/1.png')}}" width="">
+			<small class="text-muted">Gambar 2</small>
+			<p>2. Dua Tombol tersebut adalah navigasi untuk menuju keranjang dan riwayat order.</p>
+		</div>
+		<hr>
+		<div class="guide">
+			<img src="{{url('polished/assets/guide/2.png')}}" width="70%">
+			<small class="text-muted">Gambar 3</small>
+			<p>3. Kolom pencarian untuk <b>mencari menu sesuai dengan yang anda ketik</b>.</p>
+		</div>
+		<hr>
+		<div class="guide">
+			<img src="{{url('polished/assets/guide/3.png')}}" width="40%">
+			<small class="text-muted">Gambar 4</small>
+			<p>4. Ini untuk mengelompokan menu sesuai dengan kategorinya masing-masing.</p>
+		</div>
+		<hr>
+		<div class="guide">
+			<img src="{{url('polished/assets/guide/4.png')}}" width="70%">
+			<small class="text-muted">Gambar 5</small>
+			<p>5. Menu Masakan dengan tombol yang bila anda tekan akan langsung masuk kedalam keranjang anda, <b>Untuk tombol dengan stok habis tidak bisa dipesan karena stok menunya sedang tidak tersedia</b> .</p>
+		</div>
+		<hr>
+		<div class="guide">
+			<img src="{{url('polished/assets/guide/4.1 add.png')}}" width="70%">
+			<small class="text-muted">Gambar 6</small>
+			<p>6. Tanda anda sudah menambahkan item menu kedalam keranjang anda.</p>
+		</div>
+		<hr>
+		<div class="guide">
+			<img src="{{url('polished/assets/guide/keranjang.png')}}" width="70%">
+			<small class="text-muted">Gambar 7</small>
+			<p>7. Anda bisa kelola keranjang anda terlebih dahulu sebelum memesan menu <b>dan jika anda mau memesan tinggal tekan tombol checkout</b> .</p>
+		</div>
+		<hr>
+		<div class="guide">
+			<img src="{{url('polished/assets/guide/keranjang remove alert.png')}}" width="70%">
+			<small class="text-muted">Gambar 8</small>
+			<p>8. akan muncul pop up verifikasi jika anda ingin menghapus semua data keranjang anda.</p>
+			<img src="{{url('polished/assets/guide/keranjang terhapus.png')}}" width="70%">
+		</div>
+		<hr>
+		<div class="guide">
+			<img src="{{url('polished/assets/guide/checkout.png')}}" width="60%">
+			<small class="text-muted">Gambar 9</small>
+			<p>9. Isikan data Meja yang sedang anda tempati dengan benar dan masukan keterangan terkait menu yang dipesan bila perlu.</p>
+		</div>
+		<hr>
+		<div class="guide">
+			<img src="{{url('polished/assets/guide/meja digunakan.png')}}" width="60%">
+			<small class="text-muted">Gambar 10</small>
+			<p>10. Jika anda sengaja memasukan ke nomor meja lain/secara tidak sengaja salah menginputkan, akan muncul peringatan bahwa meja tersebut sudah dipesan yang lain <b>jadi masukan nomor meja sesuai yang tertera dimeja anda sendiri</b>.</p>
+		</div>
+		<hr>
+		<div class="guide">
+			<img src="{{url('polished/assets/guide/alert beres order.png')}}" width="60%">
+			<small class="text-muted">Gambar 11</small>
+			<p>11. Akan muncul pop up berhasil memesan jika anda sudah benar memasukan nomor mejanya <b>itu sebagai tanda bahwa anda telah memesan menu yang dipesan</b>.</p>
+		</div>
+		<hr>
+		<div class="guide">
+			<img src="{{url('polished/assets/guide/detail order.png')}}" width="70%">
+			<small class="text-muted">Gambar 12</small>
+			<p>12. Akan muncul detail order anda di halaman jika anda menekan oke <i>di gambar 11</i>.</p>
+		</div>
+		<hr>
+		<div class="guide">
+			<img src="{{url('polished/assets/guide/riwayat.png')}}" width="70%">
+			<small class="text-muted">Gambar 13</small>
+			<p>13. Halaman ini adalah riwayat pemesanan dari user ini sendiri.</p>
+		</div>
+		<hr>
+		<div class="guide">
+			14. <b>Mengenal status :</b>
+			<p><span class='badge badge-success'>Beres</span> = pesanan telas beres dan menu sudah sampai di meja anda.</p>
+			<p><span class='badge badge-primary bounce'>Menunggu Diantar</span> = pesanan anda sedang dimasak, tunggu hingga waiter datang mengantarkan pesanan anda.</p>
+			<p><span class='badge badge-warning'>Menunggu Pembayaran</span> = menunggu pembayaran untuk pesanan ini, silahkan anda menuju kasir untuk melakukan transaksi.</p>
+			<p><span class='badge badge-danger'>Dibatalkan</span> = pesanan dibatalkan karena adanya kesalahan teknis dari server maupun pelanggan.</p>
+		</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+@endpush
 
 @push('js')
 <script type="text/javascript">

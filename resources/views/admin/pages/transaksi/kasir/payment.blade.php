@@ -36,6 +36,9 @@
 		              	<!-- Tagihan -->
 		              	<input type="hidden" id="txtTotal" class="form-control" value="{{$orders->subtotal}}">
 
+		              	<!-- Tanggal -->
+		              	<input type="hidden" name="tanggal_transaksi" value="{{date('Y-m-d')}}">
+
 		              	<!-- Ambil ID USER -->
 		              	<input type="hidden" name="user_id" value="{{$orders->id_user}}">
 

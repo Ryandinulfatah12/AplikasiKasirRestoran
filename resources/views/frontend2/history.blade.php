@@ -12,7 +12,7 @@
 		<h4 class="text-center text-muted">Riwayat pesanan kosong...</h4>
 	</div>
 	@else
-	<div class="col-9 mx-auto">
+	<div class="col-md-12 mx-auto">
 		<div id="card" class="card">
 		  @foreach($orders as $order)
 		  <div class="card-header bg-dark text-white">

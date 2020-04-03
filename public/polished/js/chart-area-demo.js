@@ -9,7 +9,7 @@ var myLineChart = new Chart(ctx, {
   data: {
     labels: tanggal,
     datasets: [{
-      label: "D",
+      label: "Sessions",
       lineTension: 0.3,
       backgroundColor: "rgba(2,117,216,0.2)",
       borderColor: "rgba(2,117,216,1)",

@@ -168,7 +168,7 @@ $jml_order = App\Order::where('status_order', 'Beres')->count();
        ?>, {{Auth::user()->fullname}}
        </h3>
        <h4 class="text-muted w-50 fw-normal">
-         Here's what's happening with your store today.
+         Inilah yang terjadi pada Restoran anda hari ini.
        </h4>
      </div>
 
@@ -188,18 +188,25 @@ $jml_order = App\Order::where('status_order', 'Beres')->count();
           <div class="card border-warning-light m-4 p-2 bg-warning-light shadow-sm">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item bg-warning-light">
-                  <span class="d-block mb-2 fw-bold"> 10 tips to increase sales!.</span>
+                  <span class="d-block mb-2 fw-bold"> 10 tips untuk meningkatkan penjualan !.</span>
                   <p>
-                    Here are some basic steps you can take to improve your sales performance, reduce your cost of selling, and ensure your great business.
+                    Berikut adalah beberapa langkah dasar yang dapat Anda ambil untuk meningkatkan kinerja penjualan, mengurangi biaya penjualan, dan memastikan bisnis hebat Anda.
                   </p>
-                  <a href="#" class="btn btn-link text-primary pl-0">Learn more</a>
+                  <a href="#" class="btn btn-link text-primary pl-0">Pelajari Lebih lanjut</a>
                 </li>
                 <li class="list-group-item bg-warning-light">
-                  <span class="d-block mb-2 fw-bold"> Get more customers!</span>
+                  <span class="d-block mb-2 fw-bold"> Dapatkan lebih banyak pelanggan!</span>
                   <p>
-                    Learn how to get more customers with this step-by-step guide from expert marketers!
+                    Pelajari cara mendapatkan lebih banyak pelanggan dengan panduan langkah demi langkah dari pemasar ahli!
                   </p>
-                  <a href="#" class="btn btn-link text-primary pl-0">Learn more</a>
+                  <a href="#" class="btn btn-link text-primary pl-0">Pelajari Lebih lanjut</a>
+                </li>
+                <li class="list-group-item bg-warning-light">
+                  <span class="d-block mb-2 fw-bold"> Kunci agar setiap hari mendapatkan pelanggan</span>
+                  <p>
+                    Pelajari agar konsisten setiap hari mendapatkan pelanggan!
+                  </p>
+                  <a href="#" class="btn btn-link text-primary pl-0">Pelajari Lebih lanjut</a>
                 </li>
               </ul>
             </div>
@@ -271,13 +278,13 @@ $jml_order = App\Order::where('status_order', 'Beres')->count();
   <div class="card shadow-sm ">
     <div class="card-header bg-primary text-light d-inline">
       <a class="btn btn-success float-right ml-2" href="{{route('print.excel')}}"><span class="oi oi-print"></span> Export Excel</a><a class="btn btn-danger float-right" href="{{route('print.pdf')}}"><span class="oi oi-print"></span> Export PDF</a>
-      <h6><b>Laporan Pesanan & Transaksi</b></h6>
+      <h6><b>Data Transaksi per-minggu</b></h6>
     </div>
     <!-- Chart Tag -->
     <div class="card-body">
-        <canvas id="myBarChart" width="100%" height="30"></canvas>
+        <canvas id="chartjs-line"></canvas>
     </div>
-    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    <div class="card-footer small text-muted">Grafik Line</div>
   </div>
 </div>
 
@@ -286,26 +293,13 @@ $jml_order = App\Order::where('status_order', 'Beres')->count();
 
 @push('js')
 <script src="{{url('polished/js/Chart.min.js')}}"></script>
-<script src="{{url('polished/js/chart-bar-demo.js')}}"></script>
 <?php 
 
 $data = App\Transaksi::join('orders', 'transactions.order_id_order', '=', 'orders.id_order')
-            ->select('transactions.created_at as created_at', 'orders.subtotal as subtotal')
+            ->select('transactions.tanggal_transaksi', 'orders.subtotal')
             ->get();
 
-$orders = App\Order::all();
-      $orders->transform(function($order) {
-          $order->cart = unserialize($order->cart);
-          return $order;
-      });
-foreach ($orders as $order) {
-  foreach ($order->cart->items as $key) {
-    $menu = $key['item']['nama_masakan'];
-  }
-}
-
-
-$star_date = strtotime(date('Y-m-d H:i:s'));
+$star_date = strtotime(date('Y-m-d'));
 $date = strtotime("-10 days", $star_date);
 $x = 0;
 $data_tgl = "";
@@ -314,21 +308,54 @@ $data_price = "";
 while($x < 10) {
   $x++;
   $date = strtotime("+1 days", $date);
-  $tanggal = date('Y-m-d H:i:s', $date);
+  $tanggal = date('Y-m-d', $date);
   $tgl = date('d M', $date);
-  $jum = $data->where('created_at','like',$tanggal)->count();
-  $price = $data->where('created_at','like',$tanggal)->sum('subtotal');
+  $jum = $data->where('tanggal_transaksi','like',$tanggal)->count();
+  $price = $data->where('tanggal_transaksi','like',$tanggal)->sum('subtotal');
   $data_tgl .= "'$tgl',";
   $data_transaksi .= "'$jum',";
+  $data_price .= "'$price',";
 
 }
-
 
  ?>
  <script type="text/javascript">
    var tanggal = [<?= $data_tgl ?>];
    var transaksi = [<?= $data_transaksi ?>];
-   var asaa = [<?= $menu ?>];
+   var subtotal = [<?= $data_price ?>];
+
+   // Grafik LINE per-minggu
+   var ctxLine = document.getElementById('chartjs-line')
+    var dataLine = {
+      labels: tanggal,
+      datasets: [{
+        label: 'Transaksi',
+        data: transaksi,
+        borderColor: '#B5BCF3'
+      }, {
+        label: 'Pendapatan',
+        data: subtotal,
+        borderColor: '#47467A'
+      }]
+    }
+
+    var myLineChart = new Chart(ctxLine, {
+      type: 'line', 
+      data: dataLine
+    })
+
+    // Grafik PIE data ORDER
+    var ctxDoughnut = document.getElementById('chartjs-doughnut')
+    var myDoughnutChart = new Chart(ctxDoughnut, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [10,20,30],
+          backgroundColor: ['#24235C', '#47467A', 'indigo']
+        }],
+        labels: [ 'April', 'May', 'June']
+      }
+    })
 
    // Auto Refresh Dashboard
      setTimeout(function(){

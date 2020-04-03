@@ -57,7 +57,7 @@
 	      <div>
 		    <div id="card" class="card">
 			  @foreach($orders as $order)
-			  @if($order['status_order'] == 'Pending')
+			  @if($order['status_order'] == 'Menunggu Pembayaran')
 			  <div class="card-header bg-dark text-white">
 			   	<b>{{$order->kode_order}} - No Meja {{$order->no_meja}}</b>
 			  </div>

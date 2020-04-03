@@ -17,7 +17,7 @@
       @endif
 
       @if(Auth::user()->level =='admin' || Auth::user()->level =='waiter')
-      <li><a href="{{route('entri.order')}}"><span class="oi oi-pencil"></span> Waiter <span class="badge badge-warning float-right">{{$entri->count()}}</span></a></li>
+      <li><a href="{{route('entri.order')}}"><span class="oi oi-clipboard"></span> Waiter <span class="badge badge-warning float-right">{{$entri->count()}}</span></a></li>
       @endif
 
       @if(Auth::user()->level =='admin' || Auth::user()->level =='kasir')
