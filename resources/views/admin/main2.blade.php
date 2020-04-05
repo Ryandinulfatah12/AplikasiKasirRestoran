@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="{{url('polished/css/bounce.css')}}">
   <link rel="stylesheet" href="{{url('polished/css/dataTables.bootstrap4.min.css')}}">
   <link rel="icon" href="{{url('polished/assets/fav.png')}}">
+  <!-- swal -->
+  <link rel="stylesheet" href="{{url('polished/js/swal/sweetalert2.min.css')}}">
   @stack('css')
 
   <style>

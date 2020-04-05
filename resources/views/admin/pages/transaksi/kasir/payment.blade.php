@@ -1,5 +1,8 @@
 @extends('admin.main2')
 @section('title','Pembayaran')
+@push('css')
+<link rel="stylesheet" href="{{url('polished/js/swal/sweetalert2.min.css')}}">
+@endpush
 @section('content')
 
 <div class="container-fluid">
@@ -63,7 +66,7 @@
 						</div>
 						
 		                <div class="form-group">
-		                  <button id="btnPay" type="submit" class="btn btn-success" onclick="return confirm('Checkout?')">Bayar</button>
+		                  <button id="btnPay" type="submit" class="btn btn-success kasir">Bayar</button>
 		                </div>
 
 		              </form>
@@ -81,18 +84,34 @@
 @endsection
 
 @push('js')
-
+<script src="{{url('polished/js/swal/sweetalert2.all.min.js')}}"></script>
 <script type="text/javascript">
-	$("#btnPay").click(function () {
-		var total = $("#txtTotal").val();
-		var bayar= $("#txtBayar").val();
-		var kembalian = parseInt(bayar) - parseInt(total);
-		$(".txtKembalian").val(kembalian);
+	$('#btnPay').on('click', function (e) {
+		e.preventDefault();
+      Swal.fire({
+        title: 'Yakin?',
+        text: "Apakah anda yakin untuk membayar tagihan ini?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya yakin!'
+      }).then((result) => {
+        if (result.value) {
 
-		$("#form-bayar").submit();
-		
+          var total = $("#txtTotal").val();
+				var bayar= $("#txtBayar").val();
+				var kembalian = parseInt(bayar) - parseInt(total);
+				$(".txtKembalian").val(kembalian);
 
-	});
+				$("#form-bayar").submit();
+
+        }
+      })
+
+    });
+
+	
 
 	
 </script>

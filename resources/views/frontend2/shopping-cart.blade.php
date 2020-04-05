@@ -1,8 +1,11 @@
 @extends('layouts.main2')
 @section('title','Keranjang Anda')
+@push('css')
+<link rel="stylesheet" href="{{url('polished/js/swal/sweetalert2.min.css')}}">
+@endpush
 @section('content')
 
-<div class="container">
+<div class="container" id="cart">
 	<h1 align="center"><span class="oi oi-cart"></span> Keranjang</h1>
 	
 	@if(Session::has('cart'))
@@ -10,7 +13,7 @@
 		<div class="row">
 
 			<div class="col-md-9 mx-auto">
-				<a href="{{route('cancel')}}" class="btn btn-danger mr-2 mb-2" onclick="return confirm('Hapus Semua Data di Keranjang?')"><span class="oi oi-trash"></span> Batal Memesan</a><a class="btn btn-success mb-2" href="{{route('menu-masakan')}}"><span class="oi oi-arrow-circle-left"></span> Pesan Menu Lagi</a>
+				<a href="{{route('cancel')}}" class="btn btn-danger bersih mr-2 mb-2"><span class="oi oi-trash"></span> Batal Memesan</a><a class="btn btn-success mb-2" href="{{route('menu-masakan')}}"><span class="oi oi-arrow-circle-left"></span> Pesan Menu Lagi</a>
 				<div class="table-responsive-md">
 					<table class="table">
 					  <thead class="thead-dark">
@@ -74,3 +77,30 @@
 </div>
 
 @endsection
+
+@push('js')
+<script src="{{url('polished/js/swal/sweetalert2.all.min.js')}}"></script>
+<script type="text/javascript">
+    $('#cart').on('click','.bersih', function (e) {
+
+      e.preventDefault();
+      const href = $(this).attr('href');
+
+      Swal.fire({
+        title: 'Sudah Diantar?',
+        text: "Apakah Pesanan Ini Sudah Diantarkan",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya Sudah!'
+      }).then((result) => {
+        if (result.value) {
+          document.location.href = href;
+        }
+      })
+
+    });
+</script>
+<!-- onclick="return confirm('Sudah Diantar Waiter?')" -->
+@endpush

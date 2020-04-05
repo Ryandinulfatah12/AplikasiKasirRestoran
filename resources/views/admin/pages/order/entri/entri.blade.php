@@ -1,6 +1,9 @@
 
 @extends('admin.main2')
 @section('title','Waiter')
+@push('css')
+<link rel="stylesheet" href="{{url('polished/js/swal/sweetalert2.min.css')}}">
+@endpush
 
 @section('content')
 
@@ -49,7 +52,7 @@
                   <td class="text-success-darkest">Rp. {{number_format($order->subtotal),0,',','.'}}</td>
 
                   <td>
-                    <a class="btn btn-success" href="{{route('entri.accept', ['id_order'=>$order->id_order])}}" onclick="return confirm('Sudah Diantar Waiter?')">Diantar</a>
+                    <a class="btn btn-success waiter" href="{{route('entri.accept', ['id_order'=>$order->id_order])}}">Diantar</a>
                   </td>
                 </tr>
                 @endforeach
@@ -64,10 +67,33 @@
 @endsection
 
 @push('js')
+<script src="{{url('polished/js/swal/sweetalert2.all.min.js')}}"></script>
 <script type="text/javascript">
+    $('.waiter').on('click', function (e) {
+
+      e.preventDefault();
+      const href = $(this).attr('href');
+
+      Swal.fire({
+        title: 'Sudah Diantar?',
+        text: "Apakah Pesanan Ini Sudah Diantarkan",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya Sudah!'
+      }).then((result) => {
+        if (result.value) {
+          document.location.href = href;
+        }
+      })
+
+    });
+
     // Auto Refresh Dashboard
      setTimeout(function(){
          location.reload();
      },60000); // 5000 milliseconds atau 5 seconds.
 </script>
+<!-- onclick="return confirm('Sudah Diantar Waiter?')" -->
 @endpush

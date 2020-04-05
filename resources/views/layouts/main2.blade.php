@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{{url('polished/css/open-iconic-bootstrap.min.css')}}">
 
   <link rel="icon" href="{{url('polished/assets/fav.png')}}">
+  @stack('css')
 
 </head>
 <style>
@@ -78,41 +79,14 @@
     <div class="dropdown-menu dropdown-menu-right" id="navbar-dropdown">
       <a href="#" class="dropdown-item" data-toggle="modal" data-target="#profilModal"><span class="oi oi-person"></span> Profile</a>
       <div class="dropdown-divider"></div>
-      <a href="#" class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><span class="oi oi-account-logout"></span> Sign Out</a>
+      <a href="#" class="dropdown-item logout"><span class="oi oi-account-logout"></span> Sign Out</a>
     </div>
   </div>
 </nav>
 
-
-@push('modal')
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-secondary">
-        <h3 class="modal-title">Anda Mau Logout?</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span class="text-white" aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Apakah Anda Yakin mau Mengakhiri Sesi ini?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <a class="btn btn-danger" href="{{ route('logout') }}"
-            onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();">Logout
-        </a>
-      
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
-
-      </div>
-    </div>
-  </div>
-</div>
-@endpush
 
 @push('modal')
 <div class="modal fade" id="profilModal" tabindex="-1" role="dialog">
@@ -144,12 +118,35 @@
 
   @stack('modal')
   @stack('js')
-
   <script src="{{url('polished/js/sweetalert.min.js')}}"></script>
   @include('sweet::alert')
   <script src="{{url('polished/js/jquery-3.3.1.slim.min.js')}}"></script>
   <script src="{{url('polished/js/popper.min.js')}}"></script>
   <script src="{{url('polished/js/bootstrap.min.js')}}"></script>
+  <script src="{{url('polished/js/swal/sweetalert2.all.min.js')}}"></script>
+  <script type="text/javascript">
+      $('.logout').on('click', function (e) {
+
+        e.preventDefault();
+        const href = $(this).attr('href');
+
+        Swal.fire({
+          title: 'Logout?',
+          text: "Apakah anda yakin mau mengakhiri sesi ini?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya yakin!'
+        }).then((result) => {
+          if (result.value) {
+            document.getElementById('logout-form').submit();
+          }
+        })
+
+      });
+
+  </script>
   
 </body>
 

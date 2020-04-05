@@ -96,9 +96,9 @@
 				    Filter by Kategori
 				  </button>
 				    <div class="dropdown-menu">
-				    	<a class="dropdown-item" href="{{route('menu-masakan')}}">Semua Menu</a>
+				    	<a class="dropdown-item category" href="{{route('menu-masakan')}}">Semua Menu</a>
 				    @foreach($kategori as $dt)
-					  <a class="dropdown-item" href="{{route('show.category', ['id'=> $dt->id])}}">{{$dt->nama_kategori}}</a>
+					  <a class="dropdown-item category" href="{{route('show.category', ['id'=> $dt->id])}}">{{$dt->nama_kategori}}</a>
 					@endforeach  
 					</div>
 				</div>
@@ -134,7 +134,7 @@
 		<div class="col-md-4 pb-4">
 			<div class="card-group">
 			  <div class="card">
-			    <a href="{{url('storage/gambar/'.$dt->gambar)}}"><img class="card-img-top img-responsive" src="{{url('storage/gambar/'.$dt->gambar)}}" style="width: 100%; height: 280px;" alt="Card image cap"></a>
+			    <a href="{{url('storage/gambar/'.$dt->gambar)}}"><img class="card-img-top img-responsive" src="{{url('storage/gambar/'.$dt->gambar)}}" style="width: 100%; height: 280px;"></a>
 			    <div class="card-body">
 			      <small>{{$dt->kode_masakan}} | {{$dt->nama_kategori}}</small>	
 			      <h5 class="card-title">{{$dt->nama_masakan}}</h5>

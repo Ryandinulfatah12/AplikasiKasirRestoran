@@ -75,9 +75,9 @@
 			    <strong class="float-right" style="text-transform: uppercase; color: green;">Total : Rp.{{number_format($order->subtotal,0,',','.')}},</strong><span class="badge badge-dark">Diorder pada : {{date('d F Y - H:i', strtotime($order->created_at))}}</span> <span class="badge badge-secondary">Status	:
 	            <?php 
 			            if ($order['status_order']=='Pending') {
-			                echo "<span class='badge badge-warning text-dark bounce'>SEDANG DIPROSES</span>";
+			                echo "<span class='badge badge-warning text-dark bounce'>Menunggu Diantar</span>";
 			            } elseif($order['status_order']=='Menunggu Pembayaran') {
-			            	echo "<span class='badge badge-warning'>SEDANG DIPROSES | Menunggu Pembayaran</span>";
+			            	echo "<span class='badge badge-warning'>Menunggu Pembayaran</span>";
 			            } elseif($order['status_order']=='Beres') {
 			            	echo "<span class='badge badge-success'>ORDERAN BERES</span>";
 			            } else {
