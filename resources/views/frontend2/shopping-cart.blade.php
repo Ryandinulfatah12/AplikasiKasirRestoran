@@ -13,7 +13,7 @@
 		<div class="row">
 
 			<div class="col-md-9 mx-auto">
-				<a href="{{route('cancel')}}" class="btn btn-danger bersih mr-2 mb-2"><span class="oi oi-trash"></span> Batal Memesan</a><a class="btn btn-success mb-2" href="{{route('menu-masakan')}}"><span class="oi oi-arrow-circle-left"></span> Pesan Menu Lagi</a>
+				<a href="{{route('cancel')}}" class="btn btn-danger cancel mr-2 mb-2"><span class="oi oi-trash"></span> Batal Memesan</a><a class="btn btn-success mb-2" href="{{route('menu-masakan')}}"><span class="oi oi-arrow-circle-left"></span> Pesan Menu Lagi</a>
 				<div class="table-responsive-md">
 					<table class="table">
 					  <thead class="thead-dark">
@@ -39,7 +39,7 @@
 					      <td>
 					      	<a class="btn btn-danger btn-sm" href="{{route('reducebyone', ['id' => $dt['item']['id']])}}"><span class="oi oi-minus"></span></a>
 					      	<span class="btn btn-secondary" disabled><b>{{$dt['qty']}}</b></span>
-					      	<a class="btn btn-success btn-sm" href="{{route('addone', ['id' => $dt['item']['id']])}}"><i class="oi oi-plus" aria-hidden="true"></i></a> 
+					      	<a class="btn btn-success btn-sm" href="{{route('addone', ['id' => $dt['item']['id']])}}"><i class="oi oi-plus" aria-hidden="true"></i></a>
 					      </td>
 					      <td>Rp.{{number_format($dt['harga'],0,',','.')}},</td>
 					      <td>
@@ -79,21 +79,20 @@
 @endsection
 
 @push('js')
-<script src="{{url('polished/js/swal/sweetalert2.all.min.js')}}"></script>
 <script type="text/javascript">
-    $('#cart').on('click','.bersih', function (e) {
+    $('.cancel').on('click', function (e) {
 
       e.preventDefault();
       const href = $(this).attr('href');
 
       Swal.fire({
-        title: 'Sudah Diantar?',
-        text: "Apakah Pesanan Ini Sudah Diantarkan",
+        title: 'Batal memesan?',
+        text: "Apakah anda ingin membersihkan semua data dikeranjang?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya Sudah!'
+        confirmButtonText: 'Ya bersihkan!'
       }).then((result) => {
         if (result.value) {
           document.location.href = href;
@@ -101,6 +100,6 @@
       })
 
     });
+
 </script>
-<!-- onclick="return confirm('Sudah Diantar Waiter?')" -->
 @endpush

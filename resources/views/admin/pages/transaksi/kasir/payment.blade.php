@@ -91,7 +91,7 @@
       Swal.fire({
         title: 'Yakin?',
         text: "Apakah anda yakin untuk membayar tagihan ini?",
-        icon: 'warning',
+        icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',

@@ -36,6 +36,7 @@ class FrontEndController extends Controller
     {
         $data = Masakan::where('kategori_id', $id)
         ->join('kategori','kategori.id','masakan.kategori_id')
+        ->select('masakan.*','nama_kategori')
         ->paginate(9);
         return view('frontend2.menu', compact('data'));
     }
@@ -50,7 +51,7 @@ class FrontEndController extends Controller
 
     public function AddToCart(Request $req, $id)
     {
-        $data = Masakan::find($id);
+        $data = Masakan::findOrFail($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->add($data, $data->id);

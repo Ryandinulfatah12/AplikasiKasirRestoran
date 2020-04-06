@@ -164,8 +164,7 @@
 	@endif
 
 	{{
-		$data->appends(request()->only('keyword'))
-		->links('vendor.pagination.bootstrap-4')
+		$data->links('vendor.pagination.bootstrap-4')
 	}}
 	<br>
 

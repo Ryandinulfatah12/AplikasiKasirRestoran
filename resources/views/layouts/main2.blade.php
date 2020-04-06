@@ -117,13 +117,14 @@
   </div>
 
   @stack('modal')
-  @stack('js')
+
   <script src="{{url('polished/js/sweetalert.min.js')}}"></script>
   @include('sweet::alert')
   <script src="{{url('polished/js/jquery-3.3.1.slim.min.js')}}"></script>
   <script src="{{url('polished/js/popper.min.js')}}"></script>
   <script src="{{url('polished/js/bootstrap.min.js')}}"></script>
   <script src="{{url('polished/js/swal/sweetalert2.all.min.js')}}"></script>
+ @stack('js')
   <script type="text/javascript">
       $('.logout').on('click', function (e) {
 

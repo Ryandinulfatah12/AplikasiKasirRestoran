@@ -77,7 +77,7 @@
       Swal.fire({
         title: 'Sudah Diantar?',
         text: "Apakah Pesanan Ini Sudah Diantarkan",
-        icon: 'warning',
+        icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
