@@ -1,6 +1,7 @@
 <h1 align="center">Kenalin nih Ngapak Resto</h1>
 
 ![Landing Page](https://github.com/Ryandinulfatah12/AplikasiKasirRestoran/blob/master/public/images/screenshot_admin.jpg?raw=true)
+![Landing Page](https://github.com/Ryandinulfatah12/AplikasiKasirRestoran/blob/master/public/images/screenshot_client.jpg?raw=true)
 
 <p align="center">
 <img align="center" src="http://ForTheBadge.com/images/badges/built-with-love.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/uses-html.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/makes-people-smile.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/built-by-developers.svg">
@@ -25,7 +26,7 @@ Ngapak Resto adalah Restourant Management yang dibuat oleh <a href="https://gith
 Mungkin untuk demo nya bisa dilihat :
 <a href="https://www.youtube.com/watch?v=AvDDvM2QMeM">Demo Aplikasi Kasir Restoran dengan Laravel</a>
 
-### 📆 <p>Tanggal Rilis</p>
+### <p>Tanggal Rilis</p>
 **Release date : 6 April 2020**
 > Anda diperbolehkan untuk fork/clone atau develop project ini dan berikan project stars dan follow akun saya juga oke, karena ini merupakan project kali pertama yang saya buat dengan laravel.
 
@@ -56,7 +57,7 @@ jadi jika anda ingin File Database bisa email ke
 	
 ```
 
-5.** Jalankan bash**
+5. ** Jalankan bash**
 ```bash
 php artisan key:generate
 php artisan config:cache
@@ -64,7 +65,7 @@ php artisan storage:link
 php artisan route:clear
 ```
 
-6.** Jalankan website**
+6. ** Jalankan website**
 ```bash
 php artisan serve
 ```
