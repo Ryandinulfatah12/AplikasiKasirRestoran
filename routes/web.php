@@ -46,7 +46,7 @@ Route::group(['prefix' => 'frontend','middleware'=>['auth']], function() {
 // BACKEND ROUTING
 Route::group(['prefix'=>'admin','middleware'=>['auth']], function() {
 	Route::get('/', function() {
-
+		
 		return view('admin.pages.dashboard');
 	})->name('admin.home')->middleware('level.admin:owner');
 

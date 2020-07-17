@@ -1,71 +1,91 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+<h1 align="center">Kenalin nih Ngapak Resto</h1>
+
+![Landing Page](https://github.com/Ryandinulfatah12/AplikasiKasirRestoran/blob/master/public/images/screenshot_admin.jpg?raw=true)
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+<img align="center" src="http://ForTheBadge.com/images/badges/built-with-love.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/uses-html.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/makes-people-smile.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/built-by-developers.svg">
 </p>
 
-## About Laravel
+## Tentang Ngapak Resto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Ngapak Resto adalah Restourant Management yang dibuat oleh <a href="https://github.com/Ryandinulfatah12">Ryan Dinul Fatah</a>. , Sebuah Website yang bisa me-manage sebuah restoran dari mulai dari pelanggan bisa melakukan order, dan bertransaksi dengan kasir yang sudah diatur sistemnya.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Fitur dari Ngapak Resto
+- Authentikasi Admin & Pelanggan.
+- List & CRUD Users, Data Masakan, Kategori.
+- Chart System (Untuk Order Pelanggan).
+- Invoice dan Transaksi Simple & Mudah Dibaca.
+- Sweet Alert 2 Included.
+- Pendataan Dengan Datatable agar lebih cepat & efisien.
+- Chart/Grafik Pendapatan mingguan dengan library Chart.JS.
+- 5 Hak Akses (Admin, Kasir, Owner, Waiter, Pelanggan)
+- User Settings
+- Dan lain-lain
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Mungkin untuk demo nya bisa dilihat :
+<a href="https://www.youtube.com/watch?v=AvDDvM2QMeM">Demo Aplikasi Kasir Restoran dengan Laravel</a>
 
-## Learning Laravel
+### 📆 <p>Tanggal Rilis</p>
+**Release date : 6 April 2020**
+> Anda diperbolehkan untuk fork/clone atau develop project ini dan berikan project stars dan follow akun saya juga oke, karena ini merupakan project kali pertama yang saya buat dengan laravel.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+------------
+## 💻 Panduan Instalasi Project
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
+1. **Clone Repository**
+```bash
+git clone https://github.com/zuramai/kelaskita.git
+cd kelaskita
+composer install
+npm install
+copy .env.example rename->.env
+```
+3. **Buka ```.env``` lalu ubah baris berikut sesuaikan dengan databasemu yang ingin dipakai**
+```
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Laravel Sponsors
+4. **Import Database SQL**
+```Project ini tidak menggunakan fitur migration (waktu itu disuruh buat db nya lewat CMD oleh guru Basisdata :v)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+jadi jika anda ingin File Database bisa email ke
+<a href="mailto:dinulfatahryan@gmail.com">Request Database file</a>
+	
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
+5.** Jalankan bash**
+```bash
+php artisan key:generate
+php artisan config:cache
+php artisan storage:link
+php artisan route:clear
+```
+
+6.** Jalankan website**
+```bash
+php artisan serve
+```
+
+## 🧑 Pemilik
+
+👤 <a href="https://www.instagram.com/ryandinulfatah12/"> **Ryan Dinul Fatah**</a>
+- Facebook : <a href="https://web.facebook.com/ryan.dinulfatah"> Ryan Dinul Fatah</a>
+- LinkedIn : <a href="https://www.linkedin.com/in/ryandinulfatah/"> Ryan Dinul Fatah</a>
 
 ## Contributing
+Contributions, issues and feature requests di persilahkan.
+Jangan ragu untuk memeriksa halaman masalah jika Anda ingin berkontribusi. **Berhubung Project ini saya sudah selesaikan sendiri, namun banyak fitur yang kalian dapat tambahkan silahkan berkontribusi yaa!**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
+- Copyright © 2020 Ryan Dinul Fatah.
+- **Ngapak Resto is open-sourced software licensed under the MIT license.**
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+------------
+
+- **Made with ❤️ by Ryan Dinul Fatah .**
+- Thanks to all
+- Ngapak Resto is open-sourced software licensed under the MIT license.

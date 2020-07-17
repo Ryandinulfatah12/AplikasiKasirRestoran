@@ -1,5 +1,4 @@
 <?php 
-
 // PENDAPATAN & ORDER HARI INI
 $hari_ini = Carbon\Carbon::today();
 $earning = App\Order::whereDate('created_at', $hari_ini)->sum('subtotal');
@@ -267,6 +266,18 @@ $jml_order = App\Order::where('status_order', 'Beres')->count();
           </div>
         </li>
       </ul>
+      <div class="col-lg-12 pt-3 mx-auto">
+        <div class="card shadow-sm ">
+          <div class="card-header bg-primary text-light d-inline">
+            <h6><b>Recently</b></h6>
+          </div>
+          <!-- Chart Tag -->
+          <div class="card-body">
+              <canvas id="chartjs-doughnut"></canvas>
+          </div>
+          <div class="card-footer small text-muted">Grafik</div>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -293,7 +304,18 @@ $jml_order = App\Order::where('status_order', 'Beres')->count();
 
 @push('js')
 <script src="{{url('polished/js/Chart.min.js')}}"></script>
-<?php 
+<?php
+
+$orders = App\Order::all();
+        $orders->transform(function($order) {
+            $order->cart = unserialize($order->cart);
+            return $order;
+        });
+foreach ($orders as $order) {
+  foreach ($order->cart->items as $key) {
+    $menu = $key['item']['nama_masakan'];
+  }
+}
 
 $data = App\Transaksi::join('orders', 'transactions.order_id_order', '=', 'orders.id_order')
             ->select('transactions.tanggal_transaksi', 'orders.subtotal')
@@ -344,7 +366,8 @@ while($x < 10) {
       data: dataLine
     })
 
-    // Grafik PIE data ORDER
+    // Grafik PIE data ORDEr
+
     var ctxDoughnut = document.getElementById('chartjs-doughnut')
     var myDoughnutChart = new Chart(ctxDoughnut, {
       type: 'doughnut',

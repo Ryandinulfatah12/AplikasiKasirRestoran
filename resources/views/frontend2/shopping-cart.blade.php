@@ -99,7 +99,7 @@
         }
       })
 
-    });
+    });    
 
 </script>
 @endpush
