@@ -15,6 +15,7 @@ Ngapak Resto adalah Restourant Management yang dibuat oleh <a href="https://gith
 - Authentikasi Admin & Pelanggan.
 - List & CRUD Users, Data Masakan, Kategori.
 - Chart System (Untuk Order Pelanggan).
+- History / Riwayat Order Pelanggan
 - Invoice dan Transaksi Simple & Mudah Dibaca.
 - Sweet Alert 2 Included.
 - Pendataan Dengan Datatable agar lebih cepat & efisien.
@@ -53,7 +54,7 @@ DB_PASSWORD=
 ```Project ini tidak menggunakan fitur migration (waktu itu disuruh buat db nya lewat CMD oleh guru Basisdata :v)
 
 jadi jika anda ingin File Database bisa email ke
-<a href="mailto:dinulfatahryan@gmail.com">Request Database file</a>
+dinulfatahryan@gmail.com atau DM @ryandinulfatah12
 	
 ```
 
