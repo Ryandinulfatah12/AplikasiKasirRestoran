@@ -36,8 +36,8 @@ Mungkin untuk demo nya bisa dilihat :
 
 1. **Clone Repository**
 ```bash
-git clone https://github.com/zuramai/kelaskita.git
-cd kelaskita
+git clone https://github.com/Ryandinulfatah12/AplikasiKasirRestoran.git
+cd AplikasiKasirRestoran
 composer install
 npm install
 copy .env.example rename->.env
