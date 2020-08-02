@@ -58,7 +58,7 @@ dinulfatahryan@gmail.com atau DM @ryandinulfatah12
 	
 ```
 
-4. ** Jalankan bash**
+4. **Jalankan bash**
 ```bash
 php artisan key:generate
 php artisan config:cache
@@ -66,7 +66,7 @@ php artisan storage:link
 php artisan route:clear
 ```
 
-5. ** Jalankan website**
+5. **Jalankan website**
 ```bash
 php artisan serve
 ```
