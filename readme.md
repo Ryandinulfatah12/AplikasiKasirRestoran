@@ -42,7 +42,7 @@ composer install
 npm install
 copy .env.example rename->.env
 ```
-3. **Buka ```.env``` lalu ubah baris berikut sesuaikan dengan databasemu yang ingin dipakai**
+2. **Buka ```.env``` lalu ubah baris berikut sesuaikan dengan databasemu yang ingin dipakai**
 ```
 DB_PORT=3306
 DB_DATABASE=laravel
@@ -50,7 +50,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-4. **Import Database SQL**
+3. **Import Database SQL**
 ```Project ini tidak menggunakan fitur migration (waktu itu disuruh buat db nya lewat CMD oleh guru Basisdata :v)
 
 jadi jika anda ingin File Database bisa email ke
@@ -58,7 +58,7 @@ dinulfatahryan@gmail.com atau DM @ryandinulfatah12
 	
 ```
 
-5. ** Jalankan bash**
+4. ** Jalankan bash**
 ```bash
 php artisan key:generate
 php artisan config:cache
@@ -66,7 +66,7 @@ php artisan storage:link
 php artisan route:clear
 ```
 
-6. ** Jalankan website**
+5. ** Jalankan website**
 ```bash
 php artisan serve
 ```
