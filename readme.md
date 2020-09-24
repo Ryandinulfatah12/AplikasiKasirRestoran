@@ -25,7 +25,9 @@ Ngapak Resto adalah Restourant Management yang dibuat oleh <a href="https://gith
 - Dan lain-lain
 
 Mungkin untuk demo nya bisa dilihat :
-<a href="https://www.youtube.com/watch?v=AvDDvM2QMeM">Demo Aplikasi Kasir Restoran dengan Laravel</a>
+<a href="http://ngapakresto.decorationtrend.xyz/">Demo Live Website Projectnya</a>
+
+<a href="https://www.youtube.com/watch?v=AvDDvM2QMeM">Demo Video Aplikasi Kasir Restoran dengan Laravel</a>
 
 ### <p>Tanggal Rilis</p>
 **Release date : 6 April 2020**
