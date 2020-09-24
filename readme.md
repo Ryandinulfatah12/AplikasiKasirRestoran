@@ -1,7 +1,7 @@
 <h1 align="center">Kenalin nih Ngapak Resto</h1>
 
-![Landing Page](https://github.com/Ryandinulfatah12/AplikasiKasirRestoran/blob/master/public/images/screenshot_admin.jpg?raw=true)
-![Landing Page](https://github.com/Ryandinulfatah12/AplikasiKasirRestoran/blob/master/public/images/screenshot_client.jpg?raw=true)
+![screenshot_client](https://user-images.githubusercontent.com/46431723/94099218-9e9cb700-fe54-11ea-8c6b-a671f404d5c9.jpg)
+![screenshot_admin](https://user-images.githubusercontent.com/46431723/94099260-bd9b4900-fe54-11ea-8636-1d095a5b7740.jpg)
 
 <p align="center">
 <img align="center" src="http://ForTheBadge.com/images/badges/built-with-love.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/uses-html.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/makes-people-smile.svg"> <img align="center" src="http://ForTheBadge.com/images/badges/built-by-developers.svg">
@@ -79,7 +79,7 @@ php artisan serve
 
 ## Contributing
 Contributions, issues and feature requests di persilahkan.
-Jangan ragu untuk memeriksa halaman masalah jika Anda ingin berkontribusi. **Berhubung Project ini saya sudah selesaikan sendiri, namun banyak fitur yang kalian dapat tambahkan silahkan berkontribusi yaa!**
+Jangan ragu untuk memeriksa halaman masalah jika Anda ingin berkontribusi. **Berhubung Project ini saya sudah selesaikan sendiri, dan pastinya masih banyak sekali yang kurang, namun banyak fitur yang kalian dapat tambahkan silahkan berkontribusi yaa!**
 
 
 ## License
